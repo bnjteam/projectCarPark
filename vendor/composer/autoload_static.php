@@ -96,6 +96,7 @@ class ComposerStaticInit9666c3cc036910bf61ada12e18555f14
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
+            'Dirape\\Token\\' => 13,
             'DeepCopy\\' => 9,
         ),
         'C' => 
@@ -256,6 +257,10 @@ class ComposerStaticInit9666c3cc036910bf61ada12e18555f14
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
+        'Dirape\\Token\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dirape/token/src',
+        ),
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
@@ -371,6 +376,9 @@ class ComposerStaticInit9666c3cc036910bf61ada12e18555f14
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
+        'Dirape\\Token\\Facades\\Facade' => __DIR__ . '/..' . '/dirape/token/src/Facades/Facade.php',
+        'Dirape\\Token\\Token' => __DIR__ . '/..' . '/dirape/token/src/Token.php',
+        'Dirape\\Token\\TokenServiceProvider' => __DIR__ . '/..' . '/dirape/token/src/TokenServiceProvider.php',
         'Doctrine\\Common\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php',
         'Doctrine\\Common\\Lexer\\AbstractLexer' => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php',
         'Doctrine\\Instantiator\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/ExceptionInterface.php',

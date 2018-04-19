@@ -20,6 +20,7 @@ class CreateMapsTable extends Migration
               'full','empty','reserve'
             ]);
             $table->string('reserver');
+            $table->string('location');
             $table->timestamps();
 
             $table->foreign('reserver')

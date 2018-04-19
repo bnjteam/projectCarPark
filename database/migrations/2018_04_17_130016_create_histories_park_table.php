@@ -20,6 +20,7 @@ class CreateHistoriesParkTable extends Migration
             $table->enum('type',[
               'leaved','reserved','entried','canceled'
             ]);
+            $table->string('location');
             $table->timestamps();
 
             $table->foreign('number')
