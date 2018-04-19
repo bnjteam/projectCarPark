@@ -3,11 +3,9 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
 Route::get('/', function () {
-    return view('home2');
+    return view('home');
 });
-
 Route::get('/search', function () {
     return view('search');
 });
@@ -20,7 +18,5 @@ Route::get('/test', function () {
 Route::get('/park_reserve', function () {
     return view('park.reserve');
 });
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
