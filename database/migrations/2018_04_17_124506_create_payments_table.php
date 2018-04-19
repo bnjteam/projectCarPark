@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->string('number');
             $table->string('user');
             $table->unsignedInteger('price');
+            $table->string('location');
             $table->enum('status',[
               'completed','not completed'
             ]);
