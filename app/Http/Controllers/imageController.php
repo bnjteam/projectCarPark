@@ -13,7 +13,7 @@ class imageController extends Controller
      */
     public function index()
     {
-        //
+        return view('imagesStore.index');
     }
 
     /**
@@ -34,7 +34,9 @@ class imageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $path = $request->fileToUpload->store('photos');
+        
+        return redirect('imagesStore/'.basename($path));
     }
 
     /**
@@ -43,9 +45,10 @@ class imageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($photo)
     {
-        //
+        $photo = '../storage/photos/'.$photo;
+        return view('setAvatar.show',['photo123'=>$photo]);
     }
 
     /**
