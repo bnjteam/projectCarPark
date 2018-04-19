@@ -1,5 +1,63 @@
 [
     {
+        "name": "dirape/token",
+        "version": "v1.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Dirape/laravel-token.git",
+            "reference": "31282afa4614783314935985f9270e458762bf83"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Dirape/laravel-token/zipball/31282afa4614783314935985f9270e458762bf83",
+            "reference": "31282afa4614783314935985f9270e458762bf83",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0 || ~4.0",
+            "php": ">=5.4.0"
+        },
+        "time": "2017-08-20T14:37:27+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Dirape\\Token\\TokenServiceProvider"
+                ],
+                "aliases": {
+                    "Token": "Dirape\\Token\\Facades\\Facade"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dirape\\Token\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "MustafaKhaled",
+                "email": "MustafaKhaled.dev@gmail.com"
+            }
+        ],
+        "description": "Unique Token Generator For Laravel",
+        "keywords": [
+            "PHP token",
+            "generate",
+            "laravel",
+            "laravel token",
+            "token",
+            "token generator",
+            "unique token"
+        ]
+    },
+    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "0.1",
         "version_normalized": "0.1.0.0",
