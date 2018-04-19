@@ -12,6 +12,9 @@ Route::get('/search', function () {
 Route::get('/setting', function () {
     return view('setting');
 });
+Route::get('/test', function () {
+    return view('test');
+});
 Route::get('/park_reserve', function () {
     return view('park.reserve');
 });
