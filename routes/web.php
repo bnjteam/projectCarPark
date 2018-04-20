@@ -1,5 +1,7 @@
 <?php
-
+use App\User;
+use App\Location;
+use Illuminate\Support\Facades\Input;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -20,3 +22,10 @@ Route::get('/park_reserve', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+Route::any('/search',function(){
+    $locationWord = Input::get ( 'search' );
+    $location = Location::where('location','LIKE','%'.$locationWord.'%')->orWhere('address','LIKE','%'.$locationWord.'%')->get();
+    if(count($location) > 0)
+        return view('home')->withDetails($location)->withQuery ( $locationWord );
+    else return view ('home')->withMessage('No Details found. Try to search again !');
+});
