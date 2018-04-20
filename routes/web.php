@@ -29,3 +29,7 @@ Route::any('/search',function(){
         return view('home')->withDetails($location)->withQuery ( $locationWord );
     else return view ('home')->withMessage('No Details found. Try to search again !');
 });
+Route::put('/home/{id}','SettingController@update');
+Route::get('/profile', function () {
+    return view('/profile');
+});
