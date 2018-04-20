@@ -15,7 +15,7 @@
             <div class="col-sm-4" >
                 <img width=400 src="https://secure.gravatar.com/avatar/de9b11d0f9c0569ba917393ed5e5b3ab?s=140&r=g&d=mm" class="img-circle">
             </div>
-        
+
             <div class="col-sm-8" >
                 User Name<br>
                 Email: MyEmail@servidor.com<br>
@@ -28,7 +28,7 @@
         <div >
             <div class="btn-group">
                 <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-                    Action 
+                    Action
                     <span class="icon-cog icon-white"></span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">

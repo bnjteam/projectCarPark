@@ -32,31 +32,8 @@
                 <div class="row">
                   <div class="col-md-6">
                   <a class="btn btn-link" href="{{ url('/park_reserve') }}">
-                      {{ __('reserve') }}
-
+                      {{ __('reserve') }
                   </a>
-                  </div>
-                  <div class="container">
-                      @if(isset($details))
-                          <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-                      <h2>Sample User details</h2>
-                      <table class="table table-striped">
-                          <thead>
-                              <tr>
-                                  <th>Location</th>
-                                  <th>Description</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              @foreach($details as $location)
-                              <tr>
-                                  <td>{{$location->location}}</td>
-                                  <td>{{$location->address}}</td>
-                              </tr>
-                              @endforeach
-                          </tbody>
-                      </table>
-                      @endif
                   </div>
                 </div>
               </div>
