@@ -8,14 +8,25 @@
           <div class="card-header">{{ __('Setting') }}</div>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="/home/{{ Auth::user()->id }}" enctype="multipart/form-data">
                 @csrf
-            
+                @method('PUT')
+                <div class="form-group row">
+                    <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+
+                    <div class="col-md-6">
+                    <input type="file" class="form-control-file" name="fileToUpload" id="exampleInputFile" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+
+                       
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                        <input id="name" type="text" value="{{ old('name') ?? Auth::user()->name }}" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"  required autofocus>
 
                         @if ($errors->has('name'))
                             <span class="invalid-feedback">
@@ -29,7 +40,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                                <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') ?? Auth::user()->lastname }}" required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback">
@@ -45,7 +56,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                        <input id="email" disabled type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  value="{{ Auth::user()->email }}" required>
 
                         @if ($errors->has('email'))
                             <span class="invalid-feedback">
