@@ -119,8 +119,49 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div class="">
-          @yield('bottom')
+        <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:70px;background-size: cover;background-repeat: no-repeat;width:100%">
+          <div class="container">
+            <div class="row">
+              <div class="col-6" style="margin-left:-60px">
+                <a href="/"><img src="/storage/logo.png" alt="" width=250px></a>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <div class="col-5">
+                    <div style="font-size:30px;color:white;">
+                      For Bussiness
+                    </div>
+                    <div style="font-size:17px;color:white;margin-left: 15px;">
+                      <a href="/">create your parking</a>
+                    </div>
+                  </div>
+
+                  <div class="col-3" >
+                    <div style="font-size:30px;color:white;">
+                        Social
+                    </div>
+                    <div class="">
+                      <a href="https://www.facebook.com"><img src="/storage/facebook.png" alt="" width=30px></a>
+                      <a href="https://www.twitter.com"><img src="/storage/twitter.png" alt="" width=30px></a>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div style="font-size:30px;color:white;">
+                        Contact Us
+                    </div>
+                    <div style="font-size:17px;color:white;margin-left: 15px;">
+                      <a href="/contact/sendmail">Send mail</a>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
         </div>
     </div>
 </body>
