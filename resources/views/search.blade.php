@@ -17,35 +17,36 @@
     </form>
   </div>
     @if(isset($details))
-    <div class="">
-      The Search results for your query <b> {{ $query }} </b> are :
+    <div class="" style="font-size:30px;margin-left:15px">
+      The Search results for your query <b> '{{ $query }}' </b> are :
     </div>
 
 
       @for($i = 0;$i < count($details); $i++)
         @if ($i%3==0)
           <div class="row">
-          <div class="col-4" style="padding:30px">
-            <img src="/storage/reserved-park.jpg" alt="">
-            <div class="">
-              <img src="/storage/pin-icon.svg" alt="">
-              <a href="/">{{$details[$i]->location}}</a>
+          <div class="col-4" style="padding:10px">
+            <div class="card border-primary mb-3">
+              <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
+              <div class="card-body">
+                <img src="{{$details[$i]->photo}}" width="100%" alt="">
+                <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
+              </div>
             </div>
-            <div class="">
-                {{$details[$i]->address}}
-            </div>
+
           </div>
 
         @else
-          <div class="col-4" style="padding:30px">
-            <img src="/storage/reserved-park.jpg" alt="">
-            <div class=""><img src="/storage/pin-icon.svg" alt="">
-              <a href="/">{{$details[$i]->location}}</a>
-            </div>
-            <div class="">
-                {{$details[$i]->address}}
+        <div class="col-4" style="padding:10px">
+          <div class="card border-primary mb-3">
+            <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
+            <div class="card-body">
+              <img src="{{$details[$i]->photo}}" width="100%" alt="">
+              <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
             </div>
           </div>
+
+        </div>
           @if ($i%3==2 || $i==count($details)-1)
             </div>
           @endif
@@ -54,7 +55,10 @@
       @endfor
     @else
       <br>
-      <h1 class="row justify-content-center" style="margin-top:100px">{{$message ?? ''}}</h1>
+      <div class="" style="padding-top:200px;padding-bottom:200px">
+          <h1 class="row justify-content-center" >{{$message ?? ''}}</h1>
+      </div>
+
     @endif
 </div>
 
