@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title')
+@section('head')
 All Users
 @endsection
 

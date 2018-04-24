@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title')
+@section('head')
 User Detail
 @endsection
 
@@ -19,8 +19,8 @@ User Detail
     <ul class="list-group">
       <li class="list-group-item">Email: {{ $user->email }}</li>
       <li class="list-group-item">
-        Enabled {!! $user->is_enabled ?
-          '<i class="fa fa-check"> Yes</i>' : '<i class="fa fa-times"> No </i>' !!}
+        Status {!! $user->is_enabled ?
+          '<i class="fa fa-check">Active</i>' : '<i class="fa fa-times">Suspend</i>' !!}
       </li>
       </li>
       <li class="list-group-item">
