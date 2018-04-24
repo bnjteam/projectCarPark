@@ -1,6 +1,9 @@
 @extends('layouts.app')
-
+@section('head')
+<center><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
+@endsection
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,6 +11,12 @@
           <div class="card-header">{{ __('Setting') }}</div>
 
           <div class="card-body">
+          <center>
+<div class="panel-heading">
+
+    <img style="border-radius: 50%" width='300'  src="{{ Auth::user()->avatar }}" alt=""><br><br>
+</div>
+</center><hr><center><p>Change Profile</p></center><hr>
             <form method="POST" action="/home/{{ Auth::user()->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -21,6 +30,7 @@
                        
                     </div>
                 </div>
+                
 
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -64,7 +74,7 @@
                             </span>
                         @endif
                     </div>
-                </div>
+                </div><hr><center><p>Change Password</p></center><hr>
 
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

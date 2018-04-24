@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use App\User ;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 class SettingController extends Controller
-{
+{   
+    public function __construct(){
+        $this->middleware('auth');  
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('/profile',['user'=>$user]);
     }
 
     /**
@@ -82,10 +87,10 @@ class SettingController extends Controller
         $user->lastname = $request->input('lastname');
         //$user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
-        $user->avatar = $path ;
+        $user->avatar = '/storage/photos/'.basename($path) ;
         $user->save();
     
-        return redirect('home/');
+        return view('/profile',['user'=>$user]);
     }
 
     /**

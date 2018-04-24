@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-User Profile
+User Detail
 @endsection
 
 @section('content')
@@ -33,8 +33,12 @@ User Profile
     <br>
     <div class="panel-footer">
       <a class="btn btn-primary" role="button"
-         href="/setting">Edit</a>
-      
+         href="/userManager/setting/{{ $user->id }}">Edit</a>
+      <form action="/userManager/{{$user->id}}" method="post"><br>
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger">DELETE</button>
+    </form>
     </div>
 </div>
 </center>

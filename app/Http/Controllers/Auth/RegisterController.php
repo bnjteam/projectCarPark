@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'level' => 'guest' ,
             'type' => 'none',
             'remember_token' => str_random(64) ,
-            'is_enabled' => false ,
+            'is_enabled' => true ,
             'avatar'   => ''
 
         ]);
