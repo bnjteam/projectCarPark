@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index');
 Route::post('/search','HomeController@search');
 Route::get('/search', 'HomeController@show_search');
 Route::put('/home/{id}','SettingController@update');
-Route::get('/profile', function () {
-    return view('/profile');
-});
+Route::get('/profile', 'SettingController@index');
+Route::get('/userManager', 'UsersManagerController@index');
+Route::get('/userManager/show/{user}', 'UsersManagerController@show');
+Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
+Route::put('/userManager/update/{user}','UsersManagerController@update');
