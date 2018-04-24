@@ -25,27 +25,28 @@
       @for($i = 0;$i < count($details); $i++)
         @if ($i%3==0)
           <div class="row">
-          <div class="col-4" style="padding:30px">
-            <img src="{{$details[$i]->photo}}" width="100%" alt="">
-            <div class="">
-              <img src="/storage/pin-icon.svg" alt="">
-              <a href="/">{{$details[$i]->location}}</a>
+          <div class="col-4" style="padding:10px">
+            <div class="card border-primary mb-3">
+              <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
+              <div class="card-body">
+                <img src="{{$details[$i]->photo}}" width="100%" alt="">
+                <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
+              </div>
             </div>
-            <div class="">
-                {{$details[$i]->address}}
-            </div>
+
           </div>
 
         @else
-          <div class="col-4" style="padding:30px">
-            <img src="{{$details[$i]->photo}}" width="100%" alt="">
-            <div class=""><img src="/storage/pin-icon.svg" alt="">
-              <a href="/">{{$details[$i]->location}}</a>
-            </div>
-            <div class="">
-                {{$details[$i]->address}}
+        <div class="col-4" style="padding:10px">
+          <div class="card border-primary mb-3">
+            <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
+            <div class="card-body">
+              <img src="{{$details[$i]->photo}}" width="100%" alt="">
+              <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
             </div>
           </div>
+
+        </div>
           @if ($i%3==2 || $i==count($details)-1)
             </div>
           @endif
