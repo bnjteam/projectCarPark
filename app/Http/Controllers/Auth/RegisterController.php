@@ -65,13 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            "email"=>"required|unique:users,email,". $data['id'],
-            'password' => 'required|string|min:6|confirmed',
-            'oldpassword' => 'required|string|min:6'
-            ]);
+        
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
