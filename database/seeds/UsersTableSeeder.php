@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder
       $admin ->password=bcrypt('aadmin');
       $admin->level='admin';
       $admin->type='none';
+      // $admin->start_date_package='';
+      // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='';

@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->enum('level',['admin','member','guest']);
-            $table->string('type');
+            $table->enum('type',['none','daily','weekly','monthly']);
+            $table->dateTime('start_date_package')->nullable();
+            $table->dateTime('end_date_package')->nullable();
             $table->rememberToken();
             $table->boolean('is_enabled');
             $table->string('avatar');
