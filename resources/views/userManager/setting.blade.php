@@ -6,7 +6,7 @@
 
 @section('content')
 <hr><center><p>Change Profile</p></center><hr>
-<form action="/userManager/update/{{ $user->id }}" method="post">
+<form action="/userManager/update/{{ $user->id }}" method="post" >
     
     @csrf
     @method('PUT')
@@ -63,28 +63,7 @@
     <input type="radio" name="enabled123" value=1>Active<br>
     <input type="radio" name="enabled123" value=0 checked>Suspend
     @endif
-    </div><hr><center><p>Change Password</p></center><hr>
-    <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                    
-                
-        </div>
+    
     
     <lavel class="col-md-4 col-form-label text-md-right"></label>
     <button  class="btn btn-success"type="submit">Submit</button>

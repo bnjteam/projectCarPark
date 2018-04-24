@@ -74,8 +74,8 @@
                             </span>
                         @endif
                     </div>
-                </div><hr><center><p>Change Password</p></center><hr>
-
+                </div><hr><center><p>Confirm Password</p></center><hr>
+                
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
