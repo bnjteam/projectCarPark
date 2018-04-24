@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('page-title')
+@section('head')
 User Detail
 @endsection
 
@@ -19,8 +19,8 @@ User Detail
     <ul class="list-group">
       <li class="list-group-item">Email: {{ $user->email }}</li>
       <li class="list-group-item">
-        Enabled {!! $user->is_enabled ?
-          '<i class="fa fa-check"> Yes</i>' : '<i class="fa fa-times"> No </i>' !!}
+        Status {!! $user->is_enabled ?
+          '<i class="fa fa-check">Active</i>' : '<i class="fa fa-times">Suspend</i>' !!}
       </li>
       </li>
       <li class="list-group-item">
@@ -29,15 +29,21 @@ User Detail
       <li class="list-group-item">
         Joining Date: {{ $user->created_at->diffForHumans() }}
       </li>
+      <li class="list-group-item">
+        Start Package Date: {{ $user->start_date_package }}
+      </li>
+      <li class="list-group-item">
+        End Package Date: {{ $user->end_date_package }}
+      </li>
     </ul>
     <br>
     <div class="panel-footer">
       <a class="btn btn-primary" role="button"
          href="/userManager/setting/{{ $user->id }}">Edit</a>
-      <form action="/userManager/{{$user->id}}" method="post"><br>
+      <form action="/userManager/suspend/{{$user->id}}" method="post"><br>
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger">DELETE</button>
+    <button type="submit" class="btn btn-danger">Suspend</button>
     </form>
     </div>
 </div>

@@ -60,8 +60,8 @@
     <input type="radio" name="enabled123" value=1 checked> Enable        <br>
     <input type="radio" name="enabled123" value=0>        Not Enable
     @elseif((old('enabled123') ?? $user->is_enabled) == 0)
-    <input type="radio" name="enabled123" value=1>Enable<br>
-    <input type="radio" name="enabled123" value=0 checked> Not Enable
+    <input type="radio" name="enabled123" value=1>Active<br>
+    <input type="radio" name="enabled123" value=0 checked>Suspend
     @endif
     </div><hr><center><p>Change Password</p></center><hr>
     <div class="form-group row">
