@@ -30,7 +30,7 @@
               <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
               <div class="card-body">
                 <img src="{{$details[$i]->photo}}" width="100%" alt="">
-                <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
+                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
               </div>
             </div>
 
@@ -42,7 +42,7 @@
             <div class="card-header"><a href="/">{{$details[$i]->location}}</a></div>
             <div class="card-body">
               <img src="{{$details[$i]->photo}}" width="100%" alt="">
-              <img src="/storage/pin-icon.svg" alt="">{{$details[$i]->address}}
+              <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
             </div>
           </div>
 
