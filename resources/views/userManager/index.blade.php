@@ -28,7 +28,7 @@ All Users
     <tr >
       <th scope="row">{{ $loop->iteration }}</th>
       <td><img width="150"  src="{{ $user->avatar }}" alt=""></th>
-      <td> <a href="/userManager/show/{{$user->id}}">
+      <td > <a href="/userManager/show/{{$user->id}}">
           {{ $user->name }}
         </a> </td>
       <td class="table-secondary">{{ $user->lastname }}</td>

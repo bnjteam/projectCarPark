@@ -79,8 +79,8 @@ class UsersManagerController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate(
-            ['name' =>'required|min:4|max:255',
-            'password' => 'required|string|min:6|confirmed'
+            ['name' =>'required|min:4|max:255'
+            
             
             ]
         );
@@ -93,7 +93,7 @@ class UsersManagerController extends Controller
         $user->level =$request->input('level123'); 
         $user->type =$request->input('type'); 
         $user->is_enabled = $request->input('enabled123'); 
-        $user->password = Hash::make($request->input('password')) ;
+        //$user->password = Hash::make($request->input('password')) ;
         $user->save();
         
         return redirect('/userManager/show/'.$user->id);

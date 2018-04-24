@@ -68,6 +68,10 @@
                                         {{ __('Setting') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ url('/changePW') }}">
+                                        {{ __('Change password') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
