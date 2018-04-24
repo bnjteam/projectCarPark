@@ -28,3 +28,4 @@ Route::get('/userManager', 'UsersManagerController@index');
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
+Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');

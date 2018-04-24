@@ -65,7 +65,7 @@ class UsersManagerController extends Controller
     {
         $users = User::all();
         $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest'];
-        $type = ['none'=>'None','daily'=>'Daily','monthly'=>'Monthly'];
+        $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
     }
 
@@ -109,6 +109,8 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->is_enabled = 0;
+        $user->save();
+        return redirect('/userManager/show/'.$user->id);
     }
 }

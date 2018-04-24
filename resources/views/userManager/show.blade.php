@@ -29,15 +29,21 @@ User Detail
       <li class="list-group-item">
         Joining Date: {{ $user->created_at->diffForHumans() }}
       </li>
+      <li class="list-group-item">
+        Start Package Date: {{ $user->start_date_package }}
+      </li>
+      <li class="list-group-item">
+        End Package Date: {{ $user->end_date_package }}
+      </li>
     </ul>
     <br>
     <div class="panel-footer">
       <a class="btn btn-primary" role="button"
          href="/userManager/setting/{{ $user->id }}">Edit</a>
-      <form action="/userManager/{{$user->id}}" method="post"><br>
+      <form action="/userManager/suspend/{{$user->id}}" method="post"><br>
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger">DELETE</button>
+    <button type="submit" class="btn btn-danger">Suspend</button>
     </form>
     </div>
 </div>
