@@ -29,3 +29,8 @@ Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
+<<<<<<< HEAD
+Route::get('/changePW', 'ChangePasswordController@index');
+Route::put('/change/{id}','ChangePasswordController@update');
+=======
+>>>>>>> 15b1cd040808f0129325f8994c5bd9d4ddaa1b4f
