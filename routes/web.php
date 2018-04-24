@@ -20,3 +20,9 @@ Route::get('/park_reserve', function () {
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+Route::post('/search','HomeController@search');
+Route::get('/search', 'HomeController@show_search');
+Route::put('/home/{id}','SettingController@update');
+Route::get('/profile', function () {
+    return view('/profile');
+});

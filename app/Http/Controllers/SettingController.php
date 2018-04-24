@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class imageController extends Controller
+use App\User ;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\RegistersUsers;
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class imageController extends Controller
      */
     public function index()
     {
-        return view('imagesStore.index');
+        //
     }
 
     /**
@@ -34,9 +36,7 @@ class imageController extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->fileToUpload->store('photos');
-        
-        return redirect('imagesStore/'.basename($path));
+        //
     }
 
     /**
@@ -45,10 +45,9 @@ class imageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($photo)
+    public function show($id)
     {
-        $photo = '../storage/photos/'.$photo;
-        return view('setAvatar.show',['photo123'=>$photo]);
+        //
     }
 
     /**
@@ -71,7 +70,22 @@ class imageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'fileToUpload' =>'required|image|file',
+            'password' => 'required|string|min:6|confirmed']);
+
+        $path = $request->fileToUpload->store('/public/photos');
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        //$user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->avatar = $path ;
+        $user->save();
+    
+        return redirect('home/');
     }
 
     /**
