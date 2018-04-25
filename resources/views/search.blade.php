@@ -35,9 +35,7 @@
               </div>
               </a>
             </div>
-
           </div>
-
         @else
         <div class="col-4" style="padding:10px">
           <div class="card border-primary mb-3">
