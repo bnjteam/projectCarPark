@@ -3,7 +3,20 @@
 <center><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
 @endsection
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script>
+function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  $('#imageold').attr('src', e.target.result);
+              }
+
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
+</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -24,13 +37,14 @@
                     <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                     <div class="col-md-6">
-                    <input type="file" class="form-control-file" name="fileToUpload" id="exampleInputFile" aria-describedby="fileHelp">
-                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+                      <input onchange="readURL(this)" type="file" name="fileToUpload" value=""><br>
+                        <center><img id="imageold" style="height:150px;weight:150px;"  src='' > </center>
+                        <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
 
-                       
+
                     </div>
                 </div>
-                
+
 
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -54,7 +68,7 @@
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback">
-                                    
+
                                     <strong>{{ $errors->first('lastname') }}</strong>
                                     </span>
                                 @endif
@@ -75,7 +89,7 @@
                         @endif
                     </div>
                 </div><hr><center><p>Confirm Password</p></center><hr>
-                
+
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
