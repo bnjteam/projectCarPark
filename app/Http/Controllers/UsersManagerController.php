@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -105,6 +106,17 @@ class UsersManagerController extends Controller
         $user->is_enabled = $request->input('enabled123');
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
+        $log = new Log();
+        if (Auth::check()){
+           $log->username = Auth::user()->name;
+        }
+
+        else{
+          $log->username = 'guest';
+        }
+        $log->description = $log->username.' edit user';
+        $log->save();
+
 
         return redirect('/userManager/show/'.$user->id);
 
@@ -125,6 +137,16 @@ class UsersManagerController extends Controller
             $user->is_enabled = 1;
         }
         $user->save();
+        $log = new Log();
+        if (Auth::check()){
+           $log->username = Auth::user()->name;
+        }
+
+        else{
+          $log->username = 'guest';
+        }
+        $log->description = $log->username.' delete this user';
+        $log->save();
         return redirect('/userManager/show/'.$user->id);
     }
 }

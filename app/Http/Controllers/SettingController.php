@@ -93,6 +93,17 @@ class SettingController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->avatar = '/storage/photos/'.basename($path) ;
         $user->save();
+
+        $log = new Log();
+        if (Auth::check()){
+           $log->username = Auth::user()->name;
+        }
+
+        else{
+          $log->username = 'guest';
+        }
+        $log->description = $log->username.' setting user';
+        $log->save();
         return view('/profile',['user'=>$user]);
         }else{
 
