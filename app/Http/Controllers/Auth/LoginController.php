@@ -52,7 +52,7 @@ class LoginController extends Controller
         $user = \App\User::where($this->username(), $request->{$this->username()})->first();
         
         if ($user && \Hash::check($request->password, $user->password) && $user->is_enabled != 1) {
-            $errors = [$this->username() => 'Your account is not active.'];
+            $errors = [$this->username() => 'Your account is suspended.'];
         }
         if ($request->expectsJson()) {
             return response()->json($errors, 422);

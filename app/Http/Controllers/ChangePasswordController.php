@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User ;
+use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
-class SettingController extends Controller
+class ChangePasswordController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth');  
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('/profile',['user'=>$user]);
+        $user = \Auth::user();
+        return view('/changePW',['user'=>$user]);
     }
 
     /**
@@ -63,7 +63,7 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -75,40 +75,19 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'fileToUpload' =>'required|file|mimes:jpeg,bmp,png',
-            'password' => 'required|string|min:6|confirmed'
+        $request->validate([
             
+            'password' => 'required|string|min:6|confirmed',
+            'oldpassword' => 'required|string|min:6'
             ]);
 
-<<<<<<< HEAD
-        $path = $request->fileToUpload->store('/public/photos');
-        
-=======
->>>>>>> 107d606274213c6b731fdca7ce661848901fd8f4
         $user = User::findOrFail($id);
-        
-        if (Hash::check($request->input('password'), $user->password)) {
-        $path = $request->fileToUpload->store('/public/photos');
-        $user->name = $request->input('name');
-        $user->lastname = $request->input('lastname');
-        //$user->email = $request->input('email');
+        $oldpw = $request->input('oldpassword');
+        if (Hash::check($oldpw, $user->password)) {
         $user->password = Hash::make($request->input('password'));
-        $user->avatar = '/storage/photos/'.basename($path) ;
         $user->save();
-<<<<<<< HEAD
-
-=======
->>>>>>> 107d606274213c6b731fdca7ce661848901fd8f4
-        return view('/profile',['user'=>$user]);
-        }else{
-            
+        return view('/home');
         }
-            
-        
-        
     }
 
     /**

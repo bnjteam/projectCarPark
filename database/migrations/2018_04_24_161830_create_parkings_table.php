@@ -17,6 +17,7 @@ class CreateParkingsTable extends Migration
           $table->increments('id');
           $table->string('location');
           $table->string('address');
+          $table->string('photo');
           $table->timestamps();
         });
     }
