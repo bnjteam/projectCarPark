@@ -450,14 +450,10 @@
 
       <center><div class="">
 
-        <form method="POST" action="/parkings" enctype="multipart/form-data">
+        <form method="POST" action="/parkings/{{$parking->id}}" enctype="multipart/form-data">
           @csrf
-
-
-
+          @method('PUT')
             <input  type="hidden" name="list" value="" id='list'>
-
-          
 
         <div class="top-bar">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
@@ -479,16 +475,7 @@
 
                 <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                 </div>
-
-
-
-
-
-
-
-
-        </div>
-
+              </div>
 
                 <!-- Button trigger modal -->
 
@@ -567,7 +554,7 @@
 
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
         <br>
-        <button type="submit" name="button" >button</button>
+        <button type="submit" name="button" >submit</button>
     </form>
 
       </div></center>

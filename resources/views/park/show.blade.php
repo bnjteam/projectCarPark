@@ -34,8 +34,8 @@
 
 
 
-          function init () {
-              canvas = $('#draw');
+          function myFunction (id) {
+              canvas = $('#draw'+id);
               canvas.attr({
                   width: 1100 ,
                   height: 600,
@@ -45,9 +45,9 @@
               ctx = canvas[0].getContext('2d');
 
 
-              ctx.drawImage(document.getElementById("scream"), 0, 0,1100,600);
+              ctx.drawImage(document.getElementById("scream"+id), 0, 0,1100,600);
 
-              var str = document.getElementById("list").value;
+              var str = document.getElementById("list"+id).value;
               var res = str.split("|");
               for (var i = 0; i < res.length; i++) {
 
@@ -70,7 +70,7 @@
                 }
 
                 if(r[0]=='pen'){
-                  console.log(r);
+
                   ctx.lineCap = 'round';
 
                       ctx.lineWidth = 3;
@@ -90,99 +90,28 @@
               console.log(1212);
           }
 
-          $(init);
-
-
-          function showpic(input){
-
-           var reader = new FileReader();
-           reader.onload = function(e) {
-
-             var data=e.target.result;
-             imgpic=new Image();
-            var  imgpic2=new Image();
-
-
-
-             imgpic2.onload = function(){
-
-               currentStroke = {
-                   type:2,
-                   img: imgpic2,
-               };
-               strokes.push(currentStroke);
-               currentStroke=null;
-               // document.getElementById("imgInp").value = "";
-               reDraw();
-
-
-             }
-             imgpic2.src=data;
-                // imgpic.src=data;
-                currentStroke = {
-                    type:2,
-                    img: imgpic2,
-                };
-                strokes.push(currentStroke);
-                currentStroke=null;
-                // document.getElementById("imgInp").value = "";
-                reDraw();
-
-
-           }
-
-           reader.readAsDataURL(input.files[0]);
-          }
-
-
-          function createFont(){
-
-
-            currentStroke = {
-                x:80,
-                y: 190,
-                text: document.getElementById("min1").value+document.getElementById("min2").value+' - '+document.getElementById("max1").value+document.getElementById("max2").value,
-                type:3,
-                w:160,
-                h:60,
-                color: brush.color,
-            };
-                 strokes.push(currentStroke);
-                 currentStroke=null;
-                 reDraw();
-                 pen=0;
-                 rect=0;
-                 move=1;
-
-                 document.getElementById("move-btn").disabled = true;
-                 document.getElementById("pen-btn").disabled = false;
-                 document.getElementById("rect-btn").disabled = false;
-          }
-
-
-
-
-
-
-
         </script>
 
     <body>
-
+      @csrf
+        @for($i = 0;$i < count($photoslocation); $i++)
 
       <center><div class="">
 
         <form method="POST" action="/parkings" enctype="multipart/form-data">
-          @csrf
-          <img hidden id="scream" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
-              <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list'>
-        <canvas id="draw" style="border:1px solid #000000;"></canvas>
+
+          <img onload="myFunction({{$i}})" hidden id="scream{{$i}}" width="220" height="277" src="{{ $photoslocation[$i]->photo }}" alt="The Scream">
+              <input  type="hidden" name="list" value="{{ $photoslocation[$i]->canvas }}" id='list{{$i}}'>
+
+        <canvas  id="draw{{$i}}" style="border:1px solid #000000;"></canvas>
         <br>
+
+
         <!-- <button type="submit" name="button" >button</button> -->
     </form>
 
       </div></center>
-
+      @endfor
     </body>
 
 @endsection

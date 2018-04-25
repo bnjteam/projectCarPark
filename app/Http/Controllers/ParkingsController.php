@@ -16,7 +16,7 @@ class ParkingsController extends Controller
      */
     public function index()
     {
-        //
+        return view('/search');
     }
 
     /**
@@ -48,14 +48,14 @@ class ParkingsController extends Controller
 
 
 
-      $path = $request->fileToUpload->store('/public/photoslocation');
-
-        $photolocation=new Photolocation;
-        $photolocation->id_parking=$parking->id;
-        $photolocation->canvas=$request->input('list');
-        $photolocation->photo = '/storage/photoslocation/'.basename($path);
-
-        $photolocation->save();
+      // $path = $request->fileToUpload->store('/public/photoslocation');
+      //
+      //   $photolocation=new Photolocation;
+      //   $photolocation->id_parking=$parking->id;
+      //   $photolocation->canvas=$request->input('list');
+      //   $photolocation->photo = '/storage/photoslocation/'.basename($path);
+      //
+      //   $photolocation->save();
         return redirect('/parkings');
 
 
@@ -69,7 +69,7 @@ class ParkingsController extends Controller
      */
     public function show(Parking $parking)
     {
-        $p= Photolocation::all()->where('id_parking','LIKE',$parking->id)[0];
+        $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
          return view('/park.show',['photoslocation'=>$p]);
     }
@@ -83,6 +83,7 @@ class ParkingsController extends Controller
     public function edit(Parking $parking)
     {
         //
+          return view('park.edit');
     }
 
     /**
@@ -94,7 +95,15 @@ class ParkingsController extends Controller
      */
     public function update(Request $request, Parking $parking)
     {
-        //
+      $path = $request->fileToUpload->store('/public/photoslocation');
+
+        $photolocation=new Photolocation;
+        $photolocation->id_parking=$parking->id;
+        $photolocation->canvas=$request->input('list');
+        $photolocation->photo = '/storage/photoslocation/'.basename($path);
+
+        $photolocation->save();
+        return redirect('/parkings');
     }
 
     /**
@@ -110,8 +119,9 @@ class ParkingsController extends Controller
 
     public function addcarpark(Parking $parking)
     {
-        //
-        return view('/park.addcarpark');
+
+        return view('/park.addcarpark',['parking'=>$parking]);
 
     }
+
 }
