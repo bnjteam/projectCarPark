@@ -453,17 +453,11 @@
         <form method="POST" action="/parkings" enctype="multipart/form-data">
           @csrf
 
-              location:<input type="text" name="location" value="">
-              <br>
 
-                address:  <br>  <textarea name="address" rows="8" cols="80"></textarea>
+
             <input  type="hidden" name="list" value="" id='list'>
 
-            <br>
-            <input onchange="readURL(this)" type="file" name="fileToUpload2"  value="">
-              <center><img id="imageold" style="height:300px;weight:300px;"  src='' > </center>
-            <br>
-            <br>
+          
 
         <div class="top-bar">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
