@@ -48,6 +48,7 @@ class ParkingsController extends Controller
 
 
 
+<<<<<<< HEAD
       // $path = $request->fileToUpload->store('/public/photoslocation');
       //
       //   $photolocation=new Photolocation;
@@ -56,6 +57,27 @@ class ParkingsController extends Controller
       //   $photolocation->photo = '/storage/photoslocation/'.basename($path);
       //
       //   $photolocation->save();
+=======
+      $path = $request->fileToUpload->store('/public/photoslocation');
+
+        $photolocation=new Photolocation;
+        $photolocation->id_parking=$parking->id;
+        $photolocation->canvas=$request->input('list');
+        $photolocation->photo = '/storage/photoslocation/'.basename($path);
+
+        $photolocation->save();
+        $log = new Log();
+        if (Auth::check()){
+           $log->username = Auth::user()->name;
+        }
+
+        else{
+          $log->username = 'guest';
+        }
+        $log->description = $log->username.' create parking';
+        $log->location = $parking->location;
+        $log->save();
+>>>>>>> 4430f449b505fb70f7e3acaa8dd4936f033897b2
         return redirect('/parkings');
 
 
@@ -69,8 +91,12 @@ class ParkingsController extends Controller
      */
     public function show(Parking $parking)
     {
+<<<<<<< HEAD
         $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
+=======
+        $p= Photolocation::all()->where('id_parking','LIKE',$parking->id)[0];
+>>>>>>> 4430f449b505fb70f7e3acaa8dd4936f033897b2
          return view('/park.show',['photoslocation'=>$p]);
     }
 

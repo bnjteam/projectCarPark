@@ -25,6 +25,15 @@ Route::get('/search', 'HomeController@show_search');
 Route::put('/home/{id}','SettingController@update');
 Route::get('/profile', 'SettingController@index');
 Route::get('/userManager', 'UsersManagerController@index');
+// Route::get('/userManager', function(){
+//   if (Gate::allows('index-userManager',Auth::user())){
+//     $users = User::all();
+//     return view('userManager.index',['users' => $users]);
+//   }
+//   else{
+//     return 'asd';
+//   }
+// });
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
