@@ -12,6 +12,9 @@ class UsersManagerController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -109,7 +112,11 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->is_enabled = 0;
+        if($user->is_enabled == 1){
+            $user->is_enabled = 0;
+        }elseif($user->is_enabled==0){
+            $user->is_enabled = 1;
+        }
         $user->save();
         return redirect('/userManager/show/'.$user->id);
     }
