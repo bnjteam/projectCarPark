@@ -28,7 +28,7 @@
 
     <tr class="item(($item->id))">
       <td>{{ $loop->iteration }}</td>
-      <td><img width="150"  src="{{ $item->avatar }}" alt=""></th>
+      <td><img style="border-radius: 20%" width="150"  src="{{ $item->avatar }}" alt=""></th>
       <td > <a href="/userManager/show/{{$item->id}}">
           {{ $item->name }}
         </a> </td>

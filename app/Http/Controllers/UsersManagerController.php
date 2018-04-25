@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Auth;
 class UsersManagerController extends Controller
 {
 
@@ -13,7 +13,7 @@ class UsersManagerController extends Controller
         $this->middleware('auth');
     }
 
-    
+
 
     /**
      * Display a listing of the resource.
@@ -22,8 +22,15 @@ class UsersManagerController extends Controller
      */
     public function index()
     {
+      if (\Gate::allows('index-userManager',Auth::user())){
         $users = User::all();
         return view('userManager.index',['users' => $users]);
+      }
+      else{
+        return 'asd';
+      }
+        // $users = User::all();
+        // return view('userManager.index',['users' => $users]);
     }
 
     /**
