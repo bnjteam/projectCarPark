@@ -42,7 +42,8 @@ class HomeController extends Controller
       else return view ('/search')->withMessage('No Details found. Try to search again !');
     }
     public function show_search(){
-      return view('/search');
+      $d = Parking::all();
+      return view('/search',['details'=>$d,'query'=>'']);
     }
     public function sendMailForm(){
       $admin = User::where('level','LIKE','admin')->get()[0];
