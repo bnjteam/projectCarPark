@@ -24,5 +24,33 @@ class UsersTableSeeder extends Seeder
       $admin->is_enabled=true;
       $admin->avatar='';
       $admin->save();
+
+      $admin = new App\User;
+      $admin ->name ='guest';
+      $admin ->lastname ='guest';
+      $admin->email = 'guest@hotmail.com';
+      $admin ->password=bcrypt('guest');
+      $admin->level='guest';
+      $admin->type='none';
+      // $admin->start_date_package='';
+      // $admin->end_date_package='';
+      $admin->remember_token= str_random(64);
+      $admin->is_enabled=true;
+      $admin->avatar='';
+      $admin->save();
+
+      $admin = new App\User;
+      $admin ->name ='member';
+      $admin ->lastname ='member';
+      $admin->email = 'member@hotmail.com';
+      $admin ->password=bcrypt('member');
+      $admin->level='member';
+      $admin->type='none';
+      // $admin->start_date_package='';
+      // $admin->end_date_package='';
+      $admin->remember_token= str_random(64);
+      $admin->is_enabled=true;
+      $admin->avatar='';
+      $admin->save();
     }
 }
