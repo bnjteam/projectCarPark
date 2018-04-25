@@ -126,7 +126,7 @@
           <div class="container">
             <div class="row">
               <div class="col-6" style="margin-left:-60px">
-                <a href="/"><img src="/storage/logo.png" alt="" width=250px></a>
+                <a href="/"><img src="/storage/logo.png" alt="" width=150px></a>
               </div>
               <div class="col">
                 <div class="row">

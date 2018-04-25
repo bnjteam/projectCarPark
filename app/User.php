@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function isSuperAdmin(){
-        return $this->level == 'admin';
+        return $this->level === 'admin';
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class ChangePasswordController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');  
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -63,7 +63,7 @@ class ChangePasswordController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -76,7 +76,7 @@ class ChangePasswordController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            
+
             'password' => 'required|string|min:6|confirmed',
             'oldpassword' => 'required|string|min:6'
             ]);
@@ -86,6 +86,16 @@ class ChangePasswordController extends Controller
         if (Hash::check($oldpw, $user->password)) {
         $user->password = Hash::make($request->input('password'));
         $user->save();
+        $log = new Log();
+        if (Auth::check()){
+           $log->username = Auth::user()->name;
+        }
+
+        else{
+          $log->username = 'guest';
+        }
+        $log->description = $log->username.' change password';
+        $log->save();
         return view('/home');
         }
     }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Parking;
+use App\Log;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -40,7 +42,8 @@ class HomeController extends Controller
       else return view ('/search')->withMessage('No Details found. Try to search again !');
     }
     public function show_search(){
-      return view('/search');
+      $d = Parking::all();
+      return view('/search',['details'=>$d,'query'=>'']);
     }
     public function sendMailForm(){
       $admin = User::where('level','LIKE','admin')->get()[0];
@@ -52,6 +55,16 @@ class HomeController extends Controller
       $email = $request->input('emailUser');
       $emailAdmin = $request->input('email');
        Mail::to($emailAdmin)->send(new OrderShipped($detail,$email,$name));
+       $log = new Log();
+       if (Auth::check()){
+          $log->username = Auth::user()->name;
+       }
+
+       else{
+         $log->username = 'guest';
+       }
+       $log->description = $log->username.' has contact us ;detail : '.$detail;
+       $log->save();
        return redirect()->back();
     }
 }
