@@ -66,6 +66,7 @@
 
 
 
+
           }
           function drawPen (s) {
 
@@ -79,7 +80,6 @@
                       ctx.lineTo(p.x, p.y);
                   }
                   ctx.stroke();
-
           }
 
           function drawFont(s){
@@ -223,7 +223,8 @@
                       });
                     }
                     strokes.push(currentStroke);
-
+                    document.getElementById('list').value+=currentStroke.points[0].x+','+currentStroke.points[0].y+','+(currentStroke.points[1].x-currentStroke.points[0].x)+','
+                    +(currentStroke.points[1].y-currentStroke.points[1].y)+',rect|';
                   }
                   currentStroke = null;
                   reDraw();
@@ -430,6 +431,15 @@
 
       <center><div class="">
 
+        <form method="POST" action="/parkings" enctype="multipart/form-data">
+          @csrf
+
+              location:<input type="text" name="location" value="">
+              <br>
+
+                address:  <br>  <textarea name="address" rows="8" cols="80"></textarea>
+            <input  type="hidden" name="list" value="" id='list'>
+
 
         <div class="top-bar">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
@@ -444,19 +454,14 @@
             <input class="" type="color" id="color-picker">
             <input type="range" id="brush-size" min="1" max="50" value="10">
 
-            <form method="POST" action="/parkings" enctype="multipart/form-data">
-              @csrf
-
-                <input type="text" name="test" value="">
 
                 <div class="col-md-6">
+
                 <input type="file" class="form-control-file" name="fileToUpload" id="imgInp" aria-describedby="fileHelp"   onchange="showpic(this)">
 
                 <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                 </div>
 
-                <button type="submit" name="button" >button</button>
-            </form>
 
 
 
@@ -545,6 +550,9 @@
 
 
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
+        <br>
+        <button type="submit" name="button" >button</button>
+    </form>
 
       </div></center>
 

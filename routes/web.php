@@ -28,7 +28,7 @@ Route::get('/userManager', 'UsersManagerController@index');
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
-<<<<<<< HEAD
+
 
 
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');
@@ -38,8 +38,7 @@ Route::get('/parkings/{parking}','ParkingsController@show')->where('id','[0-9]+'
 Route::post('/parkings', 'ParkingsController@store');
 Route::put('/parkings/{parking}','ParkingsController@update')->where('id','[0-9]+');
 Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[0-9]+');
-=======
+
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
 Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
->>>>>>> 107d606274213c6b731fdca7ce661848901fd8f4

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Parking;
+use App\Photolocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,12 +39,15 @@ class ParkingsController extends Controller
     public function store(Request $request)
     {
 
-      // $parking=new Parking;
-      // $parking->location='ballllasd';
-      // $parking->address='328/13 asdasdasdadsssdsdasdasd';
-      // $parking->save();
-        // dd($request->test);
-        // dd($request);
+      $parking=new Parking;
+      $parking->location=$request->input('location');
+      $parking->address=$request->input('address');
+      $parking->save();
+
+        $photolocation=new Photolocation;
+        $photolocation->id_parking=$parking->id;
+          $photolocation->canvas=$request->input('list');
+                $parking->save();
         $path = $request->fileToUpload->store('/public/photos');
         return redirect('/parkings');
 
