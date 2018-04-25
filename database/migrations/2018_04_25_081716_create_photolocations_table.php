@@ -16,6 +16,7 @@ class CreatePhotolocationsTable extends Migration
         Schema::create('photolocations', function (Blueprint $table) {
           $table->increments('id');
           $table->string('id_parking');
+          $table->string('floor');
           $table->text('canvas');
           $table->string('photo');
           $table->timestamps();
