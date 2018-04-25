@@ -5,6 +5,8 @@ use App\User;
 use App\Parking;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -39,5 +41,16 @@ class HomeController extends Controller
     }
     public function show_search(){
       return view('/search');
+    }
+    public function sendMailForm(){
+      $admin = User::where('level','LIKE','admin')->get()[0];
+      return view('/contact',['admin'=>$admin]);
+    }
+    public function sendMail(Request $request){
+      $detail = $request->input('description');
+      $name = $request->input('name');
+      $email = $request->input('emailUser');
+       Mail::to($request->email)->send(new OrderShipped($detail,$email,$name));
+       return redirect()->back();
     }
 }
