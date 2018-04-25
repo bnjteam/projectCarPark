@@ -15,11 +15,10 @@ class CreatePhotosLocationTable extends Migration
     {
         Schema::create('photos_location', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('id_location');
+            $table->string('id_parking');
             $table->string('canvas');
             $table->timestamps();
-
-            $table->foreign('id_location')->references('id')->on('parkings');
+            $table->foreign('id_parking')->references('id')->on('parkings');
         });
     }
 

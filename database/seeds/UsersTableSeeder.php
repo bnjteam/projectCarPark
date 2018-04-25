@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
       $admin = new App\User;
       $admin ->name ='admin';
       $admin ->lastname ='JAYNAJA';
-      $admin->email = 'admin@hotmail.com';
+      $admin->email = 'parkservice1@hotmail.com';
       $admin ->password=bcrypt('aadmin');
       $admin->level='admin';
       $admin->type='none';
