@@ -50,7 +50,8 @@ class HomeController extends Controller
       $detail = $request->input('description');
       $name = $request->input('name');
       $email = $request->input('emailUser');
-       Mail::to($request->email)->send(new OrderShipped($detail,$email,$name));
+      $emailAdmin = $request->input('email');
+       Mail::to($emailAdmin)->send(new OrderShipped($detail,$email,$name));
        return redirect()->back();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Parking;
+use App\Photolocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,30 +39,26 @@ class ParkingsController extends Controller
     public function store(Request $request)
     {
 
-      // $parking=new Parking;
-      // $parking->location='ballllasd';
-      // $parking->address='328/13 asdasdasdadsssdsdasdasd';
-      // $parking->save();
-        // dd($request->test);
-        // dd($request);
-        $path = $request->fileToUpload->store('/public/photos');
+      $parking=new Parking;
+      $parking->location=$request->input('location');
+      $parking->address=$request->input('address');
+      $path2 = $request->fileToUpload2->store('/public/photosparking');
+      $parking->photo= '/storage/photosparking/'.basename($path2);
+      $parking->save();
+
+
+
+      $path = $request->fileToUpload->store('/public/photoslocation');
+
+        $photolocation=new Photolocation;
+        $photolocation->id_parking=$parking->id;
+        $photolocation->canvas=$request->input('list');
+        $photolocation->photo = '/storage/photoslocation/'.basename($path);
+
+        $photolocation->save();
         return redirect('/parkings');
 
 
-      // $canvas = Image::canvas($width, $height);
-      //
-      //
-      // $image = Image::make(storage_path("app/public/" . $path))->resize($width, $height,
-      //     function ($constraint) {
-      //         $constraint->aspectRatio();
-      // });
-      //
-      // $canvas->insert($image, 'center');
-      //
-      // // pass the full path. Canvas overwrites initial image with a logo
-      // $canvas->save(storage_path("app/public/" . $path . ".png"));
-      // //
-      // return redirect('parkings/');
     }
 
     /**

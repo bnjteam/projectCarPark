@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -18,7 +19,7 @@
         <input type="text" class="form-control" name="name" value="">
       </div>
       <div class="form-group">
-        <label>Your email </label> (to contact you back) : 
+        <label>Your email </label> (to contact you back) :
         <input type="email"class="form-control" name="emailUser" value="">
       </div>
       <div class="form-group">

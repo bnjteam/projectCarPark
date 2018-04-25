@@ -42,5 +42,7 @@ Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
 Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
+
+
 Route::get('/contact','HomeController@sendMailForm');
 Route::post('/contact','HomeController@sendMail');
