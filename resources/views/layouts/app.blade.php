@@ -152,7 +152,7 @@
                         Contact Us
                     </div>
                     <div style="font-size:17px;color:white;margin-left: 15px;">
-                      <a href="/contact/sendmail">Send mail</a>
+                      <a href="/contact">Send mail</a>
                     </div>
 
                   </div>
