@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
 
           <script>
 
@@ -231,8 +231,8 @@
               }).mousemove(function (e) {
                  var canvas2 = document.getElementById('draw');
 
-                // console.log(e.pageX-canvas2.getBoundingClientRect().left);
-                // console.log(e.pageY-canvas2.getBoundingClientRect().top);
+                console.log(e.pageX-canvas2.getBoundingClientRect().left);
+                console.log(e.pageY-canvas2.getBoundingClientRect().top);
                 x=e.pageX-canvas2.getBoundingClientRect().left;
                 y=e.pageY-canvas2.getBoundingClientRect().top;
 
@@ -297,7 +297,6 @@
 
                 var canvas2 = document.getElementById('draw');
                 var dataURL = canvas2.toDataURL();
-                console.log(123);
 
               });
 
@@ -364,7 +363,7 @@
 
 
              imgpic2.onload = function(){
-               console.log(1111);
+
                currentStroke = {
                    type:2,
                    img: imgpic2,
@@ -421,7 +420,16 @@
 
 
 
+          function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  $('#imageold').attr('src', e.target.result);
+              }
 
+              reader.readAsDataURL(input.files[0]);
+          }
+      }
 
 
         </script>
@@ -440,6 +448,11 @@
                 address:  <br>  <textarea name="address" rows="8" cols="80"></textarea>
             <input  type="hidden" name="list" value="" id='list'>
 
+            <br>
+            <input onchange="readURL(this)" type="file" name="fileToUpload2"  value="">
+              <center><img id="imageold" style="height:300px;weight:300px;"  src='' > </center>
+            <br>
+            <br>
 
         <div class="top-bar">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
@@ -545,8 +558,6 @@
           </div>
         </div>
         </div>
-
-
 
 
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
