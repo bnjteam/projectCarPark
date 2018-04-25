@@ -80,16 +80,11 @@ class SettingController extends Controller
             'lastname' => 'required|string|max:255',
             'fileToUpload' =>'required|file|mimes:jpeg,bmp,png',
             'password' => 'required|string|min:6|confirmed'
-            
+
             ]);
 
-<<<<<<< HEAD
-        $path = $request->fileToUpload->store('/public/photos');
-        
-=======
->>>>>>> 107d606274213c6b731fdca7ce661848901fd8f4
         $user = User::findOrFail($id);
-        
+
         if (Hash::check($request->input('password'), $user->password)) {
         $path = $request->fileToUpload->store('/public/photos');
         $user->name = $request->input('name');
@@ -98,17 +93,13 @@ class SettingController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->avatar = '/storage/photos/'.basename($path) ;
         $user->save();
-<<<<<<< HEAD
-
-=======
->>>>>>> 107d606274213c6b731fdca7ce661848901fd8f4
         return view('/profile',['user'=>$user]);
         }else{
-            
+
         }
-            
-        
-        
+
+
+
     }
 
     /**
