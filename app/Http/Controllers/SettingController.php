@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 class SettingController extends Controller
-{   
+{
     public function __construct(){
-        $this->middleware('auth');  
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -82,6 +82,7 @@ class SettingController extends Controller
             'password' => 'required|string|min:6|confirmed']);
 
         $path = $request->fileToUpload->store('/public/photos');
+        
         $user = User::findOrFail($id);
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
@@ -89,7 +90,7 @@ class SettingController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->avatar = '/storage/photos/'.basename($path) ;
         $user->save();
-    
+
         return view('/profile',['user'=>$user]);
     }
 

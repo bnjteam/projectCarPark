@@ -28,3 +28,12 @@ Route::get('/userManager', 'UsersManagerController@index');
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
+
+
+Route::get('/parkings/{parking}/edit','ParkingsController@edit');
+Route::get('/parkings', 'ParkingsController@index');
+Route::get('/parkings/create', 'ParkingsController@create');
+Route::get('/parkings/{parking}','ParkingsController@show')->where('id','[0-9]+');
+Route::post('/parkings', 'ParkingsController@store');
+Route::put('/parkings/{parking}','ParkingsController@update')->where('id','[0-9]+');
+Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[0-9]+');
