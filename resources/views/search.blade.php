@@ -26,12 +26,14 @@
         @if ($i%3==0)
           <div class="row">
           <div class="col-4" style="padding:10px">
+            <a href="/parkings/{{$details[$i]->id}}">
             <div class="card border-primary mb-3">
-              <div class="card-header"><a href="/parkings/{{$details[$i]->id}}">{{$details[$i]->location}}</a></div>
+              <div class="card-header">{{$details[$i]->location}}</div>
               <div class="card-body">
                 <img src="{{$details[$i]->photo}}" width="100%" alt="">
                 <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
               </div>
+              </a>
             </div>
 
           </div>
@@ -39,11 +41,13 @@
         @else
         <div class="col-4" style="padding:10px">
           <div class="card border-primary mb-3">
-            <div class="card-header"><a href="/parkings/{{$details[$i]->id}}">{{$details[$i]->location}}</a></div>
+            <a href="/parkings/{{$details[$i]->id}}">
+            <div class="card-header">{{$details[$i]->location}}</div>
             <div class="card-body">
               <img src="{{$details[$i]->photo}}" width="100%" alt="">
               <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
             </div>
+            </a>
           </div>
 
         </div>
