@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('head')
-User Profile
-@endsection
+
 
 @section('content')
 <center>
@@ -11,10 +9,10 @@ User Profile
     <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
         <h5>Name :{{ $user->name }}</h5>
         <h6>Last Name : {{ $user->lastname }}</h6>
-        <p>[ <i class="fa fa-user-circle"> ระดับสมาชิก : </i> 
+        <p>[ <i class="fa fa-user-circle"> ระดับสมาชิก : </i>
            {{ $user->level }} ]
            </p>
-        
+
     </div>
     <ul class="list-group">
       <li class="list-group-item">Email: {{ $user->email }}</li>
@@ -34,7 +32,7 @@ User Profile
     <div class="panel-footer">
       <a class="btn btn-primary" role="button"
          href="/setting">Edit</a>
-      
+
     </div>
 </div>
 </center>

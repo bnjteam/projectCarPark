@@ -9,9 +9,9 @@
     You got the mail<br>
     name : {{ $username }}<br>
     email : {{$userEmail}}<br>
-    He contact us by your website (ParkService) from Contact Us page<br>
-    ---------------------------
-    Description :
-    {{ $description }}
+    Contact us by your website (ParkService) from Contact Us page<br>
+    ---------------------------<br>
+    Description :{{ $description }}
+
   </body>
 </html>

@@ -43,7 +43,14 @@ User Detail
       <form action="/userManager/suspend/{{$user->id}}" method="post"><br>
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger">Suspend</button>
+    @if(Auth::user()->id!==$user->id)
+      @if($user->is_enabled==1)
+      <button type="submit" class="btn btn-danger">Suspend</button>
+      @elseif($user->is_enabled==0)
+      <button type="submit" class="btn btn-success">Activate</button>
+      @endif
+    @endif
+    
     </form>
     </div>
 </div>
