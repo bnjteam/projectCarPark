@@ -69,7 +69,9 @@ class ParkingsController extends Controller
      */
     public function show(Parking $parking)
     {
-        //
+        $p= Photolocation::all()->where('id_parking','LIKE',$parking->id)[0];
+
+         return view('/park.show',['photoslocation'=>$p]);
     }
 
     /**
@@ -104,5 +106,12 @@ class ParkingsController extends Controller
     public function destroy(Parking $parking)
     {
         //
+    }
+
+    public function addcarpark(Parking $parking)
+    {
+        //
+        return view('/park.addcarpark');
+
     }
 }
