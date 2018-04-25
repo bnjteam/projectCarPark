@@ -121,7 +121,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:70px;background-size: cover;background-repeat: no-repeat;width:100%">
+        <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
           <div class="container">
             <div class="row">
               <div class="col-6" style="margin-left:-60px">
@@ -159,6 +159,9 @@
                 </div>
 
               </div>
+              <a href="#top" class="btn btn-info" style="margin-top:100px">
+                TOP<span class="iconified iconified-chevron-up iconified-space-left"></span>
+              </a>
 
             </div>
 

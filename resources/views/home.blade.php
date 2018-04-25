@@ -43,24 +43,36 @@
             </div>
           </div>
         </div> -->
+        <div class="container">
           <div class="row" style="padding-top:50px;padding-bottom:50px;">
             <div class="col-6 " style="text-align: center">
               <img src="/storage/find.jpg"  width="400px" alt="">
             </div>
             <div class="col-6">
               <div style="font-size:40px;font-weight: 700;margin-top:70px">
-                FIND LOCATION
+                <div class="text-info">
+                  FIND
+                </div>
+                <div class=""style="margin-top:-20px;margin-left:20px">
+                  LOCATION
+                </div>
               </div>
 
             </div>
           </div>
-
+        </div>
+        <div class="container">
           <div class="row" style="padding-bottom:50px">
             <div class="col-6" style="text-align: center">
               <div  style="font-size:40px;font-weight: 700;margin-top:70px">
-                RESERVE & PREPAY
+                RESERVE <div class="text-info" style="margin-top:-20px">
+                  &
+                </div>
+                <div class="" style="margin-top:-20px">
+                  PREPAY
+                </div>
               </div>
-              <div class="" style="font-size:20px">
+              <div class="" style="font-size:20px;">
                 Book a space in just a few minute
               </div>
             </div>
@@ -68,20 +80,29 @@
               <img src="/storage/reserved-park.jpg" width="400px" alt="">
             </div>
           </div>
+        </div>
+        <div class="container">
           <div class="row" style="">
             <div class="col-6" style="text-align: center">
-              <img src="/storage/car.jpg" width="400px" alt="">
+              <img src="/storage/car.jpg" width="400px"alt="">
             </div>
-            <div class="col-6">
+            <div class="col-6" >
               <div  style="font-size:40px;font-weight: 700;margin-top:70px">
-                DRIVE ARRIVE & PARK
+                DRIVE ARRIVE
+                <div class="" style="margin-top:-20px;">
+                  &
+                </div>
+                <div class="text-info" style="margin-left: 30px;margin-top:-60px">
+                  PARK
+                </div>
               </div>
 
               <div class="" style="font-size:20px">
-                Enter the space with your qr code
+                Enter the space with qr code
               </div>
             </div>
           </div>
+        </div>
         </center>
 </div>
 @endsection
