@@ -10,7 +10,7 @@ class UsersManagerController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth');  
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -80,25 +80,25 @@ class UsersManagerController extends Controller
     {
         $request->validate(
             ['name' =>'required|min:4|max:255'
-            
-            
+
+
             ]
         );
-        
+
         //$path2 = $request->fileToUpload->store('/public/photos');
         $user->name =$request->input('name');
         $user->lastname =$request->input('lastname');
-        $user->email =$request->input('email');   
+        $user->email =$request->input('email');
         //$user->avatar = '/storage/photos/'.basename($path2) ;
-        $user->level =$request->input('level123'); 
-        $user->type =$request->input('type'); 
-        $user->is_enabled = $request->input('enabled123'); 
+        $user->level =$request->input('level123');
+        $user->type =$request->input('type');
+        $user->is_enabled = $request->input('enabled123');
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
-        
+
         return redirect('/userManager/show/'.$user->id);
-        
-        
+
+
     }
 
     /**
