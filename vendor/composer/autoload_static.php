@@ -328,6 +328,7 @@ class ComposerStaticInit9666c3cc036910bf61ada12e18555f14
         'App\\Http\\Controllers\\ChangePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChangePasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\ParkingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ParkingsController.php',
         'App\\Http\\Controllers\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingController.php',
         'App\\Http\\Controllers\\UsersManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersManagerController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
