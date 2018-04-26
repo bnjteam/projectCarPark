@@ -18,7 +18,12 @@ class ParkingsController extends Controller
      */
     public function index()
     {
-        return view('/search');
+      if (\Gate::allows('index-userManager',Auth::user())){
+        $park = Parking::all();
+        return view('/park.index',['park'=> $park]);
+      }else {
+        return 'aaa';
+      }
     }
 
     /**
@@ -28,7 +33,6 @@ class ParkingsController extends Controller
      */
     public function create()
     {
-        //
         return view('/park.create');
     }
 
@@ -134,7 +138,7 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
-        //
+
     }
 
     public function addcarpark(Parking $parking)

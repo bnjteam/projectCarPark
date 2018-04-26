@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
       // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
-      $admin->avatar='';
+      $admin->avatar='/storage/photos/avatar123.png';
       $admin->save();
 
       $admin = new App\User;
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
       // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
-      $admin->avatar='';
+      $admin->avatar='/storage/photos/avatar123.png';
       $admin->save();
 
       $admin = new App\User;
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
       // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
-      $admin->avatar='';
+      $admin->avatar='/storage/photos/avatar123.png';
       $admin->save();
     }
 }
