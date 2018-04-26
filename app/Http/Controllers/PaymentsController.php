@@ -12,13 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
-<<<<<<< HEAD
+
     public function __construct(){
         $this->middleware('auth');
     }
-=======
-
->>>>>>> d575fba4cbb57759e578881dd68319b3b2838cc5
     /**
      * Display a listing of the resource.
      *
@@ -124,15 +121,15 @@ class PaymentsController extends Controller
             }
             elseif ($user->type=="daily") {
               $day = 1;
-              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+              $user->end_date_package = $time->addDays($day)->toDateTimeString();
             }
             elseif ($user->type=="weekly") {
               $day = 7;
-              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+              $user->end_date_package = $time->addDays($day)->toDateTimeString();
             }
             elseif ($user->type=="monthly") {
               $day = 30;
-              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+              $user->end_date_package = $time->addDays($day)->toDateTimeString();
             }
             $user->save();
             return view('payments.complete');
