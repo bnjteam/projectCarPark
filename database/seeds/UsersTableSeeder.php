@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
       $admin->email = 'parkservice1@hotmail.com';
       $admin ->password=bcrypt('parkservice1');
       $admin->level='admin';
-      $admin->type='none';
+      $admin->type='large';
       // $admin->start_date_package='';
       // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder
       $admin->email = 'member@hotmail.com';
       $admin ->password=bcrypt('member');
       $admin->level='member';
-      $admin->type='none';
+      $admin->type='small';
       // $admin->start_date_package='';
       // $admin->end_date_package='';
       $admin->remember_token= str_random(64);

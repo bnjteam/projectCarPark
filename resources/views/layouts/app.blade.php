@@ -22,7 +22,7 @@
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @stack('style')
-  
+
 </head>
 
 <body>
@@ -38,7 +38,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                      <div class="">
+                        <!-- <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
+                          For Bussiness
+                        </div> -->
+                        <div style="font-size:17px;color:white;margin-left: 15px;">
 
+                          @if (Auth::check() && Auth::user()->level == "parking_owner")
+                            <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
+                          @else
+                            <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
+                          @endif
+                        </div>
+                      </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

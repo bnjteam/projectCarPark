@@ -30,9 +30,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isSuperAdmin() || $user->id===$object->id ;
         });
         Gate::define('index-userManagers',function($object){
-          // dd($object->id);
             $user = \Auth::user();
             return $user->isSuperAdmin();
+        });
+        Gate::define('index-payments',function($user,$object){
+            return $user->type==$object;
         });
 
         Gate::define('index-parking',function($userObject){

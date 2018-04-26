@@ -32,8 +32,12 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
+                                      @if (Auth::user()->type!="small")
+                                        <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
+                                      @else
+                                        <a href="/register_owner/payments/small" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                      @endif
 
-                                      <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
                                     </div>
                               </div>
                             </div>
@@ -62,7 +66,11 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
+                                  @if (Auth::user()->type!="medium")
+                                    <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
+                                  @else
+                                    <a href="/register_owner/payments/medium" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                  @endif
                                 </div>
                               </div>
                             </div>
@@ -91,7 +99,12 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+                                  @if (Auth::user()->type!="large")
+                                    <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+                                  @else
+                                    <a href="/register_owner/payments/large" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                  @endif
+
                                 </div>
                               </div>
                             </div>
