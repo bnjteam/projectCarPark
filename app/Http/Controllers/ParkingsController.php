@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Log;
 use App\Parking;
+use App\User;
 use App\Photolocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -74,13 +75,14 @@ class ParkingsController extends Controller
         // $photolocation->save();
         $log = new Log();
         if (Auth::check()){
-           $log->username = Auth::user()->name;
+           $log->id_user = Auth::user()->id;
         }
 
         else{
-          $log->username = 'guest';
+          $log->id_user = '2';
         }
-        $log->description = $log->username.' create parking';
+        $users = User::all('name','id');
+        $log->description = $users[$log->id_user].' create parking';
         $log->location = $parking->location;
         $log->save();
 

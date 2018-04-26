@@ -106,13 +106,14 @@ class SettingController extends Controller
 
         $log = new Log();
         if (Auth::check()){
-            $log->username = Auth::user()->name;
+            $log->id_user = Auth::user()->id;
          }
 
          else{
-           $log->username = 'guest';
+           $log->id_user = '2';
          }
-         $log->description = $log->username.' setting user';
+         $users = User::all()->pluck('name','id');
+         $log->description = $users[$log->id_user].' setting user';
          $log->save();
         return view('/profile',['user'=>$user]);
          }else{

@@ -57,13 +57,14 @@ class HomeController extends Controller
        Mail::to($emailAdmin)->send(new OrderShipped($detail,$email,$name));
        $log = new Log();
        if (Auth::check()){
-          $log->username = Auth::user()->name;
+          $log->id_user = Auth::user()->id;
        }
 
        else{
-         $log->username = 'guest';
+         $log->id_user = '2';
        }
-       $log->description = $log->username.' has contact us ;detail : '.$detail;
+       $users = User::all()->pluck('name','id');
+       $log->description = $users[$log->id_user].' has contact us from the web : '.$detail;
        $log->save();
        return redirect()->back();
     }
