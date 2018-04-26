@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\User ;
-class LogController extends Controller
-{
-  public function __construct(){
-      $this->middleware('auth');
-  }
+use App\Http\Controllers\Controller;
+use App\User;
 
+class PackagesController extends Controller
+{
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +18,8 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('package');
     }
 
     /**
@@ -39,38 +40,27 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Log  $log
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show($id)
     {
-      if (\Gate::allows('index-log',\Auth::user())){
-        $log = Log::all()->where('id_user','=',$user);
-        $users= User::all()->where('id','=',$user);
-        $names = User::all()->pluck('name','id');
-        //dd($users);
-        //return view('/home');
-        return view('/userManager.logview',['names'=>$names,'logData'=>$log,'user'=>$users]);
-      }else {
-        return view('/denieViews.denie');
-      }
-
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Log  $log
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Log $log)
+    public function edit($id)
     {
         //
     }
@@ -79,10 +69,10 @@ class LogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Log  $log
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Log $log)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,10 +80,10 @@ class LogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Log  $log
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Log $log)
+    public function destroy($id)
     {
         //
     }
