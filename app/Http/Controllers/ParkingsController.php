@@ -40,34 +40,22 @@ class ParkingsController extends Controller
      */
     public function store(Request $request)
     {
-
+      $request->validate([
+           'location' => 'required|string|max:255',
+           'address' => 'required',
+           'fileToUpload2' =>'required|file|mimes:jpeg,bmp,png',
+           ]);
       $parking=new Parking;
       $parking->location=$request->input('location');
       $parking->id_user = Auth::user()->id;
       $parking->address=$request->input('address');
-      if ($request->fileToUpload2!=null){
+
       $path2 = $request->fileToUpload2->store('/public/photosparking');
       $parking->photo= '/storage/photosparking/'.basename($path2);
-      }
-      else{
-        $parking->photo = '/storage/noimage.png';
-      }
+
+
       $parking->save();
 
-
-        //
-        //
-        //
-        // $photolocation=new Photolocation;
-        // $photolocation->id_parking=$parking->id;
-        // $photolocation->canvas=$request->input('list');
-        //
-        // if ($request->fileToUpload!=null){
-        //     $path = $request->fileToUpload->store('/public/photoslocation');
-        // $photolocation->photo = '/storage/photoslocation/'.basename($path);
-        //   }
-        //
-        // $photolocation->save();
         $log = new Log();
         if (Auth::check()){
            $log->username = Auth::user()->name;
@@ -78,9 +66,11 @@ class ParkingsController extends Controller
         }
         $log->description = $log->username.' create parking';
         $log->location = $parking->location;
+      
+
         $log->save();
 
-        return redirect('/parkings');
+        return redirect('/search');
 
 
     }
@@ -146,20 +136,24 @@ class ParkingsController extends Controller
 
     public function updatecarpark(Request $request, Parking $parking)
     {
+
+      $request->validate([
+           'floor' => 'required|string|max:255',
+           'list' => 'required',
+           'fileToUpload' =>'required|file|mimes:jpeg,bmp,png',
+           ]);
             $photolocation=new Photolocation;
             $photolocation->id_parking=$parking->id;
 
-            if ($request->input('list')!=null){
-                  $photolocation->canvas=$request->input('list');
-            }else{
-                $photolocation->canvas='';
-            }
 
-            if ($request->fileToUpload!=null){
+                  $photolocation->canvas=$request->input('list');
+
+
+
               $path = $request->fileToUpload->store('/public/photoslocation');
               $photolocation->photo = '/storage/photoslocation/'.basename($path);
-              }
 
+            $photolocation->floor=$request->input('floor');
             $photolocation->save();
 
         return redirect('/parkings/'.$parking->id.'/edit');
