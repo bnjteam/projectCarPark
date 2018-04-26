@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('level',['admin','member','guest']);
+            $table->enum('level',['admin','member','parking_owner','guest']);
             $table->enum('type',['none','daily','weekly','monthly']);
             $table->dateTime('start_date_package')->nullable();
             $table->dateTime('end_date_package')->nullable();

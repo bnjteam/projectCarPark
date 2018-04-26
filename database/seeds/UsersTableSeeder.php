@@ -52,5 +52,19 @@ class UsersTableSeeder extends Seeder
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';
       $admin->save();
+
+      $admin = new App\User;
+      $admin ->name ='parking_owner';
+      $admin ->lastname ='parking_owner';
+      $admin->email = 'parking_owner@hotmail.com';
+      $admin ->password=bcrypt('parking_owner');
+      $admin->level='parking_owner';
+      $admin->type='none';
+      // $admin->start_date_package='';
+      // $admin->end_date_package='';
+      $admin->remember_token= str_random(64);
+      $admin->is_enabled=true;
+      $admin->avatar='/storage/photos/avatar123.png';
+      $admin->save();
     }
 }
