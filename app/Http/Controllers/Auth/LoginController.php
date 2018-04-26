@@ -45,6 +45,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only($this->username(), 'password');
         $credentials['is_enabled'] = 1;
+        if (count(User::all()->where('email','LIKE',$request->email))){
         $log = new Log();
         $email = $request->email;
          $users = User::all()->pluck('id','email');
@@ -53,6 +54,7 @@ class LoginController extends Controller
          $log->description = $users[$email].' has login';
 
          $log->save();
+        }
         return $credentials;
     }
     protected function sendFailedLoginResponse(Request $request)

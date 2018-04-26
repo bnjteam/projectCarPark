@@ -63,7 +63,9 @@
                                         {{ __('Profile') }}
                                     </a>
 
-
+                                    <a class="dropdown-item" href="{{ url('/userManager') }}">
+                                        {{ __('User Manager') }}
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}
