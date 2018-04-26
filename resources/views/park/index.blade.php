@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('head')
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li ><a class="active">Parking Manager</a> </li>
+</ul>
+@endsection
 
 
 @section('content')

@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('head')
-<center><h2 class=""><b>Admin Setting User</b></h2></legend></center>
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li ><a href="/userManager">User Manager</a> / </li>
+  <li class="active">Users Manager</li>
+</ul>
 @endsection
 
 @section('content')

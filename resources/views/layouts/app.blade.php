@@ -16,8 +16,8 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
+    <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,9 +48,9 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @elseif(Auth::user()->level =='admin' or Auth::user()->level =='parking_owner')
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
+                        <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
                         @if (Auth::user()->level =='admin')
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
+                        <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
                         @endif
                         <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -129,20 +129,20 @@
               <div class="col">
                 <div class="row">
                   <div class="col-5">
-                    <div style="font-size:30px;color:white;">
+                    <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
                       For Bussiness
                     </div>
                     <div style="font-size:17px;color:white;margin-left: 15px;">
 
                       @if (Auth::check() && Auth::user()->level == "parking_owner")
-                        <a href="/parkings/create">create your parking</a>
+                        <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
                       @else
-                        <a href="/register_owner">create your parking</a>
+                        <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
                       @endif
                     </div>
                   </div>
                   <div class="col-3" >
-                    <div style="font-size:30px;color:white;">
+                    <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
                         Social
                     </div>
                     <div class="">
@@ -151,10 +151,10 @@
                     </div>
                   </div>
                   <div class="col-4">
-                    <div style="font-size:30px;color:white;">
+                    <div style="font-size:30px;color:white;font-family: 'Jua', sans-serif;">
                         Contact Us
                     </div>
-                    <div style="font-size:17px;color:white;margin-left: 15px;">
+                    <div style="font-family: 'Jua', sans-serif;font-size:17px;color:white;margin-left: 15px;">
                       <a href="/contact">Send mail</a>
                     </div>
                   </div>
