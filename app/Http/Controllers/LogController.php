@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\User ;
 class LogController extends Controller
 {
+  public function __construct(){
+      $this->middleware('auth');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,14 +50,18 @@ class LogController extends Controller
      */
     public function show($user)
     {
-      // dd($user);
+      if (\Gate::allows('index-log',\Auth::user())){
         $log = Log::all()->where('id_user','=',$user);
         $users= User::all()->where('id','=',$user);
         $names = User::all()->pluck('name','id');
         //dd($users);
         //return view('/home');
-
         return view('/userManager.logview',['names'=>$names,'logData'=>$log,'user'=>$users]);
+      }else {
+        return view('/denieViews.denie');
+      }
+
+
     }
 
     /**

@@ -7,7 +7,7 @@
 @section('content')
 <hr><center><p>Change Profile</p></center><hr>
 <form action="/userManager/update/{{ $user->id }}" method="post" >
-    
+
     @csrf
     @method('PUT')
 
@@ -28,7 +28,7 @@
         @if((old('level') ?? $user->level) == $key)
             <option value="{{ $key }}" selected>{{ $value }}</option>
         @else
-            <option value="{{ $key }}"> {{ $value }} </option> 
+            <option value="{{ $key }}"> {{ $value }} </option>
     @endif
     @endforeach
     </select>
@@ -41,7 +41,7 @@
         @if((old('type') ?? $user->type) == $key)
             <option value="{{ $key }}" selected>{{ $value }}</option>
         @else
-            <option value="{{ $key }}"> {{ $value }} </option> 
+            <option value="{{ $key }}"> {{ $value }} </option>
     @endif
     @endforeach
 
@@ -57,19 +57,21 @@
     <div class="form-group row">
     <label class="col-md-4 col-form-label text-md-right">Enabled : </label>
     @if((old('enabled123') ?? $user->is_enabled) == 1)
-    <input type="radio" name="enabled123" value=1 checked> Enable        <br>
-    <input type="radio" name="enabled123" value=0>        Not Enable
+
+    <input type="radio"  name="enabled123" value=1 checked> Enable        <br>
+    <input type="radio"  name="enabled123" value=0>        Not Enable
+
     @elseif((old('enabled123') ?? $user->is_enabled) == 0)
-    <input type="radio" name="enabled123" value=1>Active<br>
-    <input type="radio" name="enabled123" value=0 checked>Suspend
+    <input type="radio"  name="enabled123" value=1>Active<br>
+    <input type="radio"  name="enabled123"   value=0 checked>Suspend
     @endif
-    
-    
+
+
     <lavel class="col-md-4 col-form-label text-md-right"></label>
     <button  class="btn btn-success"type="submit">Submit</button>
-    
 
-    
+
+
 </form>
 
 
