@@ -22,7 +22,10 @@ class ParkingsController extends Controller
       if (\Gate::allows('index-userManager',Auth::user())){
         $park = Parking::all();
         return view('/park.index',['park'=> $park]);
-      }else {
+      }else if(\Gate::allows('index-parking',Auth::user())){
+        $park = Parking::all()->where('id_user','LIKE',Auth::user()->id);
+        return view('/park.index',['park'=> $park]);
+      }else{
         return 'aaa';
       }
     }
@@ -59,20 +62,6 @@ class ParkingsController extends Controller
       }
       $parking->save();
 
-
-        //
-        //
-        //
-        // $photolocation=new Photolocation;
-        // $photolocation->id_parking=$parking->id;
-        // $photolocation->canvas=$request->input('list');
-        //
-        // if ($request->fileToUpload!=null){
-        //     $path = $request->fileToUpload->store('/public/photoslocation');
-        // $photolocation->photo = '/storage/photoslocation/'.basename($path);
-        //   }
-        //
-        // $photolocation->save();
         $log = new Log();
         if (Auth::check()){
            $log->id_user = Auth::user()->id;
@@ -198,5 +187,7 @@ class ParkingsController extends Controller
             $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
             return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
       }
+
+
 
 }
