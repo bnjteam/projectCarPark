@@ -47,9 +47,11 @@
                         @guest
                             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @elseif(Auth::user()->level =='admin')
+                        @elseif(Auth::user()->level =='admin' or Auth::user()->level =='parking_owner')
                         <li class="nav-item"><a class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
+                        @if (Auth::user()->level =='admin')
                         <li class="nav-item"><a class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
+                        @endif
                         <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
@@ -83,6 +85,7 @@
                                     </form>
                                 </div>
                             </li>
+
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
