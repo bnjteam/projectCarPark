@@ -49,6 +49,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @elseif(Auth::user()->level =='admin')
                         <li class="nav-item"><a class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
                         <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
@@ -60,9 +61,7 @@
                                         {{ __('Profile') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ url('/userManager') }}">
-                                        {{ __('User Manager') }}
-                                    </a>
+
 
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}
@@ -153,7 +152,7 @@
                     </div>
                     <div class="">
                       <a href="https://www.facebook.com"><img src="/storage/facebook.png" alt="" width=30px></a>
-                      <a href="https://www.twitter.com"><img src="/storage/twitter.jpg" alt="" width=30px></a>
+                      <a href="https://www.twitter.com"><img src="/storage/twitter.png" alt="" width=30px></a>
                     </div>
                   </div>
                   <div class="col-4">
