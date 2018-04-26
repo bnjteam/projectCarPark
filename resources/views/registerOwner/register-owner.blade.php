@@ -32,6 +32,7 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
+
                                       <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
                                     </div>
                               </div>
