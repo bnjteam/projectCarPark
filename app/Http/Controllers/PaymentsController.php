@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
-    
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -79,10 +81,7 @@ class PaymentsController extends Controller
         /**
         $users->type=$request->input('package');
         $users->save();
-       /**{{-- $log = new Log();
-        $log->description = Auth::user()->name.' has paymented';
-        $log->location = '';
-        $log->save();--}}**/
+       **/
         $request->validate([
             'card'=>'required|digits:16|numeric',
             'month'=>'required|between:1,12|numeric',
@@ -96,6 +95,9 @@ class PaymentsController extends Controller
 
             $log->description = $users[$log->id_user]." buy reserve's package ".$package;
             $log->save();
+        
+
+
 
         
         return view('payments.complete');
