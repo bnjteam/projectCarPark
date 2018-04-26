@@ -48,7 +48,7 @@
         <form class="" action="/parkings/{{ $item->id }}" method="post">
         @csrf
         @method('DELETE')
-        <button class="btn btn-danger" role="button"
+        <button onclick="return confirm('Are you sure you want to delete this parking?')" class="btn btn-danger" role="button"
             >Delete</button></td>
         </form>
     </tr>
