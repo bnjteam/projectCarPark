@@ -1,9 +1,20 @@
 @extends('layouts.app')
+
 @section('head')
-<center><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li class = "active">Profile</a></li>
+</ul>
+
+<center><br><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
 @endsection
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<head>
+
+
+
+</head>
 
 <script>
 function readURL(input) {
@@ -37,7 +48,7 @@ function readURL(input) {
                     <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                     <div class="col-md-6">
-                      <input onchange="readURL(this)" type="file" name="fileToUpload" value=""><br>
+                      <input onchange="readURL(this)"   type="file" name="fileToUpload" value=""><br>
                         <center><img id="imageold" style="height:150px;weight:150px;"  src='' > </center>
                         <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
 

@@ -28,7 +28,7 @@ class UsersManagerController extends Controller
         return view('userManager.index',['users' => $users]);
       }
       else{
-        return 'asd';
+          return view('/denieViews.denie');
       }
         // $users = User::all();
         // return view('userManager.index',['users' => $users]);
@@ -115,7 +115,7 @@ class UsersManagerController extends Controller
           $log->id_user = '2';
         }
         $users = User::all()->pluck('name','id');
-        $log->description = $users[$log->id_user].' edit user';
+        $log->description = $users[$log->id_user].' edit user id : '.$user->id;
         $log->save();
 
 
@@ -132,6 +132,7 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
+
         if($user->is_enabled == 1){
             $user->is_enabled = 0;
         }elseif($user->is_enabled==0){
@@ -149,11 +150,25 @@ class UsersManagerController extends Controller
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' delete this user';
         $log->save();
-        return redirect('/userManager/show/'.$user->id);
+        return redirect('/userManager');
+
     }
     public function createOwner(){
-      // dd(Auth::user());
+
+      return view('registerOwner/register-owner');
+    }
+    public function updateOwner($package){
       $user = Auth::user();
-      return view('/register-owner',['user'=>$user]);
+      if ($package=="small"){
+
+      }
+      elseif ($package=="medium") {
+
+      }
+      elseif ($package=="large") {
+
+      }
+
+      return view('registerOwner/success',['user'=>$user]);
     }
 }

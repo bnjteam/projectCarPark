@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('head')
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li ><a class="active">Parking Manager</a> </li>
+</ul>
+@endsection
 
 
 @section('content')
@@ -30,7 +35,9 @@
       <td><img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt=""></td>
       <td class="table-secondary"><a href="/parkings/{{ $item->id }}">{{ $item->location }}</a></td>
       <td class="table-secondary">{{ $item->address }}</td>
-      <td class="table-secondary">รอโนเอลใส่Owner</td>
+      <td > <a href="/userManager/show/{{$item->id_user}}">
+        {{ $names[$item->id_user] }}
+        </a> </td>
       <td class="table-secondary">{{ $item->created_at->diffForHumans() }}</td>
       <td class="table-secondary">{{ $item->updated_at->diffForHumans() }}</td>
       <td class="table-secondary"><a class="btn btn-primary" role="button"

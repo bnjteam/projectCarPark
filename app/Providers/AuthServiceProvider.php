@@ -37,6 +37,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isOwner()  ;
         });
 
+        Gate::define('index-log',function($userObject){
+            $user = \Auth::user();
+            return $user->isSuperAdmin() ;
+        });
+
 
 
 
