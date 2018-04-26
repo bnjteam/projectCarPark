@@ -132,6 +132,7 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
+
         if($user->is_enabled == 1){
             $user->is_enabled = 0;
         }elseif($user->is_enabled==0){
@@ -149,7 +150,8 @@ class UsersManagerController extends Controller
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' delete this user';
         $log->save();
-        return redirect('/userManager/show/'.$user->id);
+        return redirect('/userManager');
+
     }
     public function createOwner(){
       // dd(Auth::user());

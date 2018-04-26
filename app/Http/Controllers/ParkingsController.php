@@ -21,10 +21,12 @@ class ParkingsController extends Controller
     {
       if (\Gate::allows('index-userManager',Auth::user())){
         $park = Parking::all();
-        return view('/park.index',['park'=> $park]);
+        $names = User::all()->pluck('name','id');
+        return view('/park.index',['park'=> $park,'names'=>$names]);
       }else if(\Gate::allows('index-parking',Auth::user())){
         $park = Parking::all()->where('id_user','LIKE',Auth::user()->id);
-        return view('/park.index',['park'=> $park]);
+        $names = User::all()->pluck('name','id');
+        return view('/park.index',['park'=> $park,'names'=>$names]);
       }else{
         return 'aaa';
       }

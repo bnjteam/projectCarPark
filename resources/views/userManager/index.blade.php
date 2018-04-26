@@ -39,13 +39,23 @@
       <td class="table-secondary">{{ $item->created_at->diffForHumans() }}</td>
 
       @if($item->is_enabled==1)
+
       <td class="table-success">
-          <i class="fa fa-check"></i>
+        <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
+          @csrf
+          @method('DELETE')
+          <i style="color:green" class="fa fa-check">Active/<button  onclick="return confirm('Are you sure you want to suspend this user?')" class="btn btn-danger" >Suspend</button></i>
+        </form>
       </td>
       @else
+
         <td class="table-danger">
-          <i class="fa fa-times"></i>
-      </td>
+          <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button onclick="return confirm('Are you sure you want to active this user?')" type="submit" class="btn btn-success">Active</button>/<i style="color:red" class="fa fa-times">Suspend</i>
+          </form>
+          </td>
       @endif
       <td class="table-secondary">{{ $item->type }}</td>
       <td class="table-secondary">{{ $item->end_date_package }}</td>
