@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('head')
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li ><a href="/parkings">Parking Manager</a>/ </li>
+  <li class = "active">Parking Manager</a></li>
+</ul>
+@endsection
 @section('content')
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 

@@ -1,6 +1,12 @@
 @extends('layouts.app')
+
 @section('head')
-<center><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
+<ul class="breadcrumb">
+  <li><a href="/home">Home</a> / </li>
+  <li class = "active">Profile</a></li>
+</ul>
+
+<center><br><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
 @endsection
 @section('content')
 
