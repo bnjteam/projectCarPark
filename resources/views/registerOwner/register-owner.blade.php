@@ -31,15 +31,10 @@
                                     </div>
                                   </div>
                                 </p>
-
-                                <form method="POST" action="/register_owner/small" enctype="multipart/form-data">
-                                    @csrf
                                     <div class="" style="text-align:center;margin-top:40px">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
-                                        </button>
+
+                                      <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
                                     </div>
-                                </form>
                               </div>
                             </div>
                           </div>
@@ -66,14 +61,9 @@
                                   </div>
                                 </p>
 
-                                <form method="POST" action="/register_owner/medium" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="" style="text-align:center;margin-top:40px">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
-                                        </button>
-                                    </div>
-                                </form>
+                                <div class="" style="text-align:center;margin-top:40px">
+                                  <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -100,14 +90,9 @@
                                   </div>
                                 </p>
 
-                                <form method="POST" action="/register_owner/large" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="" style="text-align:center;margin-top:40px">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
-                                        </button>
-                                    </div>
-                                </form>
+                                <div class="" style="text-align:center;margin-top:40px">
+                                  <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+                                </div>
                               </div>
                             </div>
                           </div>
