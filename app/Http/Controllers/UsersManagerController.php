@@ -20,7 +20,7 @@ class UsersManagerController extends Controller
      */
     public function index()
     {
-      if (\Gate::allows('index-userManager',Auth::user())){
+      if (\Gate::allows('index-userManagers')){
         $users = User::all();
         return view('userManager.index',['users' => $users]);
       }
