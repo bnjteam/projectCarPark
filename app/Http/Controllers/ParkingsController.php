@@ -28,7 +28,7 @@ class ParkingsController extends Controller
         $names = User::all()->pluck('name','id');
         return view('/park.index',['park'=> $park,'names'=>$names]);
       }else{
-        return 'aaa';
+          return view('/denieViews.denie');
       }
     }
 
