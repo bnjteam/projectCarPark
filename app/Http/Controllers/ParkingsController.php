@@ -151,7 +151,7 @@ class ParkingsController extends Controller
       //   echo $request->input('list');
       // dd($request);
       //       for ($i=0; $i < ; $i++) {
-      //     
+      //
       //       }
 
             $photolocation=new Photolocation;
