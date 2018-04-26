@@ -152,7 +152,7 @@
                     </div>
                     <div class="">
                       <a href="https://www.facebook.com"><img src="/storage/facebook.png" alt="" width=30px></a>
-                      <a href="https://www.twitter.com"><img src="/storage/twitter.jpg" alt="" width=30px></a>
+                      <a href="https://www.twitter.com"><img src="/storage/twitter.png" alt="" width=30px></a>
                     </div>
                   </div>
                   <div class="col-4">
