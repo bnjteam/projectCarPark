@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParkingsTable extends Migration
+class CreateAddSoftDeleteParkingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateParkingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parkings', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('location');
-          $table->string('address');
-          $table->string('photo');
-          $table->timestamps();
+        Schema::table('parkings', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateParkingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parkings');
+        Schema::table('parkings', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
+        });
     }
 }

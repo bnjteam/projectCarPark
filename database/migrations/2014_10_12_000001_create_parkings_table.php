@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotolocationsTable extends Migration
+class CreateParkingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePhotolocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('photolocations', function (Blueprint $table) {
+        Schema::create('parkings', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('id_parking');
-          $table->text('canvas');
+          $table->string('id_user');
+          $table->string('location');
+          $table->string('address');
           $table->string('photo');
           $table->timestamps();
-          $table->foreign('id_parking')->references('id')->on('parkings');
+
+          $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
@@ -30,6 +32,6 @@ class CreatePhotolocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photolocations');
+        Schema::dropIfExists('parkings');
     }
 }
