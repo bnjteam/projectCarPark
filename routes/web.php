@@ -34,12 +34,17 @@ Route::get('/userManager', 'UsersManagerController@index');
 //     return 'asd';
 //   }
 // });
+
+
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
+Route::get('/userManager/logs/{user}', 'LogController@show');
 Route::put('/userManager/update/{user}','UsersManagerController@update');
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
 Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
+
+
 
 Route::get('/parkings/{parking}/addcarpark', 'ParkingsController@addcarpark');
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');

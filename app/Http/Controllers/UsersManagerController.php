@@ -75,7 +75,7 @@ class UsersManagerController extends Controller
     public function edit(User $user)
     {
         $users = User::all();
-        $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest'];
+        $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
         $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
     }
