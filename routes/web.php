@@ -52,6 +52,12 @@ Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[
 Route::get('/parkings', 'ParkingsController@index');
 
 
+Route::put('/parkings/{parking}/addphoto','ParkingsController@updatephoto')->where('id','[0-9]+');
+Route::delete('/photoslocations/{photoslocation}','ParkingsController@destroyphoto')->where('id','[0-9]+');
+Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
+Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
+
+
 
 
 

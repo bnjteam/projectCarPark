@@ -16,16 +16,19 @@ class CreateMapsTable extends Migration
         Schema::create('maps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number')->unique();
+            $table->string('id_photo');
             $table->enum('status',[
               'full','empty','reserve'
             ]);
-            $table->string('reserver');
-            $table->string('location');
+            $table->string('id_user');
             $table->timestamps();
 
-            $table->foreign('reserver')
-                  ->references('name')
+
+            $table->foreign('id_user')
+                  ->references('id')
                   ->on('users');
+
+            $table->foreign('id_photo')->references('id')->on('photolocations');
         });
     }
 

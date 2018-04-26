@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
       $admin ->name ='admin';
       $admin ->lastname ='JAYNAJA';
       $admin->email = 'parkservice1@hotmail.com';
-      $admin ->password=bcrypt('aadmin');
+      $admin ->password=bcrypt('parkservice1');
       $admin->level='admin';
       $admin->type='none';
       // $admin->start_date_package='';

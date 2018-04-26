@@ -15,20 +15,19 @@ class CreateHistoriesParkTable extends Migration
     {
         Schema::create('histories_park', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
-            $table->string('user');
+            $table->string('id_map');
+            $table->string('id_user');
             $table->enum('type',[
               'leaved','reserved','entried','canceled'
             ]);
-            $table->string('location');
             $table->timestamps();
 
-            $table->foreign('number')
-                  ->references('number')
-                  ->on('maps');
-            $table->foreign('user')
-                  ->references('name')
+            $table->foreign('id_user')
+                  ->references('id')
                   ->on('users');
+            $table->foreign('id_map')
+                  ->references('id')
+                  ->on('maps');
         });
     }
 

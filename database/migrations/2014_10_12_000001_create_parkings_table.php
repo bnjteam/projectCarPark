@@ -15,10 +15,13 @@ class CreateParkingsTable extends Migration
     {
         Schema::create('parkings', function (Blueprint $table) {
           $table->increments('id');
+          $table->string('id_user');
           $table->string('location');
           $table->string('address');
           $table->string('photo');
           $table->timestamps();
+
+          $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
