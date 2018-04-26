@@ -1,30 +1,26 @@
+
 @extends('layouts.app')
-@push('style')
-
-<style >
-	.n1{
-		font-size: 60px;
-		text-align: center;
-		margin-top: 30px;
-	}
-	.n2{
-		text-align: center;
-		font-size: 20px;
-		margin-bottom: 350px;
-	}
-
-	
-</style>
-@endpush
 @section('content')
+<div class="container">
+  <div class="row justify-content-center ">
+    <div class="col-10">
+      <div class="card border-primary ">
+        <div class="card-header" style="text-align:center">Buy Package</div>
+        <div class="card-body">
+          <div class="" >
+            <div class="row justify-content-center">
+                <img src="/storage/check.png" alt="" style="padding:20px">
+            </div>
+            <h3 style="text-align:center">Success</h3>
+            <p class="card-text" style="text-align:center">you have buy package.</p>
+            <div class="" style="text-align:center">
+                <a href="/parkings/" class="btn btn-primary" >Go to reserve</a>
 
-<p class="n1">ชำระเงินเรียบร้อย</p>
-<p class="n2">ขอบคุณที่ใช้บริการ</p>
-
-
-
-
-
-
-
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

@@ -155,7 +155,7 @@ class PaymentsController extends Controller
             }
             else{
               $user->end_date_package = $time->addMonths($month)->toDateTimeString();
-              return view('registerOwner/success',['user'=>$user]);
+              return view('registerOwner.success',['user'=>$user]);
             }
 
 

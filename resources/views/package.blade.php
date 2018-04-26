@@ -5,13 +5,13 @@
 
 .flex-container {
   display: flex;
-  
+
 }
 
 .flex-container > div {
   background-color: #CCCCCC;
-  	
-  margin-left:30px; 
+
+  margin-left:30px;
   width: 345px;
   font-size: 30px;
   margin-bottom: 170px;
@@ -21,7 +21,7 @@
 }
 .price{
 	text-align: center;
-	background-color:#778899 ; 
+	background-color:#778899 ;
 }
 #button{
 	width: 320px;
@@ -37,171 +37,130 @@
 </style>
 @endpush
 @section('content')
-<div class="head">
-	<label>Package</label>
-</div>
-<div class="flex-container">
+<div class="container">
+    <div class="row justify-content-center">
+      <h1>{{ __('Package') }}</h1>
+        <div class="col-12">
+                <div class="card-body">
 
-  <div>
-  	<table class="table">
-    <thead>
-      <tr>
-        <th class="block">None</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="price">20 Bath/Hour</td>
-        </tr>
-      <tr>
-        <td class="font">Time :  9:00AM -8:30 PM </td>
-        
-      </tr>
-      <td class="font">ไม่สามารถจองได้</td>
+                        <div class="row justify-content-center">
+                          <div class="col-4">
+                            <div class="card text-white bg-warning mb-3" >
 
-      
-      <tr>
-        {{--<td><button  id='button' class="btn btn-success" type="submit">เลือก</button></td>--}}
-        
-       
-      </tr>
-    </tbody>
-  </table>
-  			
-  		</div>
-  	
-  
+                              <h4 class="card-header" style="text-align:center">Daily</h4>
+                              <div class="card-body">
+                                <div class="card-title" style="margin-top:30px;margin-bottom:30px;text-align:center" >
+                                    <h1>$3.99</h1>
+                                </div>
+                                <p class="card-text">
+                                  <div class="">
+                                    <div class="text-align:left">
+                                      <div class="" style="font-size:20px">
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Limited 1 Day
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Time : 24 Hour
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </p>
+                                    <div class="" style="text-align:center;margin-top:40px">
+                                      @if (Auth::user()->type!="daily")
+                                        <a href="/payments/daily" class="btn btn-primary">{{ __('Buy Package') }}</a>
+                                      @else
+                                        <a href="/payments/daily" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                      @endif
 
-  <div>
-  	<table class="table">
-    <thead>
-      <tr>
-        <th class="block">Daily</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="price">100 Bath/Day</td>
-        
-      </tr>
-      <tr>
-        <td class="font">Time : 9:00AM -8:30 PM</td>
-        
-      </tr>
-      <tr>
-        @if(Auth::user()->type =='daily' )
-        <td class="font">สามารถจองได้</td>
-        @else
-        <td class="font">ไม่สามารถจองได้</td>
-        @endif
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="card text-white bg-info mb-3" >
+
+                              <h4 class="card-header" style="text-align:center">Weekly</h4>
+                              <div class="card-body">
+                                <div class="card-title" style="margin-top:30px;margin-bottom:30px;text-align:center" >
+                                    <h1>$15.99</h1>
+                                </div>
+                                <p class="card-text">
+                                  <div class="">
+                                    <div class="text-align:left">
+                                      <div class="" style="font-size:20px">
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Limited 7 Days
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Time : 24 Hour
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </p>
+
+                                <div class="" style="text-align:center;margin-top:40px">
+                                  @if (Auth::user()->type!="weekly")
+                                    <a href="/payments/weekly" class="btn btn-primary">{{ __('Buy Package') }}</a>
+                                  @else
+                                    <a href="/payments/weekly" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                  @endif
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="card text-white bg-secondary mb-3" >
+
+                              <h4 class="card-header" style="text-align:center">Monthly</h4>
+                              <div class="card-body">
+                                <div class="card-title" style="margin-top:30px;margin-bottom:30px;text-align:center" >
+                                    <h1>$45.99</h1>
+                                </div>
+                                <p class="card-text">
+                                  <div class="">
+                                    <div class="text-align:left">
+                                      <div class="" style="font-size:20px">
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Limited 30 Days
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> Time : 24 Hour
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </p>
+
+                                <div class="" style="text-align:center;margin-top:40px">
+                                  @if (Auth::user()->type!="monthly")
+                                    <a href="/payments/monthly" class="btn btn-primary">{{ __('Buy Package') }}</a>
+                                  @else
+                                    <a href="/payments/monthly" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                  @endif
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
 
 
-        
-      </tr>
-      
-      <tr>
-        @if(Auth::user()->type =='daily' )
-        <td><a href="#"><button  id='button' class="btn btn-success" type="submit" >Now package</button></a></td>
-        @else
-        <td><a href="/payments/daily"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        
+            </div>
+        </div>
+    </div>
 
-        
-
-       @endif
-       
-      </tr>
-    </tbody>
-  </table>
-  	</div>
-  <div>
-  	<table class="table">
-    <thead>
-      <tr>
-        <th class="block">Weekly</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="price">500 Bath/Week</td>
-        
-      </tr>
-      <tr>
-        <td class="font">Time : 24 hour</td>
-        
-      </tr>
-      <tr>
-         @if(Auth::user()->type =='weekly' )
-        <td class="font">สามารถจองได้</td>
-        @else
-        <td class="font">ไม่สามารถจองได้</td>
-        @endif
-        
-      </tr>
-      <tr>
-        @if(Auth::user()->type =='weekly' )
-        <td><a href="#"><button  id='button' class="btn btn-success" type="submit" >Now package</button></a></td>
-        @elseif(Auth::user()->type =='none' )
-        <td><a href="/payments/weekly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        @elseif(Auth::user()->type =='monthly' )
-        <td><a href="/payments/weekly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        @elseif(Auth::user()->type =='daily' )
-        <td><a href="/payments/weekly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-
-        
-
-       @endif
-       
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <div>
-  	<table class="table">
-    <thead>
-      <tr>
-        <th  class="block">Monthly</th>
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="price">1500 Bath/Month</td>
-        
-      </tr>
-      <tr>
-        <td class="font">Time :24 hour</td>
-        
-      </tr>
-      <tr>
-         @if(Auth::user()->type =='monthly' )
-        <td class="font">สามารถจองได้</td>
-        @else
-        <td class="font">ไม่สามารถจองได้</td>
-        @endif
-        
-      </tr>
-      <tr>
-      	@if(Auth::user()->type =='monthly' )
-        <td><a href="#"><button  id='button' class="btn btn-success" type="submit" >Now package</button></a></td>
-        @elseif(Auth::user()->type =='none' )
-        <td><a href="/payments/monthly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        @elseif(Auth::user()->type =='daily' )
-        <td><a href="/payments/monthly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        @elseif(Auth::user()->type =='weekly' )
-        <td><a href="/payments/monthly"><button  id='button' class="btn btn-success" type="submit" >Buy Package</button></a></td>
-        
-        
-
-       @endif
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
 
 
 @endsection
