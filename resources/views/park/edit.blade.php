@@ -96,7 +96,7 @@
               }
 
             }
-            console.log(1212);
+
         }
 
 
@@ -105,10 +105,11 @@
             document.getElementById("draw"+id).style.display = "none";
           }
 
-          function setclick () {
-            document.getElementById("click").value = '1';
 
-          }
+
+
+
+
 
       </script>
 
@@ -120,8 +121,7 @@
         <form method="POST" action="/parkings/{{$parking->id}}/addphoto" enctype="multipart/form-data">
           @csrf
           @method('PUT')
-          <input  type="hidden" name="click" value="" id='click'>
-            <input  type="hidden" name="list2" value="5" id='list2'>
+
 
             Location Name:    <input type="text" name="location" value="{{ $parking->location }}">
               <br>
@@ -134,38 +134,30 @@
             <br>
             Image Location
             <br>
-            <input onchange="readURL(this)" type="file" name="fileToUpload2"  value="">
+            <input onchange="readURL(this)" type="file" name="fileToUpload2" id="fileToUpload2" value="">
               <center><img id="imageold" name="photo" style="height:300px;weight:300px;"  src="{{old('photo') ?? $parking->photo }}" > </center>
               <br>
 
-              <br>
 
 
             <!-- <a href="addcarpark" ><button type="button" name="button">ADD</button></a> -->
-            <button type="submit" name="button" onclick="">แก้ไขแผนที่ที่จอดรถ</button>
-
+            <button type="submit" name="button" formaction="/parkings/{{$parking->id}}">submit</button>
+            <br>
+            <br>
+            <br>
+            <button type="submit" name="button" onclick="">ADD/DELETE Photolocation</button>
+            <br><br>
             </form>
 
             @foreach($photoslocations as $photoslocation)
 
-            <!-- <form class="" action="/photoslocations/{{$photoslocation->id}}/" method="post">
-               @csrf
-               @method('DELETE')
-
-               <input  type="hidden" name="photo_id" value="{{$photoslocation->id}}"  >
-               <input  type="hidden" name="park_id" value="{{$parking->id}}"  >
-               <button type="submit" name="button" class="btn btn-danger">DELETE</button>
-             </form> -->
-            <!-- <button onclick="myhidden ({{$photoslocation->id}})" id='btn{{$photoslocation->id}}' type="button" name="button">DELETE</button> -->
                   <center><div class="">
 
                       <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
                           <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
-
+                          <h1>Floor : {{$photoslocation->floor}}</h1>
                     <canvas  id="draw{{$photoslocation->id}}" style="border:1px solid #000000;"></canvas>
                     <br>
-
-
 
 
                   </div></center>
@@ -173,10 +165,7 @@
 
 
             <br>
-            <br>
 
-        <button type="submit" name="button2" >submit</button>
-    </form>
 
       </div></center>
 

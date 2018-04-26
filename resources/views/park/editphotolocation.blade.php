@@ -111,7 +111,10 @@ function setclick () {
 }
 
 </script>
-  <a href="addcarpark" ><button type="button" name="button">ADD</button></a>
+
+
+  <center><a href="addcarpark"  ><button  class="btn btn-info"   style="padding: 16px 100px;" type="button" name="button">ADD</button></a></center>
+  <br>
 @foreach($photoslocations as $photoslocation)
 <form class="" action="/photoslocations/{{$photoslocation->id}}/" method="post">
    @csrf
@@ -119,20 +122,27 @@ function setclick () {
 
    <input  type="hidden" name="photo_id" value="{{$photoslocation->id}}"  >
    <input  type="hidden" name="park_id" value="{{$parking->id}}"  >
-   <button type="submit" name="button" class="btn btn-danger">DELETE</button>
- </form>
-<!-- <button onclick="myhidden ({{$photoslocation->id}})" id='btn{{$photoslocation->id}}' type="button" name="button">DELETE</button> -->
-      <center><div class="">
+
+    <center> <div class="card bg-light mb-3" style="max-width: 100rem;">
+        <div class="card-header"><h1>Floor : {{$photoslocation->floor}}</h1></div>
+
 
           <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
-              <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
+          <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
 
         <canvas  id="draw{{$photoslocation->id}}" style="border:1px solid #000000;"></canvas>
         <br>
+
+        <button type="submit" style="max-width: 70rem;" name="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this entry?')">DELETE</button>
+        <br><br>
+
+
 
 
 
 
       </div></center>
+      </form>
       @endforeach
+
 @endsection
