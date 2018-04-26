@@ -9,7 +9,7 @@
 <table class="table" id="table">
     <thead>
         <tr>
-      <th scope="col">ID</th>
+      <th scope="col">Log ID</th>
       <th scope="col">User ID</th>
       <th scope="col">name</th>
       <th scope="col">Description</th>
