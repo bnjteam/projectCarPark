@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Parking;
 use App\Photolocation;
+use App\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class ParkingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()a1
     {
         return view('/search');
     }
