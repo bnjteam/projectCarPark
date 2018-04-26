@@ -99,11 +99,8 @@ class UsersManagerController extends Controller
     {
         $request->validate(
             ['name' =>'required|min:4|max:255'
-
-
             ]
         );
-
         //$path2 = $request->fileToUpload->store('/public/photos');
         $user->name =$request->input('name');
         $user->lastname =$request->input('lastname');
@@ -115,13 +112,7 @@ class UsersManagerController extends Controller
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
         $log = new Log();
-        if (Auth::check()){
            $log->id_user = Auth::user()->id;
-        }
-
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' edit user id : '.$user->id;
         $log->save();
@@ -148,13 +139,7 @@ class UsersManagerController extends Controller
         }
         $user->save();
         $log = new Log();
-        if (Auth::check()){
            $log->id_user = Auth::user()->id;
-        }
-
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' delete this user';
         $log->save();
