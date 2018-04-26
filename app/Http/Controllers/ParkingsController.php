@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Log;
 use App\Parking;
 use App\Photolocation;
 use Illuminate\Http\Request;
