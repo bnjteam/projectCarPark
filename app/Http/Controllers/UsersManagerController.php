@@ -101,14 +101,14 @@ class UsersManagerController extends Controller
             ['name' =>'required|min:4|max:255'
             ]
         );
-        //$path2 = $request->fileToUpload->store('/public/photos');
+        $path2 = $request->fileToUpload->store('/public/photos');
         $user->name =$request->input('name');
         $user->lastname =$request->input('lastname');
         $user->email =$request->input('email');
-        //$user->avatar = '/storage/photos/'.basename($path2) ;
+        $user->avatar = '/storage/photos/'.basename($path2) ;
         $user->level =$request->input('level123');
         $user->type =$request->input('type');
-        $user->is_enabled = $request->input('enabled123');
+
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
         $log = new Log();
