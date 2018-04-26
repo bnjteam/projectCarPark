@@ -92,23 +92,18 @@
                                   <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
                                    สวัสดีคุณ {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu" style="background-color:#666699" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
-
-
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}
                                     </a>
-
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -119,8 +114,6 @@
                 </div>
             </div>
         </nav>
-
-
         <div class="">
           @yield('head')
         </div>
@@ -148,7 +141,6 @@
                       @endif
                     </div>
                   </div>
-
                   <div class="col-3" >
                     <div style="font-size:30px;color:white;">
                         Social
@@ -165,18 +157,15 @@
                     <div style="font-size:17px;color:white;margin-left: 15px;">
                       <a href="/contact">Send mail</a>
                     </div>
-
                   </div>
                 </div>
-
               </div>
-              <a href="#top" class="btn btn-info" style="margin-top:100px">
-                TOP<span class="iconified iconified-chevron-up iconified-space-left"></span>
-              </a>
-
+              <div class="">
+                <a href="#top" class="btn btn-info" >
+                  TOP<span class="iconified iconified-chevron-up iconified-space-left"></span>
+                </a>
+              </div>
             </div>
-
-
           </div>
         </div>
     </div>

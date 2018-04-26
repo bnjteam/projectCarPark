@@ -45,7 +45,6 @@ Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
 
 
-
 Route::get('/parkings/{parking}/addcarpark', 'ParkingsController@addcarpark');
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');
 Route::get('/parkings', 'ParkingsController@index');
@@ -61,12 +60,18 @@ Route::put('/parkings/{parking}/addphoto','ParkingsController@updatephoto')->whe
 Route::delete('/photoslocations/{photoslocation}','ParkingsController@destroyphoto')->where('id','[0-9]+');
 Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
 Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
-
 Route::get('register_owner','UsersManagerController@createOwner');
-
+Route::post('register_owner/{package}','UsersManagerController@updateOwner');
 
 
 
 
 Route::get('/contact','HomeController@sendMailForm');
 Route::post('/contact','HomeController@sendMail');
+Route::get('/package', 'PackagesController@index');
+// Route::get('/payments/{object}', function () {
+//     return view('payments.payments');
+// });
+Route::get('/payments/{object}', 'PaymentsController@index');
+Route::post('/payments','PaymentsController@store');
+Route::put('/payments/{id}','PaymentsController@update');

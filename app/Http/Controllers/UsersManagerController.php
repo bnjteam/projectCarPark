@@ -154,8 +154,21 @@ class UsersManagerController extends Controller
 
     }
     public function createOwner(){
-      // dd(Auth::user());
+
+      return view('registerOwner/register-owner');
+    }
+    public function updateOwner($package){
       $user = Auth::user();
-      return view('/register-owner',['user'=>$user]);
+      if ($package=="small"){
+
+      }
+      elseif ($package=="medium") {
+
+      }
+      elseif ($package=="large") {
+
+      }
+
+      return view('registerOwner/success',['user'=>$user]);
     }
 }
