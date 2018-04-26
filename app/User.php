@@ -30,4 +30,13 @@ class User extends Authenticatable
     public function isSuperAdmin(){
         return $this->level === 'admin';
     }
+    public function isMember(){
+      return $this->level === 'member' ;
+    }
+    public function isOwner(){
+      return $this->level === 'parking_owner' ;
+    }
+    public function isGuest(){
+      return $this->level === 'guest' ;
+    }
 }

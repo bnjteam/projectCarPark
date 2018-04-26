@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Log;
 use Illuminate\Http\Request;
-
+use App\User ;
 class LogController extends Controller
 {
     /**
@@ -35,7 +35,7 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -44,9 +44,16 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function show(Log $log)
+    public function show($user)
     {
-        //
+      // dd($user);
+        $log = Log::all()->where('id_user','=',$user);
+        $users= User::all()->where('id','=',$user);
+        $names = User::all()->pluck('name','id');
+        //dd($users);
+        //return view('/home');
+
+        return view('/userManager.logview',['names'=>$names,'logData'=>$log,'user'=>$users]);
     }
 
     /**
