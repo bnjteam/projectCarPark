@@ -13,9 +13,6 @@ class UsersManagerController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +60,12 @@ class UsersManagerController extends Controller
      */
     public function show(User $user)
     {
+      if (\Gate::allows('index-userManager',$user)){
         return view('userManager.show',['user' => $user]);
+      }
+      else{
+          return view('/denieViews.denie');
+      }
     }
 
     /**
@@ -74,10 +76,16 @@ class UsersManagerController extends Controller
      */
     public function edit(User $user)
     {
+
+      if (\Gate::allows('index-userManager',$user)){
         $users = User::all();
         $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
         $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
+      }
+        else{
+            return view('/denieViews.denie');
+        }
     }
 
     /**
