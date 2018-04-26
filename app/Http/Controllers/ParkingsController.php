@@ -15,7 +15,7 @@ class ParkingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()a1
+    public function index()
     {
         return view('/search');
     }
