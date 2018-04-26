@@ -45,7 +45,6 @@ Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
 
 
-
 Route::get('/parkings/{parking}/addcarpark', 'ParkingsController@addcarpark');
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');
 Route::get('/parkings', 'ParkingsController@index');
@@ -63,7 +62,7 @@ Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
 Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
 
 Route::get('register_owner','UsersManagerController@createOwner');
-
+Route::post('register_owner/{package}','UsersManagerController@updateOwner');
 
 
 
