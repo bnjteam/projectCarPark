@@ -75,7 +75,7 @@ class UsersManagerController extends Controller
     public function edit(User $user)
     {
         $users = User::all();
-        $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest'];
+        $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
         $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
     }
@@ -108,13 +108,14 @@ class UsersManagerController extends Controller
         $user->save();
         $log = new Log();
         if (Auth::check()){
-           $log->username = Auth::user()->name;
+           $log->id_user = Auth::user()->id;
         }
 
         else{
-          $log->username = 'guest';
+          $log->id_user = '2';
         }
-        $log->description = $log->username.' edit user';
+        $users = User::all()->pluck('name','id');
+        $log->description = $users[$log->id_user].' edit user';
         $log->save();
 
 
@@ -139,14 +140,20 @@ class UsersManagerController extends Controller
         $user->save();
         $log = new Log();
         if (Auth::check()){
-           $log->username = Auth::user()->name;
+           $log->id_user = Auth::user()->id;
         }
 
         else{
-          $log->username = 'guest';
+          $log->id_user = '2';
         }
-        $log->description = $log->username.' delete this user';
+        $users = User::all()->pluck('name','id');
+        $log->description = $users[$log->id_user].' delete this user';
         $log->save();
         return redirect('/userManager/show/'.$user->id);
+    }
+    public function createOwner(){
+      // dd(Auth::user());
+      $user = Auth::user();
+      return view('/register-owner',['user'=>$user]);
     }
 }

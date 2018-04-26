@@ -48,13 +48,14 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @elseif(Auth::user()->level =='admin')
-                        <li class="nav-item dropdown">
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
+                        <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
                                      สวัสดีคุณ {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" style="background-color:#666699" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
@@ -66,6 +67,7 @@
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}
                                     </a>
+
 
                                     <a class="dropdown-item" href="{{ url('/changePW') }}">
                                         {{ __('Change password') }}
@@ -85,10 +87,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                  <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
+                                   สวัสดีคุณ {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" style="background-color:#666699" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
@@ -135,7 +138,12 @@
                       For Bussiness
                     </div>
                     <div style="font-size:17px;color:white;margin-left: 15px;">
-                      <a href="/">create your parking</a>
+
+                      @if (Auth::check() && Auth::user()->level == "parking_owner")
+                        <a href="/parkings/create">create your parking</a>
+                      @else
+                        <a href="/register_owner">create your parking</a>
+                      @endif
                     </div>
                   </div>
 
