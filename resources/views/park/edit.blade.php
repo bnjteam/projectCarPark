@@ -3,7 +3,7 @@
 <ul class="breadcrumb">
   <li><a href="/home">Home</a> / </li>
   <li ><a href="/parkings">Parking Manager</a>/ </li>
-  <li class = "active">Parking Manager</a></li>
+  <li class = "active">Parking Edit</a></li>
 </ul>
 @endsection
 @section('content')
