@@ -81,7 +81,7 @@ class ParkingsController extends Controller
         else{
           $log->id_user = '2';
         }
-        $users = User::all('name','id');
+        $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' create parking';
         $log->location = $parking->location;
         $log->save();
