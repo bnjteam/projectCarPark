@@ -6,9 +6,11 @@ use App\Parking;
 use App\Photolocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ParkingsController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -41,31 +43,31 @@ class ParkingsController extends Controller
 
       $parking=new Parking;
       $parking->location=$request->input('location');
+      $parking->id_user = Auth::user()->id;
       $parking->address=$request->input('address');
+      if ($request->fileToUpload2!=null){
       $path2 = $request->fileToUpload2->store('/public/photosparking');
       $parking->photo= '/storage/photosparking/'.basename($path2);
+      }
+      else{
+        $parking->photo = '/storage/noimage.png';
+      }
       $parking->save();
 
 
-
-<<<<<<< HEAD
-      // $path = $request->fileToUpload->store('/public/photoslocation');
-      //
-      //   $photolocation=new Photolocation;
-      //   $photolocation->id_parking=$parking->id;
-      //   $photolocation->canvas=$request->input('list');
-      //   $photolocation->photo = '/storage/photoslocation/'.basename($path);
-      //
-      //   $photolocation->save();
-=======
-      $path = $request->fileToUpload->store('/public/photoslocation');
-
-        $photolocation=new Photolocation;
-        $photolocation->id_parking=$parking->id;
-        $photolocation->canvas=$request->input('list');
-        $photolocation->photo = '/storage/photoslocation/'.basename($path);
-
-        $photolocation->save();
+        //
+        //
+        //
+        // $photolocation=new Photolocation;
+        // $photolocation->id_parking=$parking->id;
+        // $photolocation->canvas=$request->input('list');
+        //
+        // if ($request->fileToUpload!=null){
+        //     $path = $request->fileToUpload->store('/public/photoslocation');
+        // $photolocation->photo = '/storage/photoslocation/'.basename($path);
+        //   }
+        //
+        // $photolocation->save();
         $log = new Log();
         if (Auth::check()){
            $log->username = Auth::user()->name;
@@ -77,7 +79,7 @@ class ParkingsController extends Controller
         $log->description = $log->username.' create parking';
         $log->location = $parking->location;
         $log->save();
->>>>>>> 4430f449b505fb70f7e3acaa8dd4936f033897b2
+
         return redirect('/parkings');
 
 
@@ -91,13 +93,10 @@ class ParkingsController extends Controller
      */
     public function show(Parking $parking)
     {
-<<<<<<< HEAD
+
         $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
-=======
-        $p= Photolocation::all()->where('id_parking','LIKE',$parking->id)[0];
->>>>>>> 4430f449b505fb70f7e3acaa8dd4936f033897b2
-         return view('/park.show',['photoslocation'=>$p]);
+         return view('/park.show',['photoslocations'=>$p,'parking'=>$parking]);
     }
 
     /**
@@ -108,8 +107,9 @@ class ParkingsController extends Controller
      */
     public function edit(Parking $parking)
     {
-        //
-          return view('park.edit');
+
+          $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
+          return view('park.edit',['parking'=>$parking,'photoslocations'=>$p]);
     }
 
     /**
@@ -121,15 +121,9 @@ class ParkingsController extends Controller
      */
     public function update(Request $request, Parking $parking)
     {
-      $path = $request->fileToUpload->store('/public/photoslocation');
 
-        $photolocation=new Photolocation;
-        $photolocation->id_parking=$parking->id;
-        $photolocation->canvas=$request->input('list');
-        $photolocation->photo = '/storage/photoslocation/'.basename($path);
 
-        $photolocation->save();
-        return redirect('/parkings');
+
     }
 
     /**
@@ -149,5 +143,54 @@ class ParkingsController extends Controller
         return view('/park.addcarpark',['parking'=>$parking]);
 
     }
+
+    public function updatecarpark(Request $request, Parking $parking)
+    {
+            $photolocation=new Photolocation;
+            $photolocation->id_parking=$parking->id;
+
+            if ($request->input('list')!=null){
+                  $photolocation->canvas=$request->input('list');
+            }else{
+                $photolocation->canvas='';
+            }
+
+            if ($request->fileToUpload!=null){
+              $path = $request->fileToUpload->store('/public/photoslocation');
+              $photolocation->photo = '/storage/photoslocation/'.basename($path);
+              }
+
+            $photolocation->save();
+
+        return redirect('/parkings/'.$parking->id.'/edit');
+    }
+
+
+    public function destroyphoto(Photolocation $pho,Request $request)
+      {
+          $p = Photolocation::findOrFail($request->input('photo_id'));
+          $p->delete();
+          return redirect('/parkings/'.$request->input('park_id').'/edit');
+      }
+      public function updatephoto(Request $request, Parking $parking)
+      {
+
+        $parking->location=$request->input('location');
+        $parking->address=$request->input('address');
+        if ($request->fileToUpload2!=null){
+          $path2 = $request->fileToUpload2->store('/public/photosparking');
+          $parking->photo= '/storage/photosparking/'.basename($path2);
+        }
+        $parking->save();
+        $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
+
+        return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
+
+      }
+      public function editphoto(Parking $parking)
+      {
+            $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
+            return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
+      }
 
 }

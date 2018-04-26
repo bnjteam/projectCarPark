@@ -450,7 +450,7 @@
 
       <center><div class="">
 
-        <form method="POST" action="/parkings/{{$parking->id}}" enctype="multipart/form-data">
+        <form method="POST" action="/parkings/{{$parking->id}}/updatecarpark" enctype="multipart/form-data">
           @csrf
           @method('PUT')
             <input  type="hidden" name="list" value="" id='list'>
