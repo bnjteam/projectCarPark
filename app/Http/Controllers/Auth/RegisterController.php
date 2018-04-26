@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed'
-            
+
         ]);
     }
 
@@ -65,7 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'type' => 'none',
             'remember_token' => str_random(64) ,
             'is_enabled' => true ,
-            'avatar'   => ''
+            'avatar'   => '/storage/photos/avatar123.png'
 
         ]);
     }

@@ -26,9 +26,9 @@
   <tbody>
     @foreach($users as $item)
 
-    <tr class="item(($item->id))">
+    <tr>
       <td>{{ $loop->iteration }}</td>
-      <td><img style="border-radius: 20%" width="150"  src="{{ $item->avatar }}" alt=""></th>
+      <td><img style="border-radius: 20%" width="150"  src="{{ $item->avatar }}" alt=""></td>
       <td > <a href="/userManager/show/{{$item->id}}">
           {{ $item->name }}
         </a> </td>

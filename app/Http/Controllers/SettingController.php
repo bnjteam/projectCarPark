@@ -78,36 +78,45 @@ class SettingController extends Controller
        $request->validate([
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'fileToUpload' =>'required|file|mimes:jpeg,bmp,png',
+            'fileToUpload' =>'file|mimes:jpeg,bmp,png',
             'password' => 'required|string|min:6|confirmed'
 
             ]);
 
         $user = User::findOrFail($id);
-
+        //dd($user->avatar!=null);
         if (Hash::check($request->input('password'), $user->password)) {
-        $path = $request->fileToUpload->store('/public/photos');
+          if($request->fileToUpload!=null){
+            $path = $request->fileToUpload->store('/public/photos');
+            $user->avatar = '/storage/photos/'.basename($path) ;
+
+          }elseif ($user->avatar!=null) {
+            $user->avatar = $user->avatar ;
+          }
+          else{
+          $user->avatar = '/storage/photos/avatar123.png' ;
+        }
         $user->name = $request->input('name');
         $user->lastname = $request->input('lastname');
         //$user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
-        $user->avatar = '/storage/photos/'.basename($path) ;
+
         $user->save();
 
         $log = new Log();
         if (Auth::check()){
-           $log->username = Auth::user()->name;
-        }
+            $log->username = Auth::user()->name;
+         }
 
-        else{
-          $log->username = 'guest';
-        }
-        $log->description = $log->username.' setting user';
-        $log->save();
+         else{
+           $log->username = 'guest';
+         }
+         $log->description = $log->username.' setting user';
+         $log->save();
         return view('/profile',['user'=>$user]);
-        }else{
+         }else{
 
-        }
+         }
 
 
 
