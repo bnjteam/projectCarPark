@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Carbon\Carbon;
 use App\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,9 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
+<<<<<<< HEAD
     public function __construct(){
         $this->middleware('auth');
     }
+=======
+
+>>>>>>> d575fba4cbb57759e578881dd68319b3b2838cc5
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +49,7 @@ class PaymentsController extends Controller
 
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -92,17 +97,47 @@ class PaymentsController extends Controller
         $log = new Log();
             $log->id_user = Auth::user()->id;
             $users = User::all()->pluck('name','id');
-
             $log->description = $users[$log->id_user]." buy reserve's package ".$package;
             $log->save();
         
 
 
 
-        
-        return view('payments.complete');
+            $user = Auth::user();
+            $user->type = $package;
+
+            // $user->start_date_package = date('Y-m-d H:i:s');
+            $time = Carbon::now();
+            $user->start_date_package = $time->toDateTimeString();
+
+            if ($user->type=="small"){
+              $month = 4;
+              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+            }
+            elseif ($user->type=="medium") {
+              $month = 8;
+              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+            }
+            elseif ($user->type=="large") {
+              $month= 12;
+              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+            }
+            elseif ($user->type=="daily") {
+              $day = 1;
+              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+            }
+            elseif ($user->type=="weekly") {
+              $day = 7;
+              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+            }
+            elseif ($user->type=="monthly") {
+              $day = 30;
+              $user->end_date_package = $time->addDays($month)->toDateTimeString();
+            }
+            $user->save();
+            return view('payments.complete');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

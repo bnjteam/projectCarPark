@@ -75,3 +75,6 @@ Route::get('/package', 'PackagesController@index');
 Route::get('/payments/{object}', 'PaymentsController@index');
 Route::post('/payments','PaymentsController@store');
 Route::put('/payments/{id}','PaymentsController@update');
+
+Route::get('/register_owner/payments/{object}', 'PaymentsController@index');
+Route::put('/register_owner/payments/{object}', 'PaymentsController@update');
