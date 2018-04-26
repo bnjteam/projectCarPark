@@ -123,7 +123,7 @@
           <input  type="hidden" name="click" value="" id='click'>
             <input  type="hidden" name="list2" value="5" id='list2'>
 
-            Location Name:    <input type="text" name="location" value="{{old('location') ?? $parking->location }}">
+            Location Name:    <input type="text" name="location" value="{{ $parking->location }}">
               <br>
               <br>
 

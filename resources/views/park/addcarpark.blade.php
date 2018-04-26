@@ -51,7 +51,6 @@
             }
 
             function drawPic (s) {
-
                     ctx.drawImage(s.img, 0, 0,1100,600);
             }
 
@@ -551,7 +550,9 @@
         </div>
         </div>
 
-
+        Floor: <input type="text" name="floor" value="">
+        <br>
+        <br>
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
         <br>
         <button type="submit" name="button" >submit</button>
