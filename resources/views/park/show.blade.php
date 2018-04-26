@@ -89,29 +89,35 @@
               }
               console.log(1212);
           }
-
         </script>
-
     <body>
+
+      <center><h1>  {{$parking->location}}</h1></center>
+      <center><p>address: {{$parking->address}}</p></center>
+
       @csrf
-        @for($i = 0;$i < count($photoslocation); $i++)
 
-      <center><div class="">
+      @foreach($photoslocations as $photoslocation)
 
-        <form method="POST" action="/parkings" enctype="multipart/form-data">
+            <center><div class="">
 
-          <img onload="myFunction({{$i}})" hidden id="scream{{$i}}" width="220" height="277" src="{{ $photoslocation[$i]->photo }}" alt="The Scream">
-              <input  type="hidden" name="list" value="{{ $photoslocation[$i]->canvas }}" id='list{{$i}}'>
+              <form method="POST" action="/parkings" enctype="multipart/form-data">
 
-        <canvas  id="draw{{$i}}" style="border:1px solid #000000;"></canvas>
-        <br>
+                <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
+                    <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
+
+              <canvas  id="draw{{$photoslocation->id}}" style="border:1px solid #000000;"></canvas>
+              <br>
 
 
-        <!-- <button type="submit" name="button" >button</button> -->
-    </form>
 
-      </div></center>
-      @endfor
+              <!-- <button type="submit" name="button" >button</button> -->
+            </form>
+
+            </div></center>
+            @endforeach
+
+
     </body>
 
 @endsection
