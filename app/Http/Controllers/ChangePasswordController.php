@@ -100,6 +100,7 @@ class ChangePasswordController extends Controller
         $log->save();
         return view('/home');
         }
+        return redirect('/changePW'); //ส่งerror
     }
 
     /**
