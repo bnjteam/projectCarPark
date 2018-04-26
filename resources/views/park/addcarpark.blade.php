@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
+
+
+
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
           <script>
+
 
           var canvas, ctx,
               brush = {
@@ -27,6 +32,7 @@
               var imagepass;
               var xt;
               var yt;
+              var total=0;
 
 
             function reDraw(){
@@ -304,11 +310,24 @@
                   strokes.pop();
 
                   var res = document.getElementById('list').value.split("|");
+
                   document.getElementById('list').value='';
 
-                  for (var i = 0; i < res.length-2; i++) {
+                  for (var i = 0; i < res.length-1; i++) {
+
                     document.getElementById('list').value+=res[i]+"|"
+                    var ff=res[i].split(",");
                   }
+
+
+                if (ff[0]=='font'){
+                    var  ar=ff[1].split(" ");
+                    for (var cc = parseInt(ar[0]); cc <= parseInt(ar[2]); cc++) {
+                      deletetable();
+                    }
+
+                }
+
                     reDraw();
               });
 
@@ -316,6 +335,8 @@
                   strokes = [];
                   reDraw();
                   document.getElementById('list').value='';
+                  cleartable();
+
               });
 
               $('#color-picker').on('input', function () {
@@ -407,7 +428,7 @@
             currentStroke = {
                 x:80,
                 y: 190,
-                text: document.getElementById("min1").value+document.getElementById("min2").value+' - '+document.getElementById("max1").value+document.getElementById("max2").value,
+                text: document.getElementById("min1").value+document.getElementById("max2").value+' - '+document.getElementById("max1").value+document.getElementById("max2").value,
                 type:3,
                 w:160,
                 h:60,
@@ -425,6 +446,13 @@
                  document.getElementById("move-btn").disabled = true;
                  document.getElementById("pen-btn").disabled = false;
                  document.getElementById("rect-btn").disabled = false;
+
+
+                 for (var num = parseInt(document.getElementById("min1").value); num <= parseInt(document.getElementById("max1").value); num++) {
+                     addtable(num+document.getElementById("max2").value);
+                 }
+
+
           }
 
 
@@ -442,19 +470,56 @@
       }
 
 
+      function addtable(str) {
+          total+=1;
+          var table = document.getElementById("myTable");
+          var row = table.insertRow(table.rows.length);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = total;
+          cell2.innerHTML = str;
+
+      }
+      function deletetable() {
+            var table = document.getElementById("myTable");
+
+             document.getElementById("myTable").deleteRow(table.rows.length-1);
+             total-=1;
+        }
+
+        function cleartable() {
+              var table = document.getElementById("myTable");
+              var countc=table.rows.length;
+              for (var z = 0; z < countc; z++) {
+                document.getElementById("myTable").deleteRow(0);
+              }
+              total=0;
+          }
+
         </script>
 
     <body>
 
-
       <center><div class="">
+        <br>
+        <h1>Example Image</h1>
+        <img src="/storage/carparkExample.png" alt="">
+        <br><br><br>
 
         <form method="POST" action="/parkings/{{$parking->id}}/updatecarpark" enctype="multipart/form-data">
           @csrf
           @method('PUT')
+            Floor : <input type="text" name="floor" value="">
+            <br><br>
             <input  type="hidden" name="list" value="" id='list'>
 
         <div class="top-bar">
+          <div class="col-md-6">
+
+          <input type="file" class="form-control-file" name="fileToUpload" id="imgInp" aria-describedby="fileHelp"   onchange="showpic(this)">
+
+
+          </div>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
           กำหนดช่องจอดรถ
           </button>
@@ -468,12 +533,7 @@
             <input type="range" id="brush-size" min="1" max="50" value="10">
 
 
-                <div class="col-md-6">
 
-                <input type="file" class="form-control-file" name="fileToUpload" id="imgInp" aria-describedby="fileHelp"   onchange="showpic(this)">
-
-                <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
-                </div>
               </div>
 
                 <!-- Button trigger modal -->
@@ -496,23 +556,7 @@
                   echo "<option value='".$i."'>".$i."</option>";
                 } ?>
               </select>
-              <select id="min2"class="" name="">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="E">E</option>
-                <option value="F">F</option>
-                <option value="G">G</option>
-                <option value="H">H</option>
-                <option value="I">I</option>
-                <option value="J">J</option>
-                <option value="K">K</option>
-                <option value="L">L</option>
-                <option value="M">M</option>
-                <option value="N">N</option>
-                <option value="O">O</option>
-              </select>
+
 
               <span>ถึง</span>
 
@@ -550,15 +594,37 @@
         </div>
         </div>
 
-        Floor: <input type="text" name="floor" value="">
-        <br>
-        <br>
+
+
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
-        <br>
-        <button type="submit" name="button" >submit</button>
+        <br><br>
+        <h1>Parking Maps</h1>
+
+
+
+      <table  width="600" id="myTable"  >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Maps</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+        <br><br>
+        <button class="btn btn-info" type="submit" name="button" >submit</button>
     </form>
 
       </div></center>
+
+
+
+
+
+
 
     </body>
 

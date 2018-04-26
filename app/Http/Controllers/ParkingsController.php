@@ -118,9 +118,14 @@ class ParkingsController extends Controller
      */
     public function update(Request $request, Parking $parking)
     {
-
-
-
+              $parking->location=$request->input('location');
+              $parking->address=$request->input('address');
+              if ($request->fileToUpload2!=null){
+                $path2 = $request->fileToUpload2->store('/public/photosparking');
+                $parking->photo= '/storage/photosparking/'.basename($path2);
+              }
+              $parking->save();
+      return redirect('/parkings');
     }
 
     /**
@@ -143,6 +148,7 @@ class ParkingsController extends Controller
 
     public function updatecarpark(Request $request, Parking $parking)
     {
+      dd($request);
             $photolocation=new Photolocation;
             $photolocation->id_parking=$parking->id;
 
@@ -156,8 +162,8 @@ class ParkingsController extends Controller
               $path = $request->fileToUpload->store('/public/photoslocation');
               $photolocation->photo = '/storage/photoslocation/'.basename($path);
               }
-
-            $photolocation->save();
+              $photolocation->floor=$request->input('floor');
+              $photolocation->save();
 
         return redirect('/parkings/'.$parking->id.'/edit');
     }

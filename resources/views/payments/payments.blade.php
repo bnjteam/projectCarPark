@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @push('style')
 
+
 <style >
 	.block{
 	margin: 100px;
@@ -16,6 +17,14 @@
 	#error{
 		width: 500px;
 	}
+	.spin
+{
+  background: #444; /* outline */
+  > *
+  {
+    background: #EEE; /* hand */
+  }
+}
 
 
 	
@@ -114,6 +123,8 @@
 
 	</div>
 	</div>
+
+
 	
 	
 		<button type="submit" class=" btn btn-success" id="b1">Confirm</button>
