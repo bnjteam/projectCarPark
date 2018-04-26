@@ -8,6 +8,15 @@
   <div class="row justify-content-center">
     <div class="col-7">
       <legend>Contact Us</legend>
+      @if ($errors->any())
+      <div class="alert alert-danger" id="error">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+      @endif
       <div class="form-group row">
         <label for="staticEmail" class="col-sm-2 col-form-label">To Email : </label>
         <div class="col-sm-10">

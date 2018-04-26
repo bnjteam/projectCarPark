@@ -50,6 +50,10 @@ class HomeController extends Controller
       return view('/contact',['admin'=>$admin]);
     }
     public function sendMail(Request $request){
+      $request->validate([
+          'name'=>'required',
+          'emailUser'=>'required',
+          ]);
       $detail = $request->input('description');
       $name = $request->input('name');
       $email = $request->input('emailUser');
