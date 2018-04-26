@@ -110,9 +110,10 @@ class SettingController extends Controller
          }
 
          else{
-           $log->id_user = 'guest';
+           $log->id_user = '2';
          }
-         $log->description = $log->id.' setting user';
+         $users = User::all()->pluck('name','id');
+         $log->description = $users[$log->id_user].' setting user';
          $log->save();
         return view('/profile',['user'=>$user]);
          }else{

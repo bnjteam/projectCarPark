@@ -138,7 +138,12 @@
                       For Bussiness
                     </div>
                     <div style="font-size:17px;color:white;margin-left: 15px;">
-                      <a href="/">create your parking</a>
+
+                      @if (Auth::check() && Auth::user()->level == "parking_owner")
+                        <a href="/parkings/create">create your parking</a>
+                      @else
+                        <a href="/register_owner">create your parking</a>
+                      @endif
                     </div>
                   </div>
 
