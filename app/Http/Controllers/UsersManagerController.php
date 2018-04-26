@@ -76,7 +76,7 @@ class UsersManagerController extends Controller
     {
         $users = User::all();
         $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
-        $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
+        $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly','small'=>'Small','medium'=>'Medium','large'=>'Large'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
     }
 
