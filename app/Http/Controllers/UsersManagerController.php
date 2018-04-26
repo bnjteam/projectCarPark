@@ -131,7 +131,7 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
-
+      if (\Gate::allows('index-userManagers')){
         if($user->is_enabled == 1){
             $user->is_enabled = 0;
         }elseif($user->is_enabled==0){
@@ -144,6 +144,9 @@ class UsersManagerController extends Controller
         $log->description = $users[$log->id_user].' delete this user';
         $log->save();
         return redirect('/userManager');
+      }else{
+            return view('/denieViews.denie');
+        }
 
     }
     public function createOwner(){
