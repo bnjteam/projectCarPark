@@ -83,7 +83,7 @@
                 }
 
               }
-              console.log(1212);
+            
           }
         </script>
     <body>

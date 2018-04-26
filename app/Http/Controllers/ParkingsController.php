@@ -148,7 +148,12 @@ class ParkingsController extends Controller
 
     public function updatecarpark(Request $request, Parking $parking)
     {
-      dd($request);
+      //   echo $request->input('list');
+      // dd($request);
+      //       for ($i=0; $i < ; $i++) {
+      //     
+      //       }
+
             $photolocation=new Photolocation;
             $photolocation->id_parking=$parking->id;
 
