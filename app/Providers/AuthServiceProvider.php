@@ -32,7 +32,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isSuperAdmin() ;
         });
 
-        
+        Gate::define('index-parking',function($userObject){
+            $user = \Auth::user();
+            return $user->isOwner()  ;
+        });
+
+
 
 
     }
