@@ -22,6 +22,7 @@
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @stack('style')
+  
 </head>
 
 <body>
@@ -120,54 +121,61 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
-          <div class="container">
-            <div class="row">
-              <div class="col-6" style="margin-left:-60px">
-                <a href="/"><img src="/storage/logo.png" alt="" width=150px></a>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="col-5">
-                    <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
-                      For Bussiness
-                    </div>
-                    <div style="font-size:17px;color:white;margin-left: 15px;">
+        <footer >
+          <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
+            <div class="container">
+              <div class="row">
+                <div class="col-6" style="margin-left:-60px">
+                  <a href="/"><img src="/storage/logo.png" alt="" width=150px></a>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="col-5">
+                      <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
+                        For Bussiness
+                      </div>
+                      <div style="font-size:17px;color:white;margin-left: 15px;">
 
-                      @if (Auth::check() && Auth::user()->level == "parking_owner")
-                        <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
-                      @else
-                        <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
-                      @endif
+                        @if (Auth::check() && Auth::user()->level == "parking_owner")
+                          <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
+                        @else
+                          <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
+                        @endif
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-3" >
-                    <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
-                        Social
+                    <div class="col-3" >
+                      <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
+                          Social
+                      </div>
+                      <div class="">
+                        <a href="https://www.facebook.com"><img src="/storage/facebook.png" alt="" width=30px></a>
+                        <a href="https://www.twitter.com"><img src="/storage/twitter.png" alt="" width=30px></a>
+                      </div>
                     </div>
-                    <div class="">
-                      <a href="https://www.facebook.com"><img src="/storage/facebook.png" alt="" width=30px></a>
-                      <a href="https://www.twitter.com"><img src="/storage/twitter.png" alt="" width=30px></a>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div style="font-size:30px;color:white;font-family: 'Jua', sans-serif;">
-                        Contact Us
-                    </div>
-                    <div style="font-family: 'Jua', sans-serif;font-size:17px;color:white;margin-left: 15px;">
-                      <a href="/contact">Send mail</a>
+                    <div class="col-4">
+                      <div style="font-size:30px;color:white;font-family: 'Jua', sans-serif;">
+                          Contact Us
+                      </div>
+                      <div style="font-family: 'Jua', sans-serif;font-size:17px;color:white;margin-left: 15px;">
+                        <a href="/contact">Send mail</a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="">
-                <a href="#top" class="btn btn-info" >
-                  TOP<span class="iconified iconified-chevron-up iconified-space-left"></span>
-                </a>
+                <div class="">
+                  <a href="#top" class="btn btn-info" >
+                    TOP<span class="iconified iconified-chevron-up iconified-space-left"></span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </footer>
+
+
     </div>
+
+
 </body>
+
 </html>

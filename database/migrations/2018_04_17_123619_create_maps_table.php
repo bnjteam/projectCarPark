@@ -20,13 +20,13 @@ class CreateMapsTable extends Migration
             $table->enum('status',[
               'full','empty','reserve'
             ]);
-            $table->string('id_user');
+            $table->string('id_user')->nullable();
             $table->timestamps();
 
 
-            $table->foreign('id_user')
-                  ->references('id')
-                  ->on('users');
+            // $table->foreign('id_user')
+            //       ->references('id')
+            //       ->on('users');
 
             $table->foreign('id_photo')->references('id')->on('photolocations');
         });

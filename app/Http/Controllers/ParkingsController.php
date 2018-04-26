@@ -136,7 +136,8 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
-
+      $parking->delete();
+    return redirect('/parkings');
     }
 
     public function addcarpark(Parking $parking)

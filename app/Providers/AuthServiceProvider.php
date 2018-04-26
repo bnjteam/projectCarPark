@@ -26,10 +26,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('index-userManager',function($userObject){
+        Gate::define('index-userManager',function($user,$object){
+            return $user->isSuperAdmin() || $user->id===$object->id ;
+        });
+        Gate::define('index-userManagers',function($object){
+          // dd($object->id);
             $user = \Auth::user();
-
-            return $user->isSuperAdmin() ;
+            return $user->isSuperAdmin();
         });
 
         Gate::define('index-parking',function($userObject){
