@@ -38,16 +38,22 @@ class HomeController extends Controller
       if ($locationWord==null){
         $locationWord='';
       }
-      // dd($locationWord);
       if (Input::get('filter')=="location"){
-          $location = Parking::where('location','LIKE','%'.$locationWord.'%')->paginate(6);
+          $location = Parking::where('location','LIKE','%'.$locationWord.'%')->get();
       }
       else{
-          $location = Parking::where('address','LIKE','%'.$locationWord.'%')->paginate(6);
+          $location = Parking::where('address','LIKE','%'.$locationWord.'%')->get();
       }
+
       if(count($location) > 0)
-        return view('/search',['start'=>count($location)-1,'details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
-      else return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
+      {
+        $start = 1;
+
+        return view('/search',['start'=>$start,'details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
+      }
+      else {
+        return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
+      }
     }
 
 

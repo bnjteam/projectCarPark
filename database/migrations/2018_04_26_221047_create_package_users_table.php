@@ -16,10 +16,11 @@ class CreatePackageUsersTable extends Migration
         Schema::create('package_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('id_user');
+            $table->integer('id_package');
             $table->integer('numbers');
-            $table->enum('type',['none', 'daily', 'weekly', 'monthly', 'small','medium','large']);
             $table->timestamps();
             $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_package')->references('id')->on('packages');
         });
     }
     /**

@@ -141,7 +141,7 @@
        <textarea   name="address" rows="8" cols="80">{{old('address') ?? $parking->address }}</textarea>
      </div>
    </div>
-
+<!-- </div> -->
 
             <input  type="hidden" name="list" value="" id='list' >
 
@@ -183,7 +183,7 @@
 
 
       </div></center>
-
+    </div>
     </body>
     </div>
 
