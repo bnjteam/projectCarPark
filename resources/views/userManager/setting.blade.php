@@ -21,7 +21,13 @@ function readURL(input) {
           }
       }
 </script>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+          <div class="card-header">{{ __('Admin Setting') }}</div>
 
+          <div class="card-body">
 <center>
 <div class="panel-heading">
 <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
@@ -34,14 +40,18 @@ function readURL(input) {
 
 
     <div class="form-group row">
-        <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+        <div class="input-group mb-3">
+          <div class="custom-file">
+          <input class="custom-file-input" id="inputGroupFile02" onchange="readURL(this)"   type="file" name="fileToUpload" >
+          <label class="custom-file-label"  for="inputGroupFile02">Please Choose Avatar Image</label>
 
-        <div class="col-md-6">
-          <input onchange="readURL(this)"   type="file" name="fileToUpload" value=""><br>
-            <center><img id="imageold" style="height:150px;weight:150px;"   > </center>
-            <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+          </div>
+          <center><img id="imageold" style="height:150px;weight:150px;"  src=''> </center>
+
         </div>
-    </div>
+        <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+
+        </div>
     <div class="form-group row">
     <label class="col-md-4 col-form-label text-md-right"> Name: </label>
     <input type= "text" name="name" value="{{ old('name') ?? $user->name }}" >
@@ -97,6 +107,10 @@ function readURL(input) {
 
 
 </form>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 
 @endsection
