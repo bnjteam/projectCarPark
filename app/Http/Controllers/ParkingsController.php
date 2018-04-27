@@ -93,8 +93,8 @@ class ParkingsController extends Controller
     {
 
         $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
-
-         return view('/park.show',['photoslocations'=>$p,'parking'=>$parking]);
+          $map  = Map::all();
+         return view('/park.show',['photoslocations'=>$p,'parking'=>$parking,'maps'=>$map]);
     }
 
     /**

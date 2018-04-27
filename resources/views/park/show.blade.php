@@ -15,12 +15,11 @@
 
               };
 
-
-
+              listid=[];
 
           function myFunction (id) {
             // console.log('id: '+id);
-
+            listid.push(id);
 
               canvas = $('#draw'+id);
               canvas.attr({
@@ -105,7 +104,7 @@
               canvas.addEventListener('mousemove', function(evt) {
                 var mousePos = getMousePos(canvas, evt);
                 var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-                console.log();
+
                 for (var i = 0; i < strokes[id+''].points.length; i++) {
                     //
                     // console.log('endX: '+strokes[id+''].points[i].x);
@@ -114,7 +113,7 @@
                   if (strokes[id+''].points[i].x-20 < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+140
                 &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y+20){
 
-                    console.log(strokes[id+''].points[i].canvas_id);
+                    // console.log(strokes[id+''].points[i].canvas_id);
                      canvasin = document.getElementById('draw'+strokes[id+''].points[i].canvas_id);
                      contextin = canvasin.getContext('2d');
 
@@ -131,7 +130,7 @@
                        contextin.stroke();
 
                   }else{
-                    console.log(strokes[id+''].points[i].canvas_id);
+                    // console.log(strokes[id+''].points[i].canvas_id);
                      canvasin = document.getElementById('draw'+strokes[id+''].points[i].canvas_id);
                      contextin = canvasin.getContext('2d');
 
@@ -160,11 +159,12 @@
                     // console.log('endX: '+strokes[id+''].points[i].x);
                     // console.log('endY: '+strokes[id+''].points[i].y);
 
-                  if (strokes[id+''].points[i].x-20 < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+100
+
+                  if (strokes[id+''].points[i].x-20 < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+140
                 &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y+20){
                     // console.log(111121212112);
-                    addselect(strokes[id+''].points[i].text);
-                     modal = document.getElementById('exampleModal');
+                    // addselect(strokes[id+''].points[i].text);
+                     modal = document.getElementById('exampleModal'+id);
                      modal.style.display = "block";
                        console.log('clickkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
 
@@ -174,8 +174,26 @@
 
               }, false);
 
-          }
 
+
+
+
+          }
+          function closemodal(){
+            for ( i = 0; i < listid.length; i++) {
+              modal = document.getElementById('exampleModal'+listid[i]);
+              modal.style.display = "none";
+
+            }
+          }
+          window.onclick = function(event) {
+            for ( i = 0; i < listid.length; i++) {
+              modal = document.getElementById('exampleModal'+listid[i]);
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+            }
+          }
 
 
       function writeMessage(canvas, message) {
@@ -194,38 +212,30 @@
       }
       // When the user clicks on <span> (x), close the modal
 
-    function closemodal(){
-      modal.style.display = "none";
-    }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  modal = document.getElementById('exampleModal');
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-    function addselect(str) {
-    select = document.getElementById("select");
-    var length = select.options.length;
-    for (i = 0; i < length; i++) {
-      select.options[0] = null;
-    }
 
-      console.log('text: '+str);
-       str2 = str.split(" ");
-       tag=str2[0].substr(1, 1);
-       x = document.getElementById("select");
-
-       for ( z = parseInt(str2[0]); z <= parseInt(str2[2]); z++) {
-            option = document.createElement("option");
-            option.text = z+tag;
-            x.add(option);
-       }
-
-
-
-    }
+    // function addselect(str) {
+    // select = document.getElementById("select");
+    // var length = select.options.length;
+    // for (i = 0; i < length; i++) {
+    //   select.options[0] = null;
+    // }
+    //
+    //   console.log('text: '+str);
+    //    str2 = str.split(" ");
+    //    tag=str2[0].substr(1, 1);
+    //    x = document.getElementById("select");
+    //
+    //    for ( z = parseInt(str2[0]); z <= parseInt(str2[2]); z++) {
+    //         option = document.createElement("option");
+    //         option.text = z+tag;
+    //         x.add(option);
+    //    }
+    //
+    //
+    //
+    // }
 
         </script>
     <body>
@@ -254,22 +264,31 @@ window.onclick = function(event) {
             </form>
 
             </div></center>
-            @endforeach
 
-            <div class="modal" id="exampleModal">
+            <div class="modal" id="exampleModal{{$photoslocation->id}}">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">Reserve</h5>
-                <button type="button" onclick="closemodal()" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- <button type="button" onclick="closemodal()" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
               </div>
               <div class="modal-body">
+                <table  width="600" id="myTable" class="table table-hover"  >
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Maps</th>
+                      <th scope="col">status</th>
+                        <th scope="col">{{$photoslocation->id}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
 
-                <center><select class="" name="" id='select'>
-
-                </select></center>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary">reserve</button>
@@ -278,6 +297,9 @@ window.onclick = function(event) {
             </div>
           </div>
         </div>
+            @endforeach
+
+
     </body>
 
 @endsection
