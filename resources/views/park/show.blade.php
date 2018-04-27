@@ -164,7 +164,10 @@
                 &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y+20){
                     // console.log(111121212112);
                     // addselect(strokes[id+''].points[i].text);
+
                      modal = document.getElementById('exampleModal'+id);
+                     tag=strokes[id+''].points[i].text.substr(1, 1);
+                     filterselect(modal,tag,id);
                      modal.style.display = "block";
                        console.log('clickkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
 
@@ -210,50 +213,50 @@
           y: evt.clientY - rect.top
         };
       }
-      // When the user clicks on <span> (x), close the modal
 
 
-// When the user clicks anywhere outside of the modal, close it
-
-    // function addselect(str) {
-    // select = document.getElementById("select");
-    // var length = select.options.length;
-    // for (i = 0; i < length; i++) {
-    //   select.options[0] = null;
-    // }
-    //
-    //   console.log('text: '+str);
-    //    str2 = str.split(" ");
-    //    tag=str2[0].substr(1, 1);
-    //    x = document.getElementById("select");
-    //
-    //    for ( z = parseInt(str2[0]); z <= parseInt(str2[2]); z++) {
-    //         option = document.createElement("option");
-    //         option.text = z+tag;
-    //         x.add(option);
-    //    }
-    //
-    //
-    //
-    // }
+    function  filterselect(modal,str,id) {
+      test = document.getElementById("test"+id);
+       lentest = test.options.length;
+      for (i = 0; i < lentest; i++) {
+        test.options[0] = null;
+      }
+      select = document.getElementById("select"+id);
+      var length = select.options.length;
+      for (i = 0; i < length; i++) {
+        tag=select.options[i].value.substr(select.options[i].value.length-1);
+        if(tag==str){
+          option = document.createElement("option");
+          option.text = select.options[i].value;
+          option.value=select.options[i].value;
+          test.add(option);
+        }
+      }
+    }
 
         </script>
     <body>
 
       <center><h1>  {{$parking->location}}</h1></center>
-      <center><p>address: {{$parking->address}}</p></center>
+
+      <center><label>Address</label> <br>
+      <div class="paper">
+         <div class="paper-content">
+      <textarea disabled  name="address" rows="8" cols="80">{{$parking->address}}</textarea>
+      </div>
+    </div></center>
+  
 
       @csrf
 
       @foreach($photoslocations as $photoslocation)
-
+            <br>
             <center><div class="">
-
               <form method="POST" action="/parkings" enctype="multipart/form-data">
 
                 <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
                     <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
-
+                    <h1>Floor: {{$photoslocation->floor}}</h1>
               <canvas  id="draw{{$photoslocation->id}}" style="border:1px solid #000000;"></canvas>
 
 
@@ -265,6 +268,7 @@
 
             </div></center>
 
+
             <div class="modal" id="exampleModal{{$photoslocation->id}}">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -275,19 +279,24 @@
                 </button> -->
               </div>
               <div class="modal-body">
-                <table  width="600" id="myTable" class="table table-hover"  >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Maps</th>
-                      <th scope="col">status</th>
-                        <th scope="col">{{$photoslocation->id}}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                  </tbody>
-                </table>
+
+
+              <center>  <select hidden class="" name="" id='select{{$photoslocation->id}}'>
+                  @foreach($maps as $map)
+
+                  @if($photoslocation->id == $map->id_photo)
+
+                      @if($map->status == 'empty')
+                    <option value="{{$map->number}}">{{$map->number}}</option>
+                      @endif
+                  @endif
+
+                  @endforeach
+                </select></center>
+
+              <center>  <select class="" name="" id='test{{$photoslocation->id}}'>
+
+                </select></center>
 
               </div>
               <div class="modal-footer">
