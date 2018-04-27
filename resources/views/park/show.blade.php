@@ -247,12 +247,13 @@
     </div></center>
 
 
-      @csrf
+      <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
       @foreach($photoslocations as $photoslocation)
             <br>
             <center><div class="">
-              <form method="POST" action="/parkings" enctype="multipart/form-data">
 
                 <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
                     <input  type="hidden" name="list" value="{{ $photoslocation->canvas }}" id='list{{$photoslocation->id}}'>
@@ -264,7 +265,7 @@
               <br>
 
               <!-- <button type="submit" name="button" >button</button> -->
-            </form>
+
 
             </div></center>
 
@@ -300,7 +301,7 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary">reserve</button>
+                <button type="submit" class="btn btn-primary">reserve</button>
                 <button type="button" onclick="closemodal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -308,7 +309,7 @@
         </div>
             @endforeach
 
-
+  </form>
     </body>
 
 @endsection

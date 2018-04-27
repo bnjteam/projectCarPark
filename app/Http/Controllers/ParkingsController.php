@@ -240,6 +240,11 @@ class ParkingsController extends Controller
             return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
       }
 
-
+      public function updatemap(Request $request,Map $map)
+      {
+        dd($request);
+            $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
+            return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
+      }
 
 }
