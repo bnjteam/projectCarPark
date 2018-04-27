@@ -38,14 +38,22 @@
                           For Bussiness
                         </div> -->
                         <div style="font-size:17px;color:white;margin-left: 15px;">
-
-                          @if (Auth::check() && Auth::user()->level == "parking_owner")
-                            <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
+                          <ul class="navbar-nav ml-auto">
+                          @if(Auth::check() && Auth::user()->level == "admin")
                           
+                          @elseif (Auth::check() && Auth::user()->level == "parking_owner")
+                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
+                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Upgrade Package</a></li>
+
+                          @else
+                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
+
                           @endif
+                          </ul>
                         </div>
                       </div>
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

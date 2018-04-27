@@ -150,11 +150,20 @@ class PaymentsController extends Controller
             if (isset($day))
             {
               $user->end_date_package = $time->addDays($day)->toDateTimeString();
+              $log = new Log();
+                 $log->id_user = Auth::user()->id;
+              $users = User::all()->pluck('name','id');
+              $log->description = $users[$log->id_user].' buy package '.$user->type;
+              $log->save();
               return view('payments.complete');
-
             }
             else{
               $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+              $log = new Log();
+                 $log->id_user = Auth::user()->id;
+              $users = User::all()->pluck('name','id');
+              $log->description = $users[$log->id_user].' buy package '.$user->type;
+              $log->save();
               return view('registerOwner.success',['user'=>$user]);
             }
 

@@ -7,11 +7,9 @@
       <h1>{{ __('Register Parking Owner') }}</h1>
         <div class="col-12">
                 <div class="card-body">
-
                         <div class="row justify-content-center">
                           <div class="col-4">
                             <div class="card text-white bg-warning mb-3" >
-
                               <h4 class="card-header" style="text-align:center">SMALL</h4>
                               <div class="card-body">
                                 <div class="card-title" style="margin-top:30px;margin-bottom:30px;text-align:center" >
@@ -32,7 +30,7 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
-                                      @if (Auth::user()->type!="small")
+                                      @if (Auth::user()->type!="small" && Auth::user()->level!="admin")
                                         <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
                                       @else
                                         <a href="/register_owner/payments/small" class="btn btn-primary disabled">{{ __('Registed') }}</a>
@@ -66,7 +64,7 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="medium")
+                                  @if (Auth::user()->type!="medium" && Auth::user()->level!="admin")
                                     <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
                                   @else
                                     <a href="/register_owner/payments/medium" class="btn btn-primary disabled">{{ __('Registed') }}</a>
@@ -99,7 +97,7 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="large")
+                                  @if (Auth::user()->type!="large" && Auth::user()->level!="admin")
                                     <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
                                   @else
                                     <a href="/register_owner/payments/large" class="btn btn-primary disabled">{{ __('Registed') }}</a>

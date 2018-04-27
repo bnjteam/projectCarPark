@@ -108,7 +108,6 @@ class UsersManagerController extends Controller
         $user->avatar = '/storage/photos/'.basename($path2) ;
         $user->level =$request->input('level123');
         $user->type =$request->input('type');
-
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
         $log = new Log();
@@ -116,13 +115,8 @@ class UsersManagerController extends Controller
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' edit user id : '.$user->id;
         $log->save();
-
-
         return redirect('/userManager/show/'.$user->id);
-
-
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -150,6 +144,7 @@ class UsersManagerController extends Controller
 
     }
     public function createOwner(){
+
 
       return view('registerOwner/register-owner');
     }
