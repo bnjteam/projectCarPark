@@ -30,25 +30,26 @@
       @for($i = count($details)-1;$i >= 0; $i--)
         @if ($i%3== (count($details)-1)%3)
           <div class="row">
+
           <div class="col-4" style="padding:10px">
-            <div class="card border-primary mb-3">
+            <div class="card border-primary mb-3" style="height:350px">
               <a href="/parkings/{{$details[$i]->id}}">
-              <div class="card-header">{{$details[$i]->location}}</div>
+              <div class="card-header" style="text-align:center;">{{$details[$i]->location}}</div>
               <div class="card-body">
-                <img src="{{$details[$i]->photo}}" width="100%" alt="">
-                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
+                <img src="{{$details[$i]->photo}}" width="100%" height="220px" alt="">
+                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >Location : {{strlen($details[$i]->address) > 50 ? substr($details[$i]->address,0,50)."..." : $details[$i]->address}}
               </div>
               </a>
             </div>
           </div>
         @else
         <div class="col-4" style="padding:10px">
-          <div class="card border-primary mb-3">
+          <div class="card border-primary mb-3" style="height:350px">
             <a href="/parkings/{{$details[$i]->id}}">
-            <div class="card-header">{{$details[$i]->location}}</div>
+            <div class="card-header" style="text-align:center">{{$details[$i]->location}}</div>
             <div class="card-body">
-              <img src="{{$details[$i]->photo}}" width="100%" alt="">
-              <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="">Location : {{$details[$i]->address}}
+              <img src="{{$details[$i]->photo}}" width="100%" height="220px" alt="">
+              <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >Location : {{strlen($details[$i]->address) > 50 ? substr($details[$i]->address,0,50)."..." : $details[$i]->address}}
             </div>
             </a>
           </div>
