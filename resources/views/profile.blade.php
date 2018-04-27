@@ -32,6 +32,12 @@
       <li class="list-group-item">
         Joining Date: {{ $user->created_at->diffForHumans() }}
       </li>
+      <li class="list-group-item">
+        Start Package Date: {{ $user->start_date_package }}
+      </li>
+      <li class="list-group-item">
+        End Package Date: {{ $user->end_date_package }}
+      </li>
     </ul>
     <br>
     <div class="panel-footer">

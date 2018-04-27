@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -18,8 +18,7 @@ class UsersTableSeeder extends Seeder
       $admin ->password=bcrypt('parkservice1');
       $admin->level='admin';
       $admin->type='large';
-      // $admin->start_date_package='';
-      // $admin->end_date_package='';
+
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';
@@ -32,8 +31,6 @@ class UsersTableSeeder extends Seeder
       $admin ->password=bcrypt('guestAdmin');
       $admin->level='guest';
       $admin->type='none';
-      // $admin->start_date_package='';
-      // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';
@@ -46,8 +43,6 @@ class UsersTableSeeder extends Seeder
       $admin ->password=bcrypt('guest');
       $admin->level='guest';
       $admin->type='none';
-      // $admin->start_date_package='';
-      // $admin->end_date_package='';
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';
@@ -59,9 +54,9 @@ class UsersTableSeeder extends Seeder
       $admin->email = 'member@hotmail.com';
       $admin ->password=bcrypt('member');
       $admin->level='member';
-      $admin->type='small';
-      // $admin->start_date_package='';
-      // $admin->end_date_package='';
+      $admin->type='daily';
+      $admin->start_date_package=Carbon::now()->toDateTimeString();
+      $admin->end_date_package=Carbon::now()->addDay(1)->toDateTimeString();
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';
@@ -73,9 +68,9 @@ class UsersTableSeeder extends Seeder
       $admin->email = 'parking_owner@hotmail.com';
       $admin ->password=bcrypt('parking_owner');
       $admin->level='parking_owner';
-      $admin->type='none';
-      // $admin->start_date_package='';
-      // $admin->end_date_package='';
+      $admin->type='small';
+      $admin->start_date_package=Carbon::now()->toDateTimeString();
+      $admin->end_date_package=Carbon::now()->addMonths(4)->toDateTimeString();
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';

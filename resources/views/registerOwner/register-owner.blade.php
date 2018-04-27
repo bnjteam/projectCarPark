@@ -30,10 +30,12 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
-                                      @if (Auth::user()->type!="small" && Auth::user()->level!="admin")
+                                      @if (Auth::user()->level=="member")
+                                        <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                      @elseif (Auth::user()->type!="small" && Auth::user()->level!="admin")
                                         <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
                                       @else
-                                        <a href="/register_owner/payments/small" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                        <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                       @endif
 
                                     </div>
@@ -64,10 +66,12 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="medium" && Auth::user()->level!="admin")
+                                  @if (Auth::user()->level=="member")
+                                    <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                  @elseif (Auth::user()->type!="medium" && Auth::user()->level!="admin")
                                     <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
                                   @else
-                                    <a href="/register_owner/payments/medium" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                   @endif
                                 </div>
                               </div>
@@ -97,10 +101,12 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="large" && Auth::user()->level!="admin")
-                                    <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+                                  @if (Auth::user()->level=="member")
+                                    <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                  @elseif (Auth::user()->type!="large" && Auth::user()->level!="admin")
+                                    <a href="" class="btn btn-primary">{{ __('Register') }}</a>
                                   @else
-                                    <a href="/register_owner/payments/large" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                   @endif
 
                                 </div>

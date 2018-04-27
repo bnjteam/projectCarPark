@@ -123,11 +123,11 @@
 
 	</div>
 	</div>
-
-
-
-		@if (Auth::user()->level=="admin")
-				<a type="submit" class=" btn btn-success disabled" id="b1">Confirm</a>
+		@if (Auth::user()->level=="admin" ||
+				(Auth::user()->level=="member" && $object!='daily' && $object!='weekly' && $object!='monthly') ||
+				(Auth::user()->level=="parking_owner" && $object!='small' && $object!='medium' && $object!='large')
+				)
+				<a class=" btn btn-success disabled" id="b1">Confirm</a>
 		@else
 				<button type="submit" class=" btn btn-success" id="b1">Confirm</button>
 		@endif

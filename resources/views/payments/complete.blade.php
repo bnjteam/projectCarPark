@@ -14,7 +14,7 @@
             <h3 style="text-align:center">Success</h3>
             <p class="card-text" style="text-align:center">you have buy package.</p>
             <div class="" style="text-align:center">
-                <a href="/parkings/" class="btn btn-primary" >Go to reserve</a>
+                <a href="/search" class="btn btn-primary" >Go to reserve</a>
 
             </div>
           </div>

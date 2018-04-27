@@ -1,4 +1,8 @@
 @extends('layouts.app')
+<?php
+  use App\Package;
+  use App\Package_user;
+ ?>
 @section('content')
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -21,12 +25,20 @@
     <body>
 
 
-      <center><div class="">
+      <center><div class="col-8">
 
         <form method="POST" action="/parkings" enctype="multipart/form-data">
           @csrf
-
-            Location Name:    <input type="text" name="location" value="">
+            <div class="form-group">
+              <div class="row justify-content-center">
+                <div class="col-2" style="margin-top:10px">
+                  Location Name:
+                </div>
+                <div class="col-7">
+                  <input type="text" class="form-control"name="location" value="">
+                </div>
+              </div>
+          </div>
               <br>
               <br>
               <div class="paper">
@@ -37,14 +49,36 @@
         </div>
             <br>
             <br>
-            Image Location
+            <div class="form-group">
+              <div class="row justify-content-center">
+                <div class="col-2" style="margin-top:10px">
+                  Image Location
+                </div>
+                <div class="col-7">
+                  <div class="form-group">
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" onchange="readURL(this)" name="fileToUpload2" value="" class="custom-file-input" id="inputGroupFile02">
+                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
             <br>
-            <input onchange="readURL(this)" type="file" name="fileToUpload2"  value="">
               <center><img id="imageold" style="height:300px;weight:300px;"  src='' > </center>
               <br>
+              @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] < Package::all()->pluck('limit','name')[Auth::user()->type])
+                <button type="submit" name="button" class="btn btn-primary">Submit</button>
+              @else
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Oh !</strong>You have limit of numbers Parking .<br><a href="/register_owner" class="alert-link">click here to Upgrade Package</a> 
+                </div>
+                <a class="btn btn-primary disabled">Submit</a>
+              @endif
 
-
-        <button type="submit" name="button" >submit</button>
     </form>
 
       </div></center>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,6 +17,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <?php
+      use App\Package;
+      use App\Package_user;
+    ?>
     @stack('style')
 
 </head>
@@ -39,15 +44,17 @@
                         </div> -->
                         <div style="font-size:17px;color:white;margin-left: 15px;">
                           <ul class="navbar-nav ml-auto">
-                          @if(Auth::check() && Auth::user()->level == "admin")
-                          
+                          @if (Auth::check() && Auth::user()->level=="member")
+                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li>
                           @elseif (Auth::check() && Auth::user()->level == "parking_owner")
-                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
+                            @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] < Package::all()->pluck('limit','name')[Auth::user()->type])
+                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
+                            @else
+                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Create Your Parking</a></li>
+                            @endif
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Upgrade Package</a></li>
-
                           @else
-                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
-
+                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Create Your Parking</a></li>
                           @endif
                           </ul>
                         </div>

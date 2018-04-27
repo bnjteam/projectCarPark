@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
 use App\Log;
+use App\Package_user;
+use App\Package;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -97,19 +99,8 @@ class PaymentsController extends Controller
             'cvv'=>'required|digits:3|numeric',
             ]);
         $package = $request->input('package');
-        $log = new Log();
-            $log->id_user = Auth::user()->id;
-            $users = User::all()->pluck('name','id');
-            $log->description = $users[$log->id_user]." buy reserve's package ".$package;
-            $log->save();
-
-
-
-
             $user = Auth::user();
             $user->type = $package;
-
-            // $user->start_date_package = date('Y-m-d H:i:s');
             $time = Carbon::now();
             $user->start_date_package = $time->toDateTimeString();
 
@@ -147,6 +138,12 @@ class PaymentsController extends Controller
               $user->level = "parking_owner";
             }
             $user->save();
+            $package = Package::all()->pluck('id','name');
+            $package_user = new Package_user();
+            $package_user->id_user = $user->id;
+            $package_user->id_package = $package[$user->type];
+            $package_user->numbers = 0;
+            $package_user->save();
             if (isset($day))
             {
               $user->end_date_package = $time->addDays($day)->toDateTimeString();
@@ -155,6 +152,7 @@ class PaymentsController extends Controller
               $users = User::all()->pluck('name','id');
               $log->description = $users[$log->id_user].' buy package '.$user->type;
               $log->save();
+
               return view('payments.complete');
             }
             else{

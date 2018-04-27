@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ParkingsController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +39,12 @@ class ParkingsController extends Controller
      */
     public function create()
     {
-        return view('/park.create');
+        if (Auth::check() && Auth::user()->level=="parking_owner"){
+            return view('/park.create');
+        }
+        else{
+          return redirect('/login');
+        }
     }
 
     /**

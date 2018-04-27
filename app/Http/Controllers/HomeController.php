@@ -59,7 +59,8 @@ class HomeController extends Controller
 
     public function show_search(){
       $d = Parking::all();
-      return view('/search',['details'=>$d,'query'=>'']);
+
+      return view('/search',['start'=>1,'details'=>$d,'query'=>'','filters'=>$this->filter]);
     }
     public function sendMailForm(){
       $admin = User::where('level','LIKE','admin')->get()[0];
