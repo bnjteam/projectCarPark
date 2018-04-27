@@ -51,8 +51,7 @@ class LoginController extends Controller
           $email = $request->email;
            $users = User::all()->pluck('id','email');
            $log->id_user = $users[$email];
-           $users = User::all()->pluck('name','email');
-           $log->description = $users[$email].' has login';
+           $log->description = "user ".$users[$email].' has login';
            $log->save();
            $u = User::all()->where('id','LIKE',$log->id_user)->first();
            // dd($u->level!="admin" , $u->end_date_package!=null,$u);
@@ -66,8 +65,7 @@ class LoginController extends Controller
                $email = $request->email;
                 $users = User::all()->pluck('id','email');
                 $log->id_user = $users[$email];
-                $users = User::all()->pluck('name','email');
-                $log->description = $users[$email]." have expired package's ".$u->type;
+                $log->description = "user ".$users[$email]." have expired package's ".$u->type;
                 $log->save();
                $u->level='guest';
                $u->type="none";

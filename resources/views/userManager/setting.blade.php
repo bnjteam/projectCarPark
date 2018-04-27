@@ -40,6 +40,15 @@ function readURL(input) {
 
 
     <div class="form-group row">
+      @if ($errors->any())
+        <div class="alert alert-danger" id="error">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
         <div class="input-group mb-3">
           <div class="custom-file">
           <input class="custom-file-input" id="inputGroupFile02" onchange="readURL(this)"   type="file" name="fileToUpload" >

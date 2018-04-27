@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('head')
 <ul class="breadcrumb">
   <li><a href="/home">Home</a> / </li>
@@ -116,5 +117,4 @@ function sortTable(n) {
   }
 }
 </script>
-
 @endsection

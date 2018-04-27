@@ -1,11 +1,28 @@
 
 @extends('layouts.app')
+<?php
+  use App\Package;
+  use App\Package_user;
+ ?>
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
       <h1>{{ __('Register Parking Owner') }}</h1>
         <div class="col-12">
+          @if (Auth::user()->level=="parking_owner")
+            @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] >= Package::all()->pluck('limit','name')[Auth::user()->type])
+
+                <div class="alert alert-dismissible alert-warning">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <h4 class="alert-heading">Warning!</h4>
+                  <p class="mb-0">You have a limit of create of Parkings</p>
+                </div>
+
+
+
+            @endif
+          @endif
                 <div class="card-body">
                         <div class="row justify-content-center">
                           <div class="col-4">
@@ -30,12 +47,23 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
-                                      @if (Auth::user()->level=="member")
+                                      @if (Auth::user()->type=="small")
+                                        <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                      @elseif (Auth::user()->level=="parking_owner")
+                                        @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] > Package::all()->pluck('limit','name')['small'])
+                                          <div class="alert alert-dismissible alert-danger">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                             Now ,You have {{Package_user::all()->pluck('numbers','id_user')[Auth::user()->id]}} parkings.
+                                             <br>If you want to change Package you should delete some your parkings (You can have less than equal {{Package::all()->pluck('limit','name')['small']}})
+                                          </div>
+                                          <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                        @else
+                                            <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
+                                        @endif
+                                      @elseif (Auth::user()->level=="member" || Auth::user()->level=="admin")
                                         <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
                                       @elseif (Auth::user()->type!="small" && Auth::user()->level!="admin")
                                         <a href="/register_owner/payments/small" class="btn btn-primary">{{ __('Register') }}</a>
-                                      @else
-                                        <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                       @endif
 
                                     </div>
@@ -66,12 +94,23 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->level=="member")
+                                  @if (Auth::user()->type=="medium")
+                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                  @elseif (Auth::user()->level=="parking_owner")
+                                    @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] > Package::all()->pluck('limit','name')['medium'])
+                                      <div class="alert alert-dismissible alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                         Now ,You have {{Package_user::all()->pluck('numbers','id_user')[Auth::user()->id]}} parkings.
+                                         <br>If you want to change Package you should delete some your parkings (You can have less than equal {{Package::all()->pluck('limit','name')['small']}})
+                                      </div>
+                                      <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                    @else
+                                        <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
+                                    @endif
+                                  @elseif (Auth::user()->level=="member" || Auth::user()->level=="admin")
                                     <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
                                   @elseif (Auth::user()->type!="medium" && Auth::user()->level!="admin")
                                     <a href="/register_owner/payments/medium" class="btn btn-primary">{{ __('Register') }}</a>
-                                  @else
-                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                   @endif
                                 </div>
                               </div>
@@ -101,12 +140,25 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->level=="member")
+                                  @if (Auth::user()->type=="large")
+                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                  @elseif (Auth::user()->level=="parking_owner")
+
+                                    @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] > Package::all()->pluck('limit','name')['large'])
+                                      <div class="alert alert-dismissible alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                         Now ,You have {{Package_user::all()->pluck('numbers','id_user')[Auth::user()->id]}} parkings.
+                                         <br>If you want to change Package you should delete some your parkings (You can have less than equal {{Package::all()->pluck('limit','name')['small']}})
+                                      </div>
+                                      <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
+                                    @else
+                                          <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+                                    @endif
+                                  @elseif (Auth::user()->level=="member" || Auth::user()->level=="admin")
                                     <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
                                   @elseif (Auth::user()->type!="large" && Auth::user()->level!="admin")
-                                    <a href="" class="btn btn-primary">{{ __('Register') }}</a>
-                                  @else
-                                    <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
+                                    <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
+
                                   @endif
 
                                 </div>

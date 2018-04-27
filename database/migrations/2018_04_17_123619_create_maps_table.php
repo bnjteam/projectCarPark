@@ -15,7 +15,7 @@ class CreateMapsTable extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number')->unique();
+            $table->string('number');
             $table->string('id_photo');
             $table->enum('status',[
               'full','empty','reserve'

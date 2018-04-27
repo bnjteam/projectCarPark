@@ -113,7 +113,7 @@ class SettingController extends Controller
            $log->id_user = '2';
          }
          $users = User::all()->pluck('name','id');
-         $log->description = $users[$log->id_user].' setting user';
+         $log->description = "user ".$log->id_user.' setting user';
          $log->save();
         return view('/profile',['user'=>$user]);
          }else{

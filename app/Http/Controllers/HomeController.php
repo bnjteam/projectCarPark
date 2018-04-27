@@ -85,7 +85,7 @@ class HomeController extends Controller
          $log->id_user = '2';
        }
        $users = User::all()->pluck('name','id');
-       $log->description = $users[$log->id_user].' has contact us from the web : '.$detail;
+       $log->description = "user ".$log->id_user.' has contact us from the web : '.$detail;
        $log->save();
        return redirect()->back();
     }
