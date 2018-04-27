@@ -39,12 +39,12 @@ class PackagesTableSeeder extends Seeder
 
         $package = new App\Package();
         $package->name = 'weekly';
-        $package->limit = 7;
+        $package->limit = 1;
         $package->save();
 
         $package = new App\Package();
         $package->name = 'monthly';
-        $package->limit = 30;
+        $package->limit = 1;
         $package->save();
     }
 }

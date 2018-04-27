@@ -70,7 +70,7 @@
                                   </div>
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
-                                      @if (Auth::user()->type!="daily")
+                                      @if (Auth::user()->type!="daily" && Auth::user()->level!="admin")
                                         <a href="/payments/daily" class="btn btn-primary">{{ __('Buy Package') }}</a>
                                       @else
                                         <a href="/payments/daily" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
@@ -107,7 +107,7 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="weekly")
+                                  @if (Auth::user()->type!="weekly" && Auth::user()->level!="admin")
                                     <a href="/payments/weekly" class="btn btn-primary">{{ __('Buy Package') }}</a>
                                   @else
                                     <a href="/payments/weekly" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
@@ -143,7 +143,7 @@
                                 </p>
 
                                 <div class="" style="text-align:center;margin-top:40px">
-                                  @if (Auth::user()->type!="monthly")
+                                  @if (Auth::user()->type!="monthly" && Auth::user()->level!="admin")
                                     <a href="/payments/monthly" class="btn btn-primary">{{ __('Buy Package') }}</a>
                                   @else
                                     <a href="/payments/monthly" class="btn btn-primary disabled">{{ __('Buyed') }}</a>

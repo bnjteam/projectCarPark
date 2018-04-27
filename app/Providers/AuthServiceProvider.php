@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isSuperAdmin();
         });
         Gate::define('index-parkingManager',function($user,$object){
-            
+
             return $user->isSuperAdmin() || $user->level=='parking_owner';
         });
         Gate::define('index-payments',function($user,$object){
@@ -50,6 +50,8 @@ class AuthServiceProvider extends ServiceProvider
             $user = \Auth::user();
             return $user->isSuperAdmin() ;
         });
+
+      
 
 
 

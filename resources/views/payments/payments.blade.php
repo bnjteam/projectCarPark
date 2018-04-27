@@ -126,8 +126,11 @@
 
 
 
-
-		<button type="submit" class=" btn btn-success" id="b1">Confirm</button>
+		@if (Auth::user()->level=="admin")
+				<a type="submit" class=" btn btn-success disabled" id="b1">Confirm</a>
+		@else
+				<button type="submit" class=" btn btn-success" id="b1">Confirm</button>
+		@endif
 
 
 

@@ -151,6 +151,7 @@ class UsersManagerController extends Controller
     }
     public function createOwner(){
 
+
       return view('registerOwner/register-owner');
     }
 }
