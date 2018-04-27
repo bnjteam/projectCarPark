@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -30,7 +31,7 @@
                                 <input type="file" class="form-control-file" name="fileToUpload"  aria-describedby="fileHelp">
                                 <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
                             </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -58,14 +59,14 @@
 
                                 @if ($errors->has('lastname'))
                                     <span class="invalid-feedback">
-                                    
+
                                     <strong>{{ $errors->first('lastname') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        
+
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    private $filter;
     /**
      * Create a new controller instance.
      *
@@ -20,8 +22,8 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
+        $this->filter= ['location'=>'Location','address'=>'Address'];
     }
-
     /**
      * Show the application dashboard.
      *
@@ -29,18 +31,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home',['filters'=>$this->filter]);
     }
     public function search(){
       $locationWord = Input::get ( 'search' );
       if ($locationWord==null){
         $locationWord='';
       }
-      $location = Parking::where('location','LIKE','%'.$locationWord.'%')->orWhere('address','LIKE','%'.$locationWord.'%')->get();
+      // dd($locationWord);
+      if (Input::get('filter')=="location"){
+          $location = Parking::where('location','LIKE','%'.$locationWord.'%')->paginate(6);
+      }
+      else{
+          $location = Parking::where('address','LIKE','%'.$locationWord.'%')->paginate(6);
+      }
       if(count($location) > 0)
-          return view('/search')->withDetails($location)->withQuery ( $locationWord );
-      else return view ('/search')->withMessage('No Details found. Try to search again !');
+        return view('/search',['start'=>count($location)-1,'details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
+      else return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
     }
+
+
     public function show_search(){
       $d = Parking::all();
       return view('/search',['details'=>$d,'query'=>'']);

@@ -1,5 +1,14 @@
 @extends('layouts.app')
+@push('style')
+<style media="screen">
+.footer{
+  position: absolute;
+  width:100%;
+  bottom: 0;
+}
+</style>
 
+@endpush
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

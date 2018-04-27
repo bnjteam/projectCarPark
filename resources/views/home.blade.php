@@ -10,6 +10,13 @@
       {{ csrf_field() }}
       <div class="row justify-content-center">
         <div class="input-group" style="border-radius: 5px 0 0 5px;width:700px;margin-top:10px">
+          <div class="" >
+          <select name="filter" id="filter" class="form-control input" style="height:100%;width:100%;font-size:30px">
+            @foreach($filters as $filter=>$filterValue)
+              <option value="{{ $filter }}">{{ $filterValue}}</option>
+              @endforeach
+          </select>
+          </div>
             <input type="text" class="form-control" name="search" style=";font-size:30px;background-image: url(/storage/pin-icon.svg);padding-left: 40px;background-repeat: no-repeat;background-size: 20px;    background-position: 10px;"
                 placeholder="Search location">
                 <span class="input-group-btn">
