@@ -7,16 +7,12 @@
       <div class="card border-primary ">
         <div class="card-header" style="text-align:center">Buy Package</div>
         <div class="card-body">
-          <div class="" >
-            <div class="row justify-content-center">
+          <div class="" style="margin:100px" >
+            <!-- <div class="row justify-content-center">
                 <img src="/storage/check.png" alt="" style="padding:20px">
-            </div>
-            <h3 style="text-align:center">Success</h3>
-            <p class="card-text" style="text-align:center">you have buy package.</p>
-            <div class="" style="text-align:center">
-                <a href="/parkings/" class="btn btn-primary" >Go to reserve</a>
-
-            </div>
+            </div> -->
+            <h3 style="text-align:center">You have already buyed this package</h3>
+            <!-- <p class="card-text" style="text-align:center">you have register completed.</p> -->
           </div>
         </div>
       </div>

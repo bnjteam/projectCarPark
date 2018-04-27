@@ -4,7 +4,8 @@
 <ul class="breadcrumb">
   <li><a href="/home">Home</a> / </li>
   <li ><a href="/userManager">User Manager</a> / </li>
-  
+  <li class="active">Log View</li>
+
 </ul>
 @endsection
 

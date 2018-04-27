@@ -23,8 +23,13 @@ class PaymentsController extends Controller
      */
     public function index($object)
     {
-        // dd('asd');
+          if (\Gate::allows('index-payments',$object)){
+            return view('payments.hasRegisted');
+          }
+
+        else{
         return view('payments.payments',['object'=> $object]);
+      }
     }
 
     /**
@@ -57,6 +62,7 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
+
         return view('payments.payments', ['user'=>$user]);
     }
 
@@ -96,7 +102,7 @@ class PaymentsController extends Controller
             $users = User::all()->pluck('name','id');
             $log->description = $users[$log->id_user]." buy reserve's package ".$package;
             $log->save();
-        
+
 
 
 
@@ -109,30 +115,52 @@ class PaymentsController extends Controller
 
             if ($user->type=="small"){
               $month = 4;
-              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+
             }
             elseif ($user->type=="medium") {
               $month = 8;
-              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
             }
             elseif ($user->type=="large") {
               $month= 12;
-              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
             }
             elseif ($user->type=="daily") {
               $day = 1;
-              $user->end_date_package = $time->addDays($day)->toDateTimeString();
+
             }
             elseif ($user->type=="weekly") {
               $day = 7;
-              $user->end_date_package = $time->addDays($day)->toDateTimeString();
+
             }
             elseif ($user->type=="monthly") {
               $day = 30;
+
+
+            }
+            if (isset($day))
+            {
               $user->end_date_package = $time->addDays($day)->toDateTimeString();
+              $user->level = "member";
+
+            }
+            else{
+              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+              $user->level = "parking_owner";
             }
             $user->save();
-            return view('payments.complete');
+            if (isset($day))
+            {
+              $user->end_date_package = $time->addDays($day)->toDateTimeString();
+              return view('payments.complete');
+
+            }
+            else{
+              $user->end_date_package = $time->addMonths($month)->toDateTimeString();
+              return view('registerOwner.success',['user'=>$user]);
+            }
+
+
+
+
     }
 
 

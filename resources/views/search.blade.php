@@ -6,6 +6,13 @@
     <form action="/search" method="POST" role="search" >
     {{ csrf_field() }}
     <div class="input-group" style="border-radius: 5px 0 0 5px;">
+        <div class="" >
+        <select name="filter" id="filter" class="form-control input" style="height:100%;width:100%;font-size:30px">
+          @foreach($filters as $filter=>$filterValue)
+            <option value="{{ $filter }}">{{ $filterValue}}</option>
+            @endforeach
+        </select>
+        </div>
         <input type="text" class="form-control" name="search" style="font-size:30px;background-image: url(/storage/pin-icon.svg);padding-left: 40px;background-repeat: no-repeat;background-size: 20px;    background-position: 10px;"
             placeholder="Search location">
             <span class="input-group-btn">
@@ -20,14 +27,12 @@
     <div class="" style="font-size:30px;margin-left:15px">
       The Search results for your query <b> '{{ $query }}' </b> are :
     </div>
-
-
-      @for($i = 0;$i < count($details); $i++)
-        @if ($i%3==0)
+      @for($i = count($details)-1;$i >= 0; $i--)
+        @if ($i%3== (count($details)-1)%3)
           <div class="row">
           <div class="col-4" style="padding:10px">
-            <a href="/parkings/{{$details[$i]->id}}">
             <div class="card border-primary mb-3">
+              <a href="/parkings/{{$details[$i]->id}}">
               <div class="card-header">{{$details[$i]->location}}</div>
               <div class="card-body">
                 <img src="{{$details[$i]->photo}}" width="100%" alt="">
@@ -47,12 +52,10 @@
             </div>
             </a>
           </div>
-
         </div>
-          @if ($i%3==2 || $i==count($details)-1)
+          @if ($i%3==2 || $i==0)
             </div>
           @endif
-
         @endif
       @endfor
     @else
@@ -60,8 +63,6 @@
       <div class="" style="padding-top:200px;padding-bottom:200px">
           <h1 class="row justify-content-center" >{{$message ?? ''}}</h1>
       </div>
-
     @endif
 </div>
-
 @endsection

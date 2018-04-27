@@ -45,10 +45,12 @@
 
 
       <td class="table-danger">
+        <form class="" action="/parkings/{{ $item->id }}" method="post">
         @csrf
         @method('DELETE')
-        <a class="btn btn-danger" role="button"
-            href="/parkings/{{ $item->id }}">Delete</a></td>
+        <button onclick="return confirm('Are you sure you want to delete this parking?')" class="btn btn-danger" role="button"
+            >Delete</button></td>
+        </form>
     </tr>
     @endforeach
   </tbody>

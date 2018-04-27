@@ -20,7 +20,7 @@ class ParkingsController extends Controller
      */
     public function index()
     {
-      if (\Gate::allows('index-userManager',Auth::user())){
+      if (\Gate::allows('index-userManagers',Auth::user())){
         $park = Parking::all();
         $names = User::all()->pluck('name','id');
         return view('/park.index',['park'=> $park,'names'=>$names]);
@@ -137,7 +137,8 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
-
+      $parking->delete();
+    return redirect('/parkings');
     }
 
     public function addcarpark(Parking $parking)

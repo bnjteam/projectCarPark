@@ -13,9 +13,6 @@ class UsersManagerController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +20,7 @@ class UsersManagerController extends Controller
      */
     public function index()
     {
-      if (\Gate::allows('index-userManager',Auth::user())){
+      if (\Gate::allows('index-userManagers')){
         $users = User::all();
         return view('userManager.index',['users' => $users]);
       }
@@ -63,7 +60,12 @@ class UsersManagerController extends Controller
      */
     public function show(User $user)
     {
+      if (\Gate::allows('index-userManager',$user)){
         return view('userManager.show',['user' => $user]);
+      }
+      else{
+          return view('/denieViews.denie');
+      }
     }
 
     /**
@@ -74,10 +76,16 @@ class UsersManagerController extends Controller
      */
     public function edit(User $user)
     {
+
+      if (\Gate::allows('index-userManager',$user)){
         $users = User::all();
         $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
-        $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly'];
+        $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly','small'=>'Small','medium'=>'Medium','large'=>'Large'];
         return view('userManager.setting',['user'=>$user , 'level'=>$level,'type'=>$type,'users'=>$users]);
+      }
+        else{
+            return view('/denieViews.denie');
+        }
     }
 
     /**
@@ -91,29 +99,20 @@ class UsersManagerController extends Controller
     {
         $request->validate(
             ['name' =>'required|min:4|max:255'
-
-
             ]
         );
-
-        //$path2 = $request->fileToUpload->store('/public/photos');
+        $path2 = $request->fileToUpload->store('/public/photos');
         $user->name =$request->input('name');
         $user->lastname =$request->input('lastname');
         $user->email =$request->input('email');
-        //$user->avatar = '/storage/photos/'.basename($path2) ;
+        $user->avatar = '/storage/photos/'.basename($path2) ;
         $user->level =$request->input('level123');
         $user->type =$request->input('type');
-        $user->is_enabled = $request->input('enabled123');
+
         //$user->password = Hash::make($request->input('password')) ;
         $user->save();
         $log = new Log();
-        if (Auth::check()){
            $log->id_user = Auth::user()->id;
-        }
-
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' edit user id : '.$user->id;
         $log->save();
@@ -132,7 +131,7 @@ class UsersManagerController extends Controller
      */
     public function destroy(User $user)
     {
-
+      if (\Gate::allows('index-userManagers')){
         if($user->is_enabled == 1){
             $user->is_enabled = 0;
         }elseif($user->is_enabled==0){
@@ -140,35 +139,18 @@ class UsersManagerController extends Controller
         }
         $user->save();
         $log = new Log();
-        if (Auth::check()){
            $log->id_user = Auth::user()->id;
-        }
-
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
         $log->description = $users[$log->id_user].' delete this user';
         $log->save();
         return redirect('/userManager');
+      }else{
+            return view('/denieViews.denie');
+        }
 
     }
     public function createOwner(){
 
       return view('registerOwner/register-owner');
-    }
-    public function updateOwner($package){
-      $user = Auth::user();
-      if ($package=="small"){
-
-      }
-      elseif ($package=="medium") {
-
-      }
-      elseif ($package=="large") {
-
-      }
-
-      return view('registerOwner/success',['user'=>$user]);
     }
 }

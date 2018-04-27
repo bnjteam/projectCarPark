@@ -51,7 +51,7 @@
         <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
           @csrf
           @method('DELETE')
-          <i style="color:green" class="fa fa-check">Active/<button  onclick="return confirm('Are you sure you want to suspend this user?')" class="btn btn-danger" >Suspend</button></i>
+          <i style="color:green" class="fa fa-check">Active/<button  onclick="return confirm('Are you sure you want to suspend this user?')" class="btn btn-danger btn-sm" >Suspend</button></i>
         </form>
       </td>
       @else
@@ -60,14 +60,14 @@
           <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
             @csrf
             @method('DELETE')
-            <button onclick="return confirm('Are you sure you want to active this user?')" type="submit" class="btn btn-success">Active</button>/<i style="color:red" class="fa fa-times">Suspend</i>
+            <button onclick="return confirm('Are you sure you want to active this user?')" type="submit" class="btn btn-success btn-sm">Active</button>/<i style="color:red" class="fa fa-times">Suspend</i>
           </form>
           </td>
       @endif
       <td class="table-secondary">{{ $item->type }}</td>
       <td class="table-secondary">{{ $item->end_date_package }}</td>
       <div>
-      <td class="table-secondary"><a class="btn btn-primary" role="button"
+      <td class="table-secondary"><a class="btn btn-info" role="button"
          href="/userManager/setting/{{ $item->id }}">Edit</a></td>
       </div>
       <div>

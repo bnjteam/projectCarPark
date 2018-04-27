@@ -1,7 +1,14 @@
 @extends('layouts.app')
-@section('head')
+@push('style')
+<style media="screen">
+.footer{
+  position: absolute;
+  width:100%;
+  bottom: 0;
+}
+</style>
 
-@endsection
+@endpush
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +21,7 @@
           <form method="POST" action="/change/{{ Auth::user()->id }}" >
                 @csrf
                 @method('PUT')
-                
+
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Old Password') }}</label>
                     <div class="col-md-6">

@@ -3,23 +3,12 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/search', function () {
-    return view('search');
-});
 Route::get('/setting', function () {
     return view('setting');
 });
-Route::get('/test', function () {
-    return view('test');
-});
-Route::get('/park_reserve', function () {
-    return view('park.reserve');
-});
 Auth::routes();
 Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 Route::post('/search','HomeController@search');
 Route::get('/search', 'HomeController@show_search');
 Route::put('/home/{id}','SettingController@update');
@@ -60,8 +49,7 @@ Route::put('/parkings/{parking}/addphoto','ParkingsController@updatephoto')->whe
 Route::delete('/photoslocations/{photoslocation}','ParkingsController@destroyphoto')->where('id','[0-9]+');
 Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
 Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
-Route::get('register_owner','UsersManagerController@createOwner');
-Route::post('register_owner/{package}','UsersManagerController@updateOwner');
+
 
 
 
@@ -76,5 +64,6 @@ Route::get('/payments/{object}', 'PaymentsController@index');
 Route::post('/payments','PaymentsController@store');
 Route::put('/payments/{id}','PaymentsController@update');
 
+Route::get('register_owner','UsersManagerController@createOwner');
 Route::get('/register_owner/payments/{object}', 'PaymentsController@index');
 Route::put('/register_owner/payments/{object}', 'PaymentsController@update');
