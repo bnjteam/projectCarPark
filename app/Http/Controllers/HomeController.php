@@ -44,10 +44,16 @@ class HomeController extends Controller
       else{
           $location = Parking::where('address','LIKE','%'.$locationWord.'%')->get();
       }
-      
+
       if(count($location) > 0)
-        return view('/search',['details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
-      else return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
+      {
+        $start = 1;
+
+        return view('/search',['start'=>$start,'details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
+      }
+      else {
+        return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
+      }
     }
 
 
