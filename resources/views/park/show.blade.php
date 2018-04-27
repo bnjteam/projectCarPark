@@ -166,8 +166,8 @@
                     // addselect(strokes[id+''].points[i].text);
 
                      modal = document.getElementById('exampleModal'+id);
-                     tag=strokes[id+''].points[i].text.substr(1, 1);
-                     filterselect(modal,tag,id);
+                     tag=strokes[id+''].points[i].text.substr(strokes[id+''].points[i].text.length-1);
+                     filterselect(modal,tag,id,strokes[id+''].points[i].text);
                      modal.style.display = "block";
                        console.log('clickkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
 
@@ -215,23 +215,45 @@
       }
 
 
-    function  filterselect(modal,str,id) {
+    function  filterselect(modal,str,id,text) {
+      // console.log(modal);
+      // console.log(str);
+      // console.log(id);
+      // console.log(text);
       test = document.getElementById("test"+id);
        lentest = test.options.length;
       for (i = 0; i < lentest; i++) {
         test.options[0] = null;
       }
-      select = document.getElementById("select"+id);
-      var length = select.options.length;
-      for (i = 0; i < length; i++) {
-        tag=select.options[i].value.substr(select.options[i].value.length-1);
-        if(tag==str){
-          option = document.createElement("option");
-          option.text = select.options[i].value;
-          option.value=select.options[i].value;
-          test.add(option);
-        }
+      artext= text.split(" ");
+
+      for (var j = parseInt(artext[0]); j <= parseInt(artext[2]); j++) {
+        cstr=j+tag;
+        // console.log("cs: "+cstr);
+        option = document.createElement("option");
+        option.text = cstr;
+        option.value=cstr;
+        test.add(option);
       }
+      // select = document.getElementById("select"+id);
+      // var length = select.options.length;
+      // for (i = 0; i < length; i++) {
+      //   tag=select.options[i].value.substr(select.options[i].value.length-1);
+      //   console.log('tag: '+tag);
+      //   if(tag==str){
+      //
+      //       artext= text.split(" ");
+      //
+      //       // for (var j = parseInt(artext[0]); j <= parseInt(artext[2]); j++) {
+      //       //   cstr=j+tag;
+      //       //   console.log("cs: "+cstr);
+      //       // }
+      //     option = document.createElement("option");
+      //     option.text = select.options[i].value;
+      //     option.value=select.options[i].value;
+      //     test.add(option);
+      //   }
+      // }
     }
 
         </script>
@@ -282,7 +304,7 @@
               <div class="modal-body">
 
 
-              <center>  <select hidden class="" name="" id='select{{$photoslocation->id}}'>
+              <center>  <select  hidden class="" name="" id='select{{$photoslocation->id}}'>
                   @foreach($maps as $map)
 
                   @if($photoslocation->id == $map->id_photo)

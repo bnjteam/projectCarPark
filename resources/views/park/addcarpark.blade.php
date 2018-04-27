@@ -33,11 +33,13 @@
               var xt;
               var yt;
               var total=0;
+            listfont=[];
 
 
             function reDraw(){
               document.getElementById('list').value='';
               ctx.clearRect(0, 0, canvas.width(), canvas.height());
+              listfont=[];
               for (var i = 0; i < strokes.length; i++) {
                   var s = strokes[i];
                   if(s!=null){
@@ -112,6 +114,7 @@
                 ctx.stroke();
               }
                  document.getElementById('list').value+='font,'+s.text+','+s.x+','+s.y+'|';
+                 checkfont(s.text);
           }
 
 
@@ -333,6 +336,7 @@
 
               $('#clear-btn').click(function () {
                   strokes = [];
+                  listfont=[];
                   reDraw();
                   document.getElementById('list').value='';
                   cleartable();
@@ -497,18 +501,132 @@
           }
 
           function changeselect() {
+            // console.log('changeselect');
                select = document.getElementById("max1");
                length = select.options.length;
+
               for (i = 0; i < length; i++) {
                 select.options[0] = null;
               }
               select2 = document.getElementById("min1");
+                indexsearch= searchindexselect(select2,''+select2.value);
+
+                var breakpoint=0;
+              for (var i = indexsearch; i < 100; i++) {
+                  try {
+                    breakpoint+=1;
+                    if(select2.options[i+1].value-select2.options[i].value>1){
+
+                      break;
+                    }
+                  } catch (e) {
+
+                  } finally {
+
+                  }
+              }
+
                 for (i = select2.value; i <= 100; i++) {
                   option = document.createElement("option");
                   option.text = i;
+                    option.value = i;
                   select.add(option);
+
+                  breakpoint-=1;
+                  if(breakpoint<=0){
+                    break;
+                  }
                 }
             }
+            function searchindexselect(ele, text){
+              for (var i=0; i<ele.length;i++) {
+                  if (ele[i].childNodes[0].nodeValue === text){
+                      return i;
+                  }
+              }
+              return undefined;
+            }
+
+          function  checkfont(str){
+
+            var tag = str.substring(str.length - 1);
+            var res = str.split(" ");
+            listf2=[];
+            for (var i = parseInt(res[0]); i <= parseInt(res[2]); i++) {
+
+              listf2.push(i+tag);
+
+            }
+            listfont.push(listf2);
+
+          }
+
+          function  setselect(){
+            clearselect();
+
+
+            select1=document.getElementById("min1");
+            select2=document.getElementById("max1");
+            select3=document.getElementById("max2");
+
+            var selectedText1 = select1.options[select1.selectedIndex].value+'';
+
+            var selectedText2 = select2.options[select2.selectedIndex].value+'';
+            var selectedText3 = select3.options[select3.selectedIndex].value+'';
+
+            for (var i = 0; i < listfont.length; i++) {
+              for (var k = 0; k < listfont[i].length; k++) {
+
+
+              tag=listfont[i][k].substring(listfont[i][k].length - 1);
+
+              numtag = listfont[i][k].substring(0, listfont[i][k].length-1);
+
+              if(tag==selectedText3){
+
+                  length = select1.options.length;
+                  for (j = 0; j < length; j++) {
+
+                    if(select1.options[j].value==numtag){
+                       select1.options[j] = null;
+                       break;
+                    }
+
+                  }
+                }
+              }
+            }
+
+              changeselect();
+          }
+
+          function clearselect(){
+            select1=document.getElementById("min1");
+            select2=document.getElementById("max1");
+
+            length1 = select1.options.length;
+              length2 = select2.options.length;
+           for (i = 0; i < length1; i++) {
+             select1.options[0] = null;
+           }
+           for (i = 0; i < length2; i++) {
+             select2.options[0] = null;
+           }
+
+           for (i = 1; i <= 100; i++) {
+             option = document.createElement("option");
+             option.text = i;
+               option.value = i;
+             select1.add(option);
+             option = document.createElement("option");
+             option.text = i;
+               option.value = i;
+             select2.add(option);
+
+           }
+
+          }
+
 
         </script>
 
@@ -534,7 +652,7 @@
 
 
           </div>
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="setselect()">
           กำหนดช่องจอดรถ
           </button>
 
@@ -579,7 +697,7 @@
                     echo "<option value='".$i."'>".$i."</option>";
                   } ?>
                 </select>
-                <select id='max2' class="" name="">
+                <select id='max2' class="" name="" onchange="setselect()">
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
