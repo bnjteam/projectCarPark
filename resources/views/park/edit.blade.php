@@ -192,8 +192,8 @@
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 
 body {
-    margin: 40px 0 0;
-    background: #91D1D3;
+    margin: 0 0 0;
+    /* background: #FFFFCC; */
     font-family: 'Roboto', sans-serif;
 }
 

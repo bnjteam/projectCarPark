@@ -41,8 +41,7 @@
 
                           @if (Auth::check() && Auth::user()->level == "parking_owner")
                             <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
-                          @else
-                            <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
+                          
                           @endif
                         </div>
                       </div>
