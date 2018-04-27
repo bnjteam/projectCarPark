@@ -496,13 +496,27 @@
               total=0;
           }
 
+          function changeselect() {
+               select = document.getElementById("max1");
+               length = select.options.length;
+              for (i = 0; i < length; i++) {
+                select.options[0] = null;
+              }
+              select2 = document.getElementById("min1");
+                for (i = select2.value; i <= 100; i++) {
+                  option = document.createElement("option");
+                  option.text = i;
+                  select.add(option);
+                }
+            }
+
         </script>
 
     <body>
 
       <center><div class="">
         <br>
-        <h1>Example Image</h1>
+        <h1>Example</h1>
         <img src="/storage/carparkExample.png" alt="">
         <br><br><br>
 
@@ -551,7 +565,7 @@
             </div>
             <div class="modal-body">
               <center>
-              <select id="min1" class="" name="">
+              <select id="min1" class="" name="" onchange="changeselect()">
                 <?php for ($i=1; $i <=100 ; $i++) {
                   echo "<option value='".$i."'>".$i."</option>";
                 } ?>
