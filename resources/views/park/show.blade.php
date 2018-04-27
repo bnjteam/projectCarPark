@@ -55,10 +55,14 @@
 
                   ctx.lineWidth = 3;
                   ctx.font = "30px Arial";
+                  ctx.fillStyle = 'white';
                   ctx.beginPath();
-
+                  ctx.fillRect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+                  ctx.fillStyle = 'black';
+                  ctx.beginPath();
+                  ctx.rect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
                   ctx.fillText(r[1],parseInt(r[2]), parseInt(r[3]));
-                    ctx.rect(parseInt(r[2]), parseInt(r[3]),120,-40);
+
                     ctx.stroke();
 
 
@@ -66,6 +70,7 @@
                       x: parseInt(r[2]),
                       y: parseInt(r[3]),
                       text:r[1],
+                      canvas_id:id,
                   });
 
 
@@ -97,12 +102,53 @@
               var canvas = document.getElementById('draw'+id);
               var context = canvas.getContext('2d');
 
-              // canvas.addEventListener('mousemove', function(evt) {
-              //   var mousePos = getMousePos(canvas, evt);
-              //   var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-              //   console.log();
-              //   // writeMessage(canvas, message);
-              // }, false);
+              canvas.addEventListener('mousemove', function(evt) {
+                var mousePos = getMousePos(canvas, evt);
+                var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+                console.log();
+                for (var i = 0; i < strokes[id+''].points.length; i++) {
+                    //
+                    // console.log('endX: '+strokes[id+''].points[i].x);
+                    // console.log('endY: '+strokes[id+''].points[i].y);
+
+                  if (strokes[id+''].points[i].x-20 < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+140
+                &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y+20){
+
+                    console.log(strokes[id+''].points[i].canvas_id);
+                     canvasin = document.getElementById('draw'+strokes[id+''].points[i].canvas_id);
+                     contextin = canvasin.getContext('2d');
+
+                     contextin.lineWidth = 3;
+                     contextin.font = "30px Arial";
+                     contextin.fillStyle = 'yellow';
+                     contextin.beginPath();
+                     contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
+                     contextin.fillStyle = 'black';
+                     contextin.beginPath();
+                     contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
+                     contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
+
+                       contextin.stroke();
+
+                  }else{
+                    console.log(strokes[id+''].points[i].canvas_id);
+                     canvasin = document.getElementById('draw'+strokes[id+''].points[i].canvas_id);
+                     contextin = canvasin.getContext('2d');
+
+                     contextin.lineWidth = 3;
+                     contextin.font = "30px Arial";
+                     contextin.fillStyle = 'white';
+                     contextin.beginPath();
+                     contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
+                     contextin.fillStyle = 'black';
+                     contextin.beginPath();
+                     contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
+                     contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
+
+                       contextin.stroke();
+                  }
+                }
+              }, false);
 
               canvas.addEventListener('mousedown', function(evt) {
 
@@ -114,8 +160,8 @@
                     // console.log('endX: '+strokes[id+''].points[i].x);
                     // console.log('endY: '+strokes[id+''].points[i].y);
 
-                  if (strokes[id+''].points[i].x < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+120
-                &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y){
+                  if (strokes[id+''].points[i].x-20 < mousePos.x &&  mousePos.x < strokes[id+''].points[i].x+100
+                &&  mousePos.y > strokes[id+''].points[i].y-40 &&  mousePos.y < strokes[id+''].points[i].y+20){
                     // console.log(111121212112);
                     addselect(strokes[id+''].points[i].text);
                      modal = document.getElementById('exampleModal');
