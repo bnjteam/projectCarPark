@@ -6,7 +6,6 @@
   <li class = "active">Profile</a></li>
 </ul>
 
-<center><br><h2 class=""><b>Setting Profile</b></h2></legend></center><br>
 @endsection
 @section('content')
 
@@ -14,7 +13,7 @@
 
 
 
-</head>
+
 
 <script>
 function readURL(input) {
@@ -28,6 +27,7 @@ function readURL(input) {
           }
       }
 </script>
+</head>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
