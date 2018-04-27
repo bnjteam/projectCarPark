@@ -141,7 +141,7 @@
        <textarea   name="address" rows="8" cols="80">{{old('address') ?? $parking->address }}</textarea>
      </div>
    </div>
-</div>
+
 
             <input  type="hidden" name="list" value="" id='list' >
 
@@ -160,7 +160,7 @@
             <br>
             <br>
             <br>
-            <button type="submit" class="btn btn-info" name="button" onclick="">ADD/DELETE Photo location</button>
+            <button type="submit"  name="button" onclick="">ADD/DELETE Photo location</button>
             <br><br>
             </form>
 
@@ -185,6 +185,7 @@
       </div></center>
 
     </body>
+    </div>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto);
@@ -243,7 +244,7 @@ body {
     box-sizing: border-box;
     z-index: 1;
 
-    
+
 }
 </style>
 
