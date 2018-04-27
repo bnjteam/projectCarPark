@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Log;
 use App\Parking;
+use App\Map;
 use App\User;
 use App\Photolocation;
 use Illuminate\Http\Request;
@@ -149,11 +150,6 @@ class ParkingsController extends Controller
 
     public function updatecarpark(Request $request, Parking $parking)
     {
-      //   echo $request->input('list');
-      // dd($request);
-      //       for ($i=0; $i < ; $i++) {
-      //
-      //       }
 
             $photolocation=new Photolocation;
             $photolocation->id_parking=$parking->id;
@@ -170,6 +166,35 @@ class ParkingsController extends Controller
               }
               $photolocation->floor=$request->input('floor');
               $photolocation->save();
+
+
+              $s= $request->input('list');
+              $str = explode("|", $s);
+
+              for ($i=0; $i <count($str); $i++) {
+                  echo $str[$i];
+                  echo "<br>";
+                  $arstr = explode(",", $str[$i]);
+
+                  if($arstr[0]=='font'){
+                      $a=explode(" ",$arstr[1]);
+                      echo (int)$a[0];
+                      echo "<br>";
+                        echo (int)$a[2];
+                        echo "<br>";
+
+                        for ($j=(int)$a[0]; $j <=(int)$a[2] ; $j++) {
+                            $map=new Map;
+                            $map->number=$j.substr($a[0],1);
+                            $map->id_photo=$photolocation->id;
+                            $map->status='empty';
+                            $map->save();
+
+                        }
+
+                  }
+
+              }
 
         return redirect('/parkings/'.$parking->id.'/edit');
     }
