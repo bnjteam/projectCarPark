@@ -1,11 +1,28 @@
 
 @extends('layouts.app')
+<?php
+  use App\Package;
+  use App\Package_user;
+ ?>
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
       <h1>{{ __('Register Parking Owner') }}</h1>
         <div class="col-12">
+          @if (Auth::user()->level=="parking_owner")
+            @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] >= Package::all()->pluck('limit','name')[Auth::user()->type])
+
+                <div class="alert alert-dismissible alert-warning">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <h4 class="alert-heading">Warning!</h4>
+                  <p class="mb-0">You have a limit of create of Parkings</p>
+                </div>
+
+
+
+            @endif
+          @endif
                 <div class="card-body">
                         <div class="row justify-content-center">
                           <div class="col-4">
@@ -104,7 +121,7 @@
                                   @if (Auth::user()->level=="member")
                                     <a href="" class="btn btn-primary disabled">{{ __("Can't Register") }}</a>
                                   @elseif (Auth::user()->type!="large" && Auth::user()->level!="admin")
-                                    <a href="" class="btn btn-primary">{{ __('Register') }}</a>
+                                    <a href="/register_owner/payments/large" class="btn btn-primary">{{ __('Register') }}</a>
                                   @else
                                     <a href="" class="btn btn-primary disabled">{{ __('Registed') }}</a>
                                   @endif

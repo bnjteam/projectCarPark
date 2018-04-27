@@ -159,11 +159,19 @@
                   </div>
                   <div style="font-size:17px;color:white;margin-left: 15px;">
 
-                    @if (Auth::check() && Auth::user()->level == "parking_owner")
-                      <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
-                    @else
-                      <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
-                    @endif
+
+
+
+                      @if (Auth::check() && Auth::user()->level == "parking_owner")
+                        @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] < Package::all()->pluck('limit','name')[Auth::user()->type])
+                          <a style="font-family: 'Jua', sans-serif;" href="/parkings/create">Create Your Parking</a>
+                        @else
+                          <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
+                        @endif
+                      @else
+                        <a style="font-family: 'Jua', sans-serif;" href="/register_owner">Create Your Parking</a>
+                      @endif
+
                   </div>
                 </div>
                 <div class="col-3" >
