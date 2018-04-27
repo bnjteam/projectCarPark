@@ -25,10 +25,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        Gate::define('index-userManager',function($user,$object){
-            return $user->isSuperAdmin() || $user->id===$object->id ;
-        });
         Gate::define('index-userManagers',function($object){
             $user = \Auth::user();
             return $user->isSuperAdmin();
@@ -51,7 +47,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isSuperAdmin() ;
         });
 
-      
+
 
 
 

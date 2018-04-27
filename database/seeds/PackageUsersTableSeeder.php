@@ -16,5 +16,11 @@ class PackageUsersTableSeeder extends Seeder
         $p->id_package = 2;
         $p->numbers = 0;
         $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 1;
+        $p->id_package = 4;
+        $p->numbers = 10;
+        $p->save();
     }
 }

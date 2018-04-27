@@ -39,7 +39,7 @@ class ParkingsController extends Controller
      */
     public function create()
     {
-        if (Auth::check() && Auth::user()->level=="parking_owner"){
+        if (Auth::check() && (Auth::user()->level=="parking_owner" || Auth::user()->level=="admin")){
             return view('/park.create');
         }
         else{
@@ -78,7 +78,7 @@ class ParkingsController extends Controller
           $log->id_user = '2';
         }
         $users = User::all()->pluck('name','id');
-        $log->description = $users[$log->id_user].' create parking';
+        $log->description = "user ".$log->id_user.' create parking';
         $log->location = $parking->location;
         $log->save();
 
@@ -130,17 +130,10 @@ class ParkingsController extends Controller
                 $parking->photo= '/storage/photosparking/'.basename($path2);
               }
               $parking->save();
-
               $log = new Log();
-              if (Auth::check()){
                  $log->id_user = Auth::user()->id;
-              }
-
-              else{
-                $log->id_user = '2';
-              }
               $users = User::all()->pluck('name','id');
-              $log->description = $users[$log->id_user].' edit parking';
+              $log->description = "user ".$log->id_user.' edit parking';
               $log->location = $parking->location;
               $log->save();
       return redirect('/parkings');
@@ -155,6 +148,14 @@ class ParkingsController extends Controller
     public function destroy(Parking $parking)
     {
       $parking->delete();
+      $parking->save();
+
+      $log = new Log();
+         $log->id_user = Auth::user()->id;
+      $users = User::all()->pluck('name','id');
+      $log->description = "user ".$log->id_user.' delete parking';
+      $log->location = $parking->location;
+      $log->save();
     return redirect('/parkings');
     }
 

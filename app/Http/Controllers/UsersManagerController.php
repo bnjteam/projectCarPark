@@ -60,7 +60,7 @@ class UsersManagerController extends Controller
      */
     public function show(User $user)
     {
-      if (\Gate::allows('index-userManager',$user)){
+      if (\Gate::allows('index-userManagers',$user)){
         return view('userManager.show',['user' => $user]);
       }
       else{
@@ -77,7 +77,7 @@ class UsersManagerController extends Controller
     public function edit(User $user)
     {
 
-      if (\Gate::allows('index-userManager',$user)){
+      if (\Gate::allows('index-userManagers',$user)){
         $users = User::all();
         $level = ['admin'=>'Admin','member'=>'Member','guest'=>'Guest','parking_owner'=>'Parking Owner'];
         $type = ['none'=>'None','daily'=>'Daily','weekly'=>'Weekly','monthly'=>'Monthly','small'=>'Small','medium'=>'Medium','large'=>'Large'];
@@ -98,14 +98,20 @@ class UsersManagerController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate(
-            ['name' =>'required|min:4|max:255'
+            ['name' =>'required|min:4|max:255',
+            'lastname' =>'required|min:4|max:255',
+            'email' =>'required|email'
             ]
         );
-        $path2 = $request->fileToUpload->store('/public/photos');
+        if ($request->fileToUpload!=null)
+        {
+          $path2 = $request->fileToUpload->store('/public/photos');
+          $user->avatar = '/storage/photos/'.basename($path2) ;
+        }
         $user->name =$request->input('name');
         $user->lastname =$request->input('lastname');
         $user->email =$request->input('email');
-        $user->avatar = '/storage/photos/'.basename($path2) ;
+
         $user->level =$request->input('level123');
         $user->type =$request->input('type');
         //$user->password = Hash::make($request->input('password')) ;
@@ -113,7 +119,7 @@ class UsersManagerController extends Controller
         $log = new Log();
            $log->id_user = Auth::user()->id;
         $users = User::all()->pluck('name','id');
-        $log->description = $users[$log->id_user].' edit user id : '.$user->id;
+        $log->description = "user ".$log->id_user.' edit user id : '.$user->id;
         $log->save();
         return redirect('/userManager/show/'.$user->id);
     }
@@ -126,17 +132,22 @@ class UsersManagerController extends Controller
     public function destroy(User $user)
     {
       if (\Gate::allows('index-userManagers')){
-        if($user->is_enabled == 1){
-            $user->is_enabled = 0;
-        }elseif($user->is_enabled==0){
-            $user->is_enabled = 1;
-        }
-        $user->save();
         $log = new Log();
            $log->id_user = Auth::user()->id;
         $users = User::all()->pluck('name','id');
-        $log->description = $users[$log->id_user].' delete this user';
+
+        if($user->is_enabled == 1){
+            $user->is_enabled = 0;
+            $log->description = "user ".$log->id_user.' suspend '.$user->name;
+
+        }elseif($user->is_enabled==0){
+            $user->is_enabled = 1;
+            $log->description = "user ".$log->id_user.' active '.$user->name;
+        }
+        $user->save();
+
         $log->save();
+
         return redirect('/userManager');
       }else{
             return view('/denieViews.denie');

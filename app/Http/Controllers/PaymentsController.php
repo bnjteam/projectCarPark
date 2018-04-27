@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Log;
 use App\Package_user;
 use App\Package;
+use App\Payment;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -88,10 +89,6 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /**
-        $users->type=$request->input('package');
-        $users->save();
-       **/
         $request->validate([
             'card'=>'required|digits:16|numeric',
             'month'=>'required|between:1,12|numeric',
@@ -144,13 +141,18 @@ class PaymentsController extends Controller
             $package_user->id_package = $package[$user->type];
             $package_user->numbers = 0;
             $package_user->save();
+
+            $payment = new Payment();
+            $payment->id_user = $user->id;
+            $payment->id_package = $package[$user->type];
+            $payment->save();
             if (isset($day))
             {
               $user->end_date_package = $time->addDays($day)->toDateTimeString();
               $log = new Log();
                  $log->id_user = Auth::user()->id;
               $users = User::all()->pluck('name','id');
-              $log->description = $users[$log->id_user].' buy package '.$user->type;
+              $log->description = "user ".$log->id_user.' buy package '.$user->type;
               $log->save();
 
               return view('payments.complete');
@@ -160,7 +162,7 @@ class PaymentsController extends Controller
               $log = new Log();
                  $log->id_user = Auth::user()->id;
               $users = User::all()->pluck('name','id');
-              $log->description = $users[$log->id_user].' buy package '.$user->type;
+              $log->description = "user ".$log->id_user.' buy package '.$user->type;
               $log->save();
               return view('registerOwner.success',['user'=>$user]);
             }

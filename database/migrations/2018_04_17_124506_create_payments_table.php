@@ -15,21 +15,20 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
-            $table->string('user');
-            $table->unsignedInteger('price');
-            $table->string('location');
+            $table->string('id_user');
+            $table->string('id_package');
             $table->enum('status',[
               'completed','not completed'
             ]);
             $table->timestamps();
 
-            $table->foreign('number')
-                  ->references('number')
-                  ->on('maps');
-            $table->foreign('user')
+            $table->foreign('id_user')
                   ->references('name')
                   ->on('users');
+
+                  $table->foreign('id_package')
+                        ->references('id')
+                        ->on('packages');
         });
     }
 
