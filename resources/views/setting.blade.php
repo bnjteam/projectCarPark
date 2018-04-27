@@ -10,11 +10,6 @@
 @section('content')
 
 <head>
-
-
-
-
-
 <script>
 function readURL(input) {
           if (input.files && input.files[0]) {
@@ -44,7 +39,24 @@ function readURL(input) {
             <form method="POST" action="/home/{{ Auth::user()->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
+
                 <div class="form-group row">
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                      <input class="custom-file-input" id="inputGroupFile02" onchange="readURL(this)"   type="file" name="fileToUpload" ><br>
+                      <label class="custom-file-label"  for="inputGroupFile02">Please Choose Avatar Image</label>
+
+                      </div>
+                      <center><img id="imageold" style="height:150px;weight:150px;"  src=''> </center>
+
+                    </div>
+                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+
+                    </div>
+
+
+                <!-- <div class="form-group row">
                     <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
 
                     <div class="col-md-6">
@@ -54,7 +66,7 @@ function readURL(input) {
 
 
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="form-group row">

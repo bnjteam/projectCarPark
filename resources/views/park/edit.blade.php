@@ -160,7 +160,7 @@
             <br>
             <br>
             <br>
-            <button type="submit" class="btn btn-info" name="button" onclick="">ADD/DELETE Photo location</button>
+            <button type="submit"  name="button" onclick="">ADD/DELETE Photo location</button>
             <br><br>
             </form>
 
@@ -185,6 +185,7 @@
       </div></center>
     </div>
     </body>
+    </div>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto);

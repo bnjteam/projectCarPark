@@ -126,6 +126,19 @@ class ParkingsController extends Controller
                 $parking->photo= '/storage/photosparking/'.basename($path2);
               }
               $parking->save();
+
+              $log = new Log();
+              if (Auth::check()){
+                 $log->id_user = Auth::user()->id;
+              }
+
+              else{
+                $log->id_user = '2';
+              }
+              $users = User::all()->pluck('name','id');
+              $log->description = $users[$log->id_user].' edit parking';
+              $log->location = $parking->location;
+              $log->save();
       return redirect('/parkings');
     }
 

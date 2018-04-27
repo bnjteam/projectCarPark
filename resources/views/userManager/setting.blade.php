@@ -21,7 +21,7 @@ function readURL(input) {
           }
       }
 </script>
-<hr><center><p>Change Profile</p></center><hr>
+
 <center>
 <div class="panel-heading">
 <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
@@ -38,10 +38,8 @@ function readURL(input) {
 
         <div class="col-md-6">
           <input onchange="readURL(this)"   type="file" name="fileToUpload" value=""><br>
-            <center><img id="imageold" style="height:150px;weight:150px;"  src='' > </center>
+            <center><img id="imageold" style="height:150px;weight:150px;"   > </center>
             <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
-
-
         </div>
     </div>
     <div class="form-group row">

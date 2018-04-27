@@ -11,27 +11,46 @@
 
 @section('content')
 
-<br>
-<table class="table" id="table">
-    <thead>
+<style>
+table {
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th {
+    cursor: pointer;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+</style>
+
+<table class="table" id="myTable">
+
         <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Avatar</th>
-      <th scope="col">Name</th>
+      <th onclick="sortTable(0)" scope="col">ID</th>
+      <th onclick="sortTable(1)" scope="col">Avatar</th>
+      <th onclick="sortTable(2)" scope="col">Name</th>
 
-      <th scope="col">E-mail</th>
-      <th scope="col">Level</th>
-      <th scope="col">Create Date</th>
+      <th onclick="sortTable(3)" scope="col">E-mail</th>
+      <th onclick="sortTable(4)" scope="col">Level</th>
+      <th onclick="sortTable(5)" scope="col">Create Date</th>
 
-      <th scope="col">Status</th>
-      <th scope="col">Package</th>
-      <th scope="col">End Package Date</th>
-      <th scope="col">Action</th>
-      <th scope="col">Log History</th>
+      <th onclick="sortTable(6)" scope="col">Status</th>
+      <th onclick="sortTable(7)" scope="col">Package</th>
+      <th onclick="sortTable(8)" scope="col">End Package Date</th>
+      <th onclick="sortTable(9)" scope="col">Action</th>
+      <th onclick="sortTable(10)" scope="col">Log History</th>
 
     </tr>
-  </thead>
-  <tbody>
+
     @foreach($users as $item)
 
     <tr>
@@ -76,6 +95,47 @@
       </div>
     </tr>
     @endforeach
-  </tbody>
+
 </table>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  dir = "asc";
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+
+      switchcount ++;
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script> 
 @endsection

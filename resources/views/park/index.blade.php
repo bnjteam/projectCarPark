@@ -10,24 +10,22 @@
 @section('content')
 
 <br>
-<table class="table" id="table">
-    <thead>
-        <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Photo</th>
+<table class="table" id="myTable">
 
-      <th scope="col">Location</th>
-      <th scope="col">address</th>
-      <th scope="col">Owner</th>
-      <th scope="col">Create Date</th>
-      <th scope="col">Last Update</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
+        <tr>
+      <th onclick="sortTable(0)" scope="col">ID</th>
+      <th  onclick="sortTable(1)" scope="col">Photo</th>
+      <th onclick="sortTable(2)" scope="col">Location</th>
+      <th onclick="sortTable(3)" scope="col">address</th>
+      <th onclick="sortTable(4)" scope="col">Owner</th>
+      <th onclick="sortTable(5)" scope="col">Create Date</th>
+      <th onclick="sortTable(6)" scope="col">Last Update</th>
+      <th onclick="sortTable(7)" scope="col">Edit</th>
+      <th onclick="sortTable(8)" scope="col">Delete</th>
 
 
     </tr>
-  </thead>
-  <tbody>
+
     @foreach($park as $item)
     <tr>
       <td>{{ $loop->iteration }}</td>
@@ -53,6 +51,70 @@
         </form>
     </tr>
     @endforeach
-  </tbody>
+
 </table>
+
+<style >
+table {
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+
+}
+th {
+    cursor: pointer;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+</style>
+
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("myTable");
+  switching = true;
+  dir = "asc";
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+
+      switchcount ++;
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
 @endsection
