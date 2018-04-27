@@ -9,7 +9,7 @@
         <div class="card-body">
           <div class="" >
             <div class="row justify-content-center">
-                <img src="/storage/check.png" alt="" style="padding:20px">
+                <img src="/storage/check.gif" loop=1 alt="" style="padding:20px">
             </div>
             <h3 style="text-align:center">Success</h3>
             <p class="card-text" style="text-align:center">you have buy package.</p>
