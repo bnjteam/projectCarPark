@@ -245,7 +245,7 @@
       <textarea disabled  name="address" rows="8" cols="80">{{$parking->address}}</textarea>
       </div>
     </div></center>
-  
+
 
       @csrf
 
