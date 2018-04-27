@@ -39,10 +39,9 @@
                         </div> -->
                         <div style="font-size:17px;color:white;margin-left: 15px;">
                           <ul class="navbar-nav ml-auto">
-                          @if (Auth::check() && Auth::user()->level == "parking_owner")
-
-
-
+                          @if(Auth::check() && Auth::user()->level == "admin")
+                          
+                          @elseif (Auth::check() && Auth::user()->level == "parking_owner")
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Upgrade Package</a></li>
 
