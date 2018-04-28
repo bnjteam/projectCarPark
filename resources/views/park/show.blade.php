@@ -233,38 +233,31 @@
         test.options[0] = null;
       }
       artext= text.split(" ");
-
+      select = document.getElementById("select"+id);
+      len=select.length;
       for (var j = parseInt(artext[0]); j <= parseInt(artext[2]); j++) {
         cstr=j+tag;
-        // console.log("cs: "+cstr);
-        option = document.createElement("option");
-        option.text = cstr;
-        option.value=cstr;
-        test.add(option);
+            // console.log("cs: "+cstr);
+        che=0;
+        for (var k = 0; k < len; k++) {
+          console.log(select.options[k].value);
+          if (select.options[k].value==cstr) {
+            che=1;
+          }
+        }
+        if(che==0){
+          option = document.createElement("option");
+          option.text = cstr;
+          option.value=cstr;
+          test.add(option);
+        }
       }
       console.log(test.options[test.selectedIndex].value);
        document.getElementById('selectmap').value=test.options[test.selectedIndex].value;
        document.getElementById('selectmap2').value=id;
-      // select = document.getElementById("select"+id);
-      // var length = select.options.length;
-      // for (i = 0; i < length; i++) {
-      //   tag=select.options[i].value.substr(select.options[i].value.length-1);
-      //   console.log('tag: '+tag);
-      //   if(tag==str){
-      //
-      //       artext= text.split(" ");
-      //
-      //       // for (var j = parseInt(artext[0]); j <= parseInt(artext[2]); j++) {
-      //       //   cstr=j+tag;
-      //       //   console.log("cs: "+cstr);
-      //       // }
-      //     option = document.createElement("option");
-      //     option.text = select.options[i].value;
-      //     option.value=select.options[i].value;
-      //     test.add(option);
-      //   }
-      // }
+
     }
+
     function setselectmap(id){
       test = document.getElementById("test"+id);
       document.getElementById('selectmap').value=test.options[test.selectedIndex].value;
@@ -287,8 +280,8 @@
       <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <input hidden type="text" id='selectmap' name="selectmap" value="">
-        <input hidden type="text" id='selectmap2' name="selectmap2" value="">
+        <input  type="text" id='selectmap' name="selectmap" value="">
+        <input  type="text" id='selectmap2' name="selectmap2" value="">
       @foreach($photoslocations as $photoslocation)
             <br>
             <center><div class="">
@@ -320,16 +313,16 @@
               <div class="modal-body">
 
 
-              <center>  <select  hidden class="" name="" id='select{{$photoslocation->id}}'>
+              <center>  <select   class="" name="" id='select{{$photoslocation->id}}'>
                   @foreach($maps as $map)
 
                   @if($photoslocation->id == $map->id_photo)
-
-                      @if($map->status == 'empty')
-                    <option value="{{$map->number}}">{{$map->number}}</option>
-                      @endif
+                      @foreach($current_maps as $current_map)
+                            @if($current_map->id_map == $map->id)
+                            <option value="{{$map->number}}">{{$map->number}}</option>
+                            @endif
+                        @endforeach
                   @endif
-
                   @endforeach
                 </select></center>
 
