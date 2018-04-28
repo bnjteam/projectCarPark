@@ -69,8 +69,9 @@ class ParkingsController extends Controller
         $parking->photo = '/storage/noimage.png';
       }
       $parking->save();
-      $pack = Package_user::all()->where('id','like',Auth::user()->id)->first();
+      $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
       $pack->numbers = $pack->numbers+1;
+
       $pack->save();
 
         $log = new Log();
