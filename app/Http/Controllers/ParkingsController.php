@@ -5,6 +5,7 @@ use App\Log;
 use App\Parking;
 use App\Map;
 use App\User;
+use App\Package;
 use App\Package_user;
 use App\Photolocation;
 use App\Current_map;
@@ -257,7 +258,10 @@ class ParkingsController extends Controller
 
       public function updatemap(Request $request)
       {
-        if(Auth::check() && Auth::user()->level=='member'){
+        if(Auth::check() && Auth::user()->level=='member'
+        && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
+                                            <
+                 Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
 
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
           $current_map=new Current_map;
@@ -266,6 +270,20 @@ class ParkingsController extends Controller
           $current_map->password=str_random(64);
           $current_map->status='empty';
           $current_map->save();
+
+          $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
+          $pack->numbers = $pack->numbers+1;
+          $pack->save();
+
+          $log = new Log();
+             $log->id_user = Auth::user()->id;
+          $users = User::all()->pluck('name','id');
+          $log->description = "user ".$log->id_user.' reserve the park ';
+          $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first()->id_parking;
+          $loca = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+          $log->location = $loca;
+          $log->save();
+
 
           return view('/park.complete');
         }else{
