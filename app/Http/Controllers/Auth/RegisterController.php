@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     /*
@@ -78,5 +81,14 @@ class RegisterController extends Controller
             'avatar'   => '/storage/photos/avatar123.png'
 
         ]);
+    }
+
+    protected function registered(Request $request, $user)
+    {
+      //หลังสมัครสมาชิกจะให้ทำอะไร
+      $log = new Log();
+      $log->id_user = $user->id;
+      $log->description = "User id :".$user->id. ' has registered';
+      $log->save();
     }
 }

@@ -51,7 +51,7 @@ class LoginController extends Controller
           $email = $request->email;
            $users = User::all()->pluck('id','email');
            $log->id_user = $users[$email];
-           $log->description = "user ".$users[$email].' has login';
+           $log->description = "user id : ".$users[$email].' has login';
            $log->save();
            $u = User::all()->where('id','LIKE',$log->id_user)->first();
            // dd($u->level!="admin" , $u->end_date_package!=null,$u);
@@ -65,7 +65,7 @@ class LoginController extends Controller
                $email = $request->email;
                 $users = User::all()->pluck('id','email');
                 $log->id_user = $users[$email];
-                $log->description = "user ".$users[$email]." have expired package's ".$u->type;
+                $log->description = "User id :".$users[$email]." have expired package's ".$u->type;
                 $log->save();
                $u->level='guest';
                $u->type="none";
@@ -81,6 +81,7 @@ class LoginController extends Controller
         }
         return $credentials;
     }
+
     protected function sendFailedLoginResponse(Request $request)
     {
         $errors = [$this->username() => trans('auth.failed')];
@@ -95,5 +96,23 @@ class LoginController extends Controller
         return redirect()->back()
             ->withInput($request->only($this->username(), 'remember'))
             ->withErrors($errors);
+    }
+
+    public function logout(Request $request)
+    {
+
+
+        $log = new Log();
+
+        $users = User::all()->pluck('id','email');
+        $email= \Auth::user()->email ;
+        $log->id_user = $users[$email];
+        $log->description = "User id :".$users[$email].' has logout';
+
+        $log->save();
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        return redirect('/');
     }
 }
