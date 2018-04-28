@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="col-6">
-              <img src="/storage/reserved-park.jpg" width="400px" alt="">
+              <img src="/storage/pay.jpg" width="400px" alt="">
             </div>
           </div>
         </div>
