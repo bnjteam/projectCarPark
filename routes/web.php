@@ -32,6 +32,7 @@ Route::put('/userManager/update/{user}','UsersManagerController@update');
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
 Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
+Route::get('/userManager/logs/', 'LogController@showAllLog');
 
 
 Route::put('/parkings/updatemap','ParkingsController@updatemap');
@@ -71,3 +72,4 @@ Route::get('/register_owner/payments/{object}', 'PaymentsController@index');
 Route::put('/register_owner/payments/{object}', 'PaymentsController@update');
 
 Route::get('/readQRcode/{token}','ParkingsController@readQRcode');
+Route::get('/qr-code', 'ParkingsController@genQRcode');
