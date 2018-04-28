@@ -18,7 +18,7 @@ class CreateCurrentMapsTable extends Migration
             $table->string('id_user');
             $table->string('id_map');
             $table->string('password');
-            $table->enum('status',[]);
+            $table->enum('status',['full','empty']);
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
