@@ -281,8 +281,8 @@
       <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <input type="text" id='selectmap' name="selectmap" value="">
-        <input type="text" id='selectmap2' name="selectmap2" value="">
+        <input hidden type="text" id='selectmap' name="selectmap" value="">
+        <input hidden type="text" id='selectmap2' name="selectmap2" value="">
       @foreach($photoslocations as $photoslocation)
             <br>
             <center><div class="">

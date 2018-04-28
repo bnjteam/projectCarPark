@@ -255,17 +255,21 @@ class ParkingsController extends Controller
 
       public function updatemap(Request $request)
       {
+        if(Auth::check() && Auth::user()->level=='member'){
 
-        $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
-    
-        $current_map=new Current_map;
-        $current_map->id_user=Auth::user()->id;
-        $current_map->id_map=$map->id;
-        $current_map->password=str_random(64);
-        $current_map->status='empty';
-        $current_map->save();
+          $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+          $current_map=new Current_map;
+          $current_map->id_user=Auth::user()->id;
+          $current_map->id_map=$map->id;
+          $current_map->password=str_random(64);
+          $current_map->status='empty';
+          $current_map->save();
 
-        return view('/park.complete');
+          return view('/park.complete');
+        }else{
+          return  redirect('/package');
+        }
+
       }
 
       public function readQRcode($token){
