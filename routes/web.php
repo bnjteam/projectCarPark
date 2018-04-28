@@ -70,3 +70,5 @@ Route::put('/payments/{id}','PaymentsController@update');
 Route::get('register_owner','UsersManagerController@createOwner');
 Route::get('/register_owner/payments/{object}', 'PaymentsController@index');
 Route::put('/register_owner/payments/{object}', 'PaymentsController@update');
+
+Route::get('/readQRcode/{token}','ParkingsController@readQRcode');

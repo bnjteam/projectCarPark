@@ -7,6 +7,7 @@ use App\Map;
 use App\User;
 use App\Package_user;
 use App\Photolocation;
+use App\Current_map;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -252,11 +253,49 @@ class ParkingsController extends Controller
             return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
       }
 
-      public function updatemap(Request $request,Map $map)
+      public function updatemap(Request $request)
       {
-        dd($request);
-            $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
-            return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
+        if(Auth::check() && Auth::user()->level=='member'){
+
+          $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+          $current_map=new Current_map;
+          $current_map->id_user=Auth::user()->id;
+          $current_map->id_map=$map->id;
+          $current_map->password=str_random(64);
+          $current_map->status='empty';
+          $current_map->save();
+
+          return view('/park.complete');
+        }else{
+          return  redirect('/package');
+        }
+
       }
 
+      public function readQRcode($token){
+        // return view('park.readQRcode');
+          if (count(Current_map::all()->where('password','LIKE',$token))) {
+            $current = Current_map::all()->where('password','LIKE',$token)->first();
+            $current->status = "full";
+            $current->password = '';
+            $current->save();
+
+                $log = new Log();
+                   $log->id_user = $current->id_user;
+                $users = User::all()->pluck('name','id');
+                $log->description = "user ".$log->id_user.' entry the park ';
+
+                $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
+                $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
+
+                $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+
+                $log->save();
+                return view('park.readQRcode');
+          }
+          else{
+             dd('Not found');
+          }
+
+      }
 }

@@ -33,6 +33,7 @@ return array(
     'App\\Package' => $baseDir . '/app/Package.php',
     'App\\Package_user' => $baseDir . '/app/Package_user.php',
     'App\\Parking' => $baseDir . '/app/Parking.php',
+    'App\\Payment' => $baseDir . '/app/Payment.php',
     'App\\Photolocation' => $baseDir . '/app/Photolocation.php',
     'App\\Policies\\UserPolicy' => $baseDir . '/app/Policies/UserPolicy.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
