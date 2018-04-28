@@ -65,7 +65,7 @@ td ,th ,tr {
       <td><img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt=""></td>
       <td><a href="/parkings/{{ $item->id }}">{{ $item->location }}</a></td>
       <td>{{ $item->address }}</td>
-      <td> <a href="/userManager/show/{{$item->id_user}}">
+      <td> <a href="/profile/show/{{$item->id_user}}">
         {{ $names[$item->id_user] }}
         </a> </td>
       <td>{{ $item->created_at->diffForHumans() }}</td>

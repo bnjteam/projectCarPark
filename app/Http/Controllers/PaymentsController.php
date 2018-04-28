@@ -136,11 +136,21 @@ class PaymentsController extends Controller
             }
             $user->save();
             $package = Package::all()->pluck('id','name');
-            $package_user = new Package_user();
-            $package_user->id_user = $user->id;
-            $package_user->id_package = $package[$user->type];
-            $package_user->numbers = 0;
-            $package_user->save();
+            if (count(Package_user::all()->where('id_user','LIKE',Auth::user()->id))==0 )
+            {
+              $package_user = new Package_user();
+              $package_user->id_user = $user->id;
+              $package_user->id_package = $package[$user->type];
+              $package_user->numbers = 0;
+              $package_user->save();
+            }
+            else{
+              $package_user = Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first();
+              $package_user->id_user = $user->id;
+              $package_user->id_package = $package[$user->type];
+              $package_user->save();
+            }
+
 
             $payment = new Payment();
             $payment->id_user = $user->id;
