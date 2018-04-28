@@ -52,11 +52,6 @@ Route::delete('/photoslocations/{photoslocation}','ParkingsController@destroypho
 Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
 Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
 
-
-
-
-
-
 Route::get('/contact','HomeController@sendMailForm');
 Route::post('/contact','HomeController@sendMail');
 Route::get('/package', 'PackagesController@index');
