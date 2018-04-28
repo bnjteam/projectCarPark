@@ -17,9 +17,6 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->string('id_user');
             $table->string('id_package');
-            $table->enum('status',[
-              'completed','not completed'
-            ]);
             $table->timestamps();
 
             $table->foreign('id_user')
