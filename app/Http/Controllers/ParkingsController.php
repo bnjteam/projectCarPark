@@ -107,7 +107,8 @@ class ParkingsController extends Controller
 
         $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
           $map  = Map::all();
-         return view('/park.show',['photoslocations'=>$p,'parking'=>$parking,'maps'=>$map]);
+          $current_map  = Current_map::all();
+         return view('/park.show',['photoslocations'=>$p,'parking'=>$parking,'maps'=>$map,'current_maps'=>$current_map]);
     }
 
     /**
@@ -337,5 +338,8 @@ class ParkingsController extends Controller
 
         }
 
+      }
+      public function InfoParking(User $user){
+          return view('/park.infoparking');
       }
 }

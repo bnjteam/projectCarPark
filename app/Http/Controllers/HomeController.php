@@ -82,7 +82,6 @@ class HomeController extends Controller
        if (Auth::check()){
           $log->id_user = Auth::user()->id;
        }
-
        else{
          $log->id_user = '2';
        }
@@ -91,13 +90,6 @@ class HomeController extends Controller
        $log->save();
        return redirect()->back();
     }
-    public function InfoParking(User $user){
 
-
-
-        return view('/park.infoparking');
-
-
-    }
 
 }
