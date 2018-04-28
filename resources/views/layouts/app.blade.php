@@ -22,12 +22,20 @@
       use App\Package_user;
     ?>
     @stack('style')
-
+<style >
+    .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+</style>
 </head>
 
 <body style-="height:100%;position:relative">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                     <!-- {{ config('app.name', 'Laravel') }} -->
                     <a class="navbar-brand" href="/"><img src="/storage/logo.png" style="margin-left:-50px" alt="" width=150px></a>
@@ -75,6 +83,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @elseif(Auth::user()->level =='admin' or Auth::user()->level =='parking_owner')
                         <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
+
                         @if (Auth::user()->level =='admin')
                         <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
                         @endif
@@ -88,7 +97,9 @@
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
-
+                                    <a class="dropdown-item" href="/parkings/info/{{ Auth::user()->id}}">
+                                        {{ __('My reserve info') }}
+                                    </a>
 
 
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
@@ -125,6 +136,7 @@
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}
                                     </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
