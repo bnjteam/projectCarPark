@@ -9,6 +9,8 @@ use App\Package_user;
 use App\Photolocation;
 use App\Current_map;
 use Illuminate\Http\Request;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Response\QrCodeResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -269,32 +271,53 @@ class ParkingsController extends Controller
           return  redirect('/package');
         }
 
+        $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+
+        $current_map=new Current_map;
+        $current_map->id_user=Auth::user()->id;
+        $current_map->id_map=$map->id;
+        $current_map->password=str_random(64);
+        $current_map->status='empty';
+        $current_map->save();
+
+        return view('/park.complete');
       }
 
       public function readQRcode($token){
         // return view('park.readQRcode');
           if (count(Current_map::all()->where('password','LIKE',$token))) {
-            $current = Current_map::all()->where('password','LIKE',$token)->first();
+            $current = Current_map::all()->where('password','LIKE',$token)->last();
             $current->status = "full";
             $current->password = '';
             $current->save();
-
                 $log = new Log();
                    $log->id_user = $current->id_user;
                 $users = User::all()->pluck('name','id');
                 $log->description = "user ".$log->id_user.' entry the park ';
-
                 $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
                 $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
-
                 $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
-
                 $log->save();
                 return view('park.readQRcode');
           }
           else{
-             dd('Not found');
+             view('park.invalidQRcode');
           }
+
+      }
+      public function genQRcode(){
+        if (Auth::check()) {
+                    $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->last()->password );
+                    header('Content-Type: '.$qrCode->getContentType());
+                    // Save it to a file
+                    // $qrCode->writeFile(__DIR__.'/qrcode.png');
+                    // Create a response object
+                    $response = new QrCodeResponse($qrCode);
+                    return $response;
+        }
+        else{
+
+        }
 
       }
 }
