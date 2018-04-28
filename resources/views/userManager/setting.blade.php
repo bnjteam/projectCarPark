@@ -30,7 +30,7 @@ function readURL(input) {
           <div class="card-body">
 <center>
 <div class="panel-heading">
-<img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
+<img id="imageold" style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
 </div>
 </center>
 <form action="/userManager/update/{{ $user->id }}" method="post" enctype="multipart/form-data" >
@@ -55,7 +55,7 @@ function readURL(input) {
           <label class="custom-file-label"  for="inputGroupFile02">Please Choose Avatar Image</label>
 
           </div>
-          <center><img id="imageold" style="height:150px;weight:150px;"  src=''> </center>
+
 
         </div>
         <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>

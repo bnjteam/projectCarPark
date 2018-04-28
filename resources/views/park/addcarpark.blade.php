@@ -76,7 +76,7 @@
 
 
                     document.getElementById('list').value+='rect,'+p.x+','+p.y+','+(p2.x-p.x)+','
-                    +(p2.y-p.y)+'|';
+                    +(p2.y-p.y)+','+s.color+','+s.size+'|';
 
           }
           function drawPen (s) {
@@ -93,19 +93,23 @@
                         document.getElementById('list').value+=p.x+','+  p.y+',';
                   }
 
-                  document.getElementById('list').value+='|';
+                  document.getElementById('list').value+=s.color+','+s.size+'|';
                   ctx.stroke();
           }
 
           function drawFont(s){
-            ctx.fillStyle = s.color;
             ctx.lineWidth = 3;
+
             ctx.font = "30px Arial";
+            ctx.fillStyle = 'white';
             ctx.beginPath();
-
-
+            ctx.fillRect(s.x-20, s.y-40,160,60);
+            ctx.fillStyle = 'black';
+            ctx.strokeStyle='#000000';
+            ctx.beginPath();
+              ctx.rect(s.x-20, s.y-40,s.w, s.h);
+              ctx.stroke();
               ctx.fillText(s.text,s.x,s.y);
-
 
               if (target==s){
                 ctx.strokeStyle='#000000';
@@ -113,6 +117,7 @@
                 ctx.rect(s.x-20, s.y-40,s.w, s.h);
                 ctx.stroke();
               }
+
                  document.getElementById('list').value+='font,'+s.text+','+s.x+','+s.y+'|';
                  checkfont(s.text);
           }
@@ -637,7 +642,7 @@
         <h1>Example</h1>
         <img src="/storage/carparkExample.png" alt="">
         <br><br><br>
-        
+
         <form method="POST" action="/parkings/{{$parking->id}}/updatecarpark" enctype="multipart/form-data">
           @csrf
           @method('PUT')

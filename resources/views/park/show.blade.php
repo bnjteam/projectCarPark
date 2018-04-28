@@ -44,8 +44,9 @@
 
                 var r = res[i].split(",");
                 if(r[0]=='rect'){
-                  ctx.lineWidth = 3;
-                    ctx.beginPath();
+                  ctx.strokeStyle = r[5];
+                  ctx.lineWidth = r[6];
+                  ctx.beginPath();
                   ctx.rect(parseInt(r[1]), parseInt(r[2]), parseInt(r[3]), parseInt(r[4]));
                   ctx.stroke();
                 }
@@ -58,8 +59,10 @@
                   ctx.beginPath();
                   ctx.fillRect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
                   ctx.fillStyle = 'black';
+                  ctx.strokeStyle='#000000';
                   ctx.beginPath();
                   ctx.rect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+                    ctx.stroke();
                   ctx.fillText(r[1],parseInt(r[2]), parseInt(r[3]));
 
                     ctx.stroke();
@@ -78,8 +81,9 @@
                 if(r[0]=='pen'){
 
                   ctx.lineCap = 'round';
+                  ctx.strokeStyle = r[r.length-2];
+                  ctx.lineWidth = r[r.length-1];
 
-                      ctx.lineWidth = 3;
                       ctx.beginPath();
                       ctx.moveTo(r[1], r[2]);
 
@@ -123,6 +127,7 @@
                      contextin.beginPath();
                      contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillStyle = 'black';
+                     contextin.strokeStyle='#000000';
                      contextin.beginPath();
                      contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
@@ -140,6 +145,7 @@
                      contextin.beginPath();
                      contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillStyle = 'black';
+                        contextin.strokeStyle='#000000';
                      contextin.beginPath();
                      contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
@@ -281,8 +287,8 @@
       <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <input type="text" id='selectmap' name="selectmap" value="">
-        <input type="text" id='selectmap2' name="selectmap2" value="">
+        <input hidden type="text" id='selectmap' name="selectmap" value="">
+        <input hidden type="text" id='selectmap2' name="selectmap2" value="">
       @foreach($photoslocations as $photoslocation)
             <br>
             <center><div class="">
