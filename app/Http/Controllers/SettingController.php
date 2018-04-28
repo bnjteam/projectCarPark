@@ -53,7 +53,7 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-
+      
       return View('/profile',['user'=>$user]);
     }
 
