@@ -234,7 +234,6 @@ class ParkingsController extends Controller
       }
       public function updatephoto(Request $request, Parking $parking)
       {
-
         $parking->location=$request->input('location');
         $parking->address=$request->input('address');
         if ($request->fileToUpload2!=null){
