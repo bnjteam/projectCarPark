@@ -346,6 +346,7 @@ class ComposerStaticInit9666c3cc036910bf61ada12e18555f14
         'App\\Package' => __DIR__ . '/../..' . '/app/Package.php',
         'App\\Package_user' => __DIR__ . '/../..' . '/app/Package_user.php',
         'App\\Parking' => __DIR__ . '/../..' . '/app/Parking.php',
+        'App\\Payment' => __DIR__ . '/../..' . '/app/Payment.php',
         'App\\Photolocation' => __DIR__ . '/../..' . '/app/Photolocation.php',
         'App\\Policies\\UserPolicy' => __DIR__ . '/../..' . '/app/Policies/UserPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
