@@ -13,6 +13,7 @@ Route::post('/search','HomeController@search');
 Route::get('/search', 'HomeController@show_search');
 Route::put('/home/{id}','SettingController@update');
 Route::get('/profile', 'SettingController@index');
+Route::get("/profile/show/{user}", 'SettingController@show');
 Route::get('/userManager', 'UsersManagerController@index');
 // Route::get('/userManager', function(){
 //   if (Gate::allows('index-userManager',Auth::user())){
