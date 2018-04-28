@@ -7,6 +7,7 @@ use App\Map;
 use App\User;
 use App\Package_user;
 use App\Photolocation;
+use App\Current_map;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -259,4 +260,30 @@ class ParkingsController extends Controller
             return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
       }
 
+      public function readQRcode($token){
+        // return view('park.readQRcode');
+          if (count(Current_map::all()->where('password','LIKE',$token))) {
+            $current = Current_map::all()->where('password','LIKE',$token)->first();
+            $current->status = "full";
+            $current->password = '';
+            $current->save();
+
+                $log = new Log();
+                   $log->id_user = $current->id_user;
+                $users = User::all()->pluck('name','id');
+                $log->description = "user ".$log->id_user.' entry the park ';
+
+                $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
+                $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
+
+                $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+
+                $log->save();
+                return view('park.readQRcode');
+          }
+          else{
+             dd('Not found');
+          }
+
+      }
 }

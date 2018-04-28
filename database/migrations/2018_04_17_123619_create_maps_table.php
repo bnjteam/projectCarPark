@@ -17,10 +17,6 @@ class CreateMapsTable extends Migration
             $table->increments('id');
             $table->string('number');
             $table->string('id_photo');
-            $table->enum('status',[
-              'full','empty','reserve'
-            ]);
-            $table->string('id_user')->nullable();
             $table->timestamps();
 
 
