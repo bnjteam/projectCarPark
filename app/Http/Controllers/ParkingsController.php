@@ -5,6 +5,7 @@ use App\Log;
 use App\Parking;
 use App\Map;
 use App\User;
+use App\Package_user;
 use App\Photolocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -68,6 +69,9 @@ class ParkingsController extends Controller
         $parking->photo = '/storage/noimage.png';
       }
       $parking->save();
+      $pack = Package_user::all()->where('id','like',Auth::user()->id)->first();
+      $pack->numbers = $pack->numbers+1;
+      $pack->save();
 
         $log = new Log();
         if (Auth::check()){
@@ -147,6 +151,9 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
+      $pack = Package_user::all()->where('id','like',Auth::user()->id)->first();
+      $pack->numbers = $pack->numbers-1;
+      $pack->save();
       $parking->delete();
       $parking->save();
 
@@ -156,6 +163,8 @@ class ParkingsController extends Controller
       $log->description = "user ".$log->id_user.' delete parking';
       $log->location = $parking->location;
       $log->save();
+
+
     return redirect('/parkings');
     }
 
@@ -190,7 +199,7 @@ class ParkingsController extends Controller
               $str = explode("|", $s);
 
               for ($i=0; $i <count($str); $i++) {
-        
+
                   $arstr = explode(",", $str[$i]);
 
                   if($arstr[0]=='font'){
