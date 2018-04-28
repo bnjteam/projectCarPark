@@ -95,6 +95,24 @@ class LogController extends Controller
      */
     public function destroy(Log $log)
     {
-        //
+
     }
+
+    public function showAllLog()
+    {
+
+      if (\Gate::allows('index-log',\Auth::user())){
+        $log = Log::all() ;
+        $users= User::all() ;
+        $names = User::all()->pluck('name','id');
+        //dd($users);
+        //return view('/home');
+        return view('/userManager.logview',['names'=>$names,'logData'=>$log,'user'=>$users]);
+      }else {
+        return view('/denieViews.denie');
+      }
+
+
+    }
+
 }

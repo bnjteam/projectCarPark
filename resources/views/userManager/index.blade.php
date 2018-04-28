@@ -8,14 +8,12 @@
 
 @endsection
 
-
-@section('content')
-
 <style>
 table {
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+    text-align: center;
 }
 
 th {
@@ -26,28 +24,43 @@ th, td {
     text-align: left;
     padding: 16px;
 }
-
 tr:nth-child(even) {
     background-color: #f2f2f2
 }
+th:hover {
+    background-color: pink
+}
+th:active {
+    background-color: #666699;
+}
+tr:hover {
+  background-color:#f5f5f5;
+}
+td ,th ,tr {
+  word-wrap: break-word;
+}
+
 </style>
 
+@section('content')
+
+
+<a class="btn btn-success" role="button" href="/userManager/logs/" >show all Log</a><br><br>
+<div style="overflow-x:auto;">
 <table class="table" id="myTable">
 
-        <tr>
+    <tr>
       <th onclick="sortTable(0)" scope="col">ID</th>
       <th onclick="sortTable(1)" scope="col">Avatar</th>
       <th onclick="sortTable(2)" scope="col">Name</th>
-
       <th onclick="sortTable(3)" scope="col">E-mail</th>
       <th onclick="sortTable(4)" scope="col">Level</th>
-      <th onclick="sortTable(5)" scope="col">Create Date</th>
-
+      <th onclick="sortTable(5)" scope="col">Create</th>
       <th onclick="sortTable(6)" scope="col">Status</th>
       <th onclick="sortTable(7)" scope="col">Package</th>
-      <th onclick="sortTable(8)" scope="col">End Package Date</th>
+      <th onclick="sortTable(8)" scope="col">End Package</th>
       <th onclick="sortTable(9)" scope="col">Action</th>
-      <th onclick="sortTable(10)" scope="col">Log History</th>
+      <th onclick="sortTable(10)" scope="col">Log</th>
 
     </tr>
 
@@ -56,13 +69,13 @@ tr:nth-child(even) {
     <tr>
       <td>{{ $loop->iteration }}</td>
       <td><img style="border-radius: 20%" width="80"  src="{{ $item->avatar }}" alt=""></td>
-      <td > <a href="/userManager/show/{{$item->id}}">
+      <td> <a href="/userManager/show/{{$item->id}}">
           {{ $item->name }}
         </a> </td>
 
-      <td class="table-secondary">{{ $item->email }}</td>
-      <td class="table-secondary">{{ $item->level }}</td>
-      <td class="table-secondary">{{ $item->created_at->diffForHumans() }}</td>
+      <td >{{ $item->email }}</td>
+      <td >{{ $item->level }}</td>
+      <td >{{ $item->created_at->diffForHumans() }}</td>
 
       @if($item->is_enabled==1)
 
@@ -76,17 +89,17 @@ tr:nth-child(even) {
       @else
 
         <td class="table-danger">
-          <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
+          <form  action="/userManager/suspend/{{$item->id}}" method="post">
             @csrf
             @method('DELETE')
             <button onclick="return confirm('Are you sure you want to active this user?')" type="submit" class="btn btn-success btn-sm">Active</button>/<i style="color:red" class="fa fa-times">Suspend</i>
           </form>
           </td>
       @endif
-      <td class="table-secondary">{{ $item->type }}</td>
-      <td class="table-secondary">{{ $item->end_date_package }}</td>
+      <td >{{ $item->type }}</td>
+      <td >{{ $item->end_date_package }}</td>
       <div>
-      <td class="table-secondary"><a class="btn btn-info" role="button"
+      <td ><a class="btn btn-info" role="button"
          href="/userManager/setting/{{ $item->id }}">Edit</a></td>
       </div>
       <div>
@@ -97,7 +110,7 @@ tr:nth-child(even) {
     @endforeach
 
 </table>
-
+</div>
 <script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -137,5 +150,5 @@ function sortTable(n) {
     }
   }
 }
-</script> 
+</script>
 @endsection
