@@ -17,7 +17,7 @@ class CreatePackagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('limit');
-            $table->real('price');
+            $table->float('price');
             $table->timestamps();
 
             $table->foreign('name')->references('id')->on('users');

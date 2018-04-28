@@ -13,12 +13,12 @@ class LogsTableSeeder extends Seeder
     {
         $log = new App\Log();
         $log->id_user = 1;
-        $log->description = "admin has login";
+        $log->description = "user 1 has login";
         $log->save();
 
         $log = new App\Log();
         $log->id_user = 2;
-        $log->description = "guest setting user";
+        $log->description = "user 2 setting user";
         $log->save();
     }
 }

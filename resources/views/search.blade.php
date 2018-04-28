@@ -54,12 +54,37 @@
             </div>
           </div>
 
-        @if ($start == 3)
+        @if ($start == 3 || $i == 0)
           <?php $start = 0 ?>
           </div>
         @endif
         @endif
       @endfor
+      <div>
+  <div class="row justify-content-center">
+    <ul class="pagination pagination-md">
+      @for ($i=0;$i<= count($details)%6 ;$i++)
+        @if ($i==0)
+          <li class="page-item disabled">
+            <a class="page-link" href="">&laquo;</a>
+          </li>
+        @elseif ($i==count($details)%6)
+          <li class="page-item">
+            <a class="page-link" href="#">&raquo;</a>
+          </li>
+        @elseif ($i == $i)
+          <li class="page-item active">
+            <a class="page-link" href="#">{{$i}}</a>
+          </li>
+        @else
+          <li class="page-item">
+            <a class="page-link" href="#">{{$i}}</a>
+          </li>
+        @endif
+      @endfor
+    </ul>
+  </div>
+</div>
     @else
       <br>
       <div class="" style="padding-top:200px;padding-bottom:200px">
