@@ -253,11 +253,18 @@ class ParkingsController extends Controller
             return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
       }
 
-      public function updatemap(Request $request,Map $map)
+      public function updatemap(Request $request)
       {
-        dd($request);
-            $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
-            return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);
+
+        $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'));
+        $current_map=new Current_map;
+        $current_map->id_user=Auth::user()->id;
+        $current_map->id_map=$map->id;
+        $current_map->password=str_random(64);
+        $current_map->status='empty';
+        $current_map->save();
+
+        return view('/park.complete');
       }
 
       public function readQRcode($token){
