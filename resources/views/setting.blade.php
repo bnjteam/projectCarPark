@@ -33,9 +33,9 @@ function readURL(input) {
           <center>
 <div class="panel-heading">
 
-    <img style="border-radius: 50%" width='300'  src="{{ Auth::user()->avatar }}" alt=""><br><br>
+    <img id="imageold" style="border-radius: 50%" width='300'  src="{{ Auth::user()->avatar }}" alt=""><br><br>
 </div>
-</center><hr><center><p>Change Profile</p></center><hr>
+
             <form method="POST" action="/home/{{ Auth::user()->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
