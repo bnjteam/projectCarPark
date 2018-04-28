@@ -90,6 +90,13 @@ class HomeController extends Controller
        $log->save();
        return redirect()->back();
     }
+    public function InfoParking(User $user){
 
+
+
+        return view('/park.infoparking');
+
+
+    }
 
 }
