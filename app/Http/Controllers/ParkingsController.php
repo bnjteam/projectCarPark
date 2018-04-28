@@ -152,7 +152,7 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
-      $pack = Package_user::all()->where('id','like',Auth::user()->id)->first();
+      $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
       $pack->numbers = $pack->numbers-1;
       $pack->save();
       $parking->delete();
