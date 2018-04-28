@@ -256,7 +256,8 @@ class ParkingsController extends Controller
       public function updatemap(Request $request)
       {
 
-        $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'));
+        $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+    
         $current_map=new Current_map;
         $current_map->id_user=Auth::user()->id;
         $current_map->id_map=$map->id;
