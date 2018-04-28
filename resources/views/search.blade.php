@@ -27,7 +27,9 @@
     <div class="" style="font-size:30px;margin-left:15px">
       The Search results for your query <b> '{{ $query }}' </b> are :
     </div>
+        <?php $contentCount=0  ?>
       @for($i = count($details)-1;$i >= 0; $i--,$start++)
+        <?php $contentCount= $contentCount+1 ?>
         @if ($start ==1)
           <div class="row">
           <div class="col-4" style="padding:10px">
@@ -53,37 +55,19 @@
               </a>
             </div>
           </div>
-
+        @endif
         @if ($start == 3 || $i == 0)
           <?php $start = 0 ?>
           </div>
         @endif
-        @endif
+
       @endfor
+      <div class="row justify-content-center" >
+          {{ $details->links() }}
+      </div>
+
       <div>
-  <div class="row justify-content-center">
-    <ul class="pagination pagination-md">
-      @for ($i=0;$i<= count($details)%6 ;$i++)
-        @if ($i==0)
-          <li class="page-item disabled">
-            <a class="page-link" href="">&laquo;</a>
-          </li>
-        @elseif ($i==count($details)%6)
-          <li class="page-item">
-            <a class="page-link" href="#">&raquo;</a>
-          </li>
-        @elseif ($i == $i)
-          <li class="page-item active">
-            <a class="page-link" href="#">{{$i}}</a>
-          </li>
-        @else
-          <li class="page-item">
-            <a class="page-link" href="#">{{$i}}</a>
-          </li>
-        @endif
-      @endfor
-    </ul>
-  </div>
+
 </div>
     @else
       <br>

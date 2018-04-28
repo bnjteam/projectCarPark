@@ -26,30 +26,12 @@
                 </span>
         </div>
       </div>
-
       </form>
     </div>
   </div>
 @endsection
 @section('content')
 <div class="container">
-    <!-- <div class="row justify-content-center"> -->
-        <!-- <div class="col-sm-11">
-          <div class="card">
-          <div class="card-header">{{ __('Home') }}</div>
-          <div class="card-body">
-            <div class="container">
-                <div class="row">
-                  <div class="col-md-6">
-                  <a class="btn btn-link" href="{{ url('/park_reserve') }}">
-
-                  </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <div class="container">
           <div class="row" style="padding-top:50px;padding-bottom:50px;">
             <div class="col-6 " style="text-align: center">

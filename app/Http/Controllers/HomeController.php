@@ -5,11 +5,13 @@ use App\User;
 use App\Parking;
 use App\Log;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -39,27 +41,26 @@ class HomeController extends Controller
         $locationWord='';
       }
       if (Input::get('filter')=="location"){
-          $location = Parking::where('location','LIKE','%'.$locationWord.'%')->get();
+          $location = DB::table('parkings')->where('location','like','%'.$locationWord.'%')->paginate(6);
+
+
       }
       else{
-          $location = Parking::where('address','LIKE','%'.$locationWord.'%')->get();
-      }
+          $location = DB::table('parkings')->where('address','like','%'.$locationWord.'%')->paginate(6);
 
+      }
+      // dd($location);
       if(count($location) > 0)
       {
         $start = 1;
-
         return view('/search',['start'=>$start,'details'=>$location,'query'=>$locationWord,'filters'=>$this->filter]);
       }
       else {
         return view ('/search',['message'=>'No Details found. Try to search again !','filters'=>$this->filter]);
       }
     }
-
-
     public function show_search(){
-      $d = Parking::all();
-
+      $d = DB::table('parkings')->paginate(6);
       return view('/search',['start'=>1,'details'=>$d,'query'=>'','filters'=>$this->filter]);
     }
     public function sendMailForm(){
