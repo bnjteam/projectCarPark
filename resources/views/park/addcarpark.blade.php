@@ -637,7 +637,7 @@
         <h1>Example</h1>
         <img src="/storage/carparkExample.png" alt="">
         <br><br><br>
-
+        
         <form method="POST" action="/parkings/{{$parking->id}}/updatecarpark" enctype="multipart/form-data">
           @csrf
           @method('PUT')

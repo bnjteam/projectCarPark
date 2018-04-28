@@ -166,6 +166,7 @@
                     // addselect(strokes[id+''].points[i].text);
 
                      modal = document.getElementById('exampleModal'+id);
+
                      tag=strokes[id+''].points[i].text.substr(strokes[id+''].points[i].text.length-1);
                      filterselect(modal,tag,id,strokes[id+''].points[i].text);
                      modal.style.display = "block";
@@ -235,6 +236,9 @@
         option.value=cstr;
         test.add(option);
       }
+      console.log(test.options[test.selectedIndex].value);
+       document.getElementById('selectmap').value=test.options[test.selectedIndex].value;
+       document.getElementById('selectmap2').value=id;
       // select = document.getElementById("select"+id);
       // var length = select.options.length;
       // for (i = 0; i < length; i++) {
@@ -255,6 +259,11 @@
       //   }
       // }
     }
+    function setselectmap(id){
+      test = document.getElementById("test"+id);
+      document.getElementById('selectmap').value=test.options[test.selectedIndex].value;
+        document.getElementById('selectmap2').value=id;
+    }
 
         </script>
     <body>
@@ -272,7 +281,8 @@
       <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
+        <input type="text" id='selectmap' name="selectmap" value="">
+        <input type="text" id='selectmap2' name="selectmap2" value="">
       @foreach($photoslocations as $photoslocation)
             <br>
             <center><div class="">
@@ -317,9 +327,10 @@
                   @endforeach
                 </select></center>
 
-              <center>  <select class="" name="" id='test{{$photoslocation->id}}'>
+              <center>  <select class="" name="" id='test{{$photoslocation->id}}' onchange="setselectmap({{$photoslocation->id}})">
 
                 </select></center>
+
 
               </div>
               <div class="modal-footer">
