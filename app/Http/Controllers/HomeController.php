@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Parking;
 use App\Log;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class HomeController extends Controller
 {
@@ -90,4 +91,13 @@ class HomeController extends Controller
        $log->save();
        return redirect()->back();
     }
+    public function InfoParking(User $user){
+
+
+
+        return view('/park.infoparking');
+
+
+    }
+
 }
