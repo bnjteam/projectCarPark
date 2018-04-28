@@ -337,7 +337,6 @@
 
                 </select></center>
 
-
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">reserve</button>

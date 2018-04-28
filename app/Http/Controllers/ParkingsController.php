@@ -215,7 +215,7 @@ class ParkingsController extends Controller
 
                             $map->number=$j.substr($a[0],strlen($a[0])-1);
                             $map->id_photo=$photolocation->id;
-                            $map->status='empty';
+
                             $map->save();
 
                         }
