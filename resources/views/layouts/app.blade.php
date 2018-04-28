@@ -155,7 +155,12 @@
         <div class="">
           @yield('head')
         </div>
+
         <main class="py-4">
+          <br>
+          <br>
+          <br>
+          <br>
             @yield('content')
         </main>
 
