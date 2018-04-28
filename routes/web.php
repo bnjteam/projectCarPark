@@ -28,10 +28,11 @@ Route::get('/userManager', 'UsersManagerController@index');
 Route::get('/userManager/show/{user}', 'UsersManagerController@show');
 Route::get('/userManager/setting/{user}', 'UsersManagerController@edit');
 Route::get('/userManager/logs/{user}', 'LogController@show');
-Route::put('/userManager/update/{user}','UsersManagerController@update');
+Route::put('/userManager/update/{user}',['as'=>'update','uses'=>'UsersManagerController@update']);
 Route::DELETE('/userManager/suspend/{user}','UsersManagerController@destroy');
 Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
+Route::get('/userManager/logs/', 'LogController@showAllLog');
 
 
 Route::put('/parkings/updatemap','ParkingsController@updatemap');
