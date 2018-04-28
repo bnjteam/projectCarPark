@@ -69,7 +69,8 @@
 
               var r = res[i].split(",");
               if(r[0]=='rect'){
-                ctx.lineWidth = 3;
+                ctx.strokeStyle = r[5];
+                ctx.lineWidth = r[6];
                   ctx.beginPath();
                 ctx.rect(parseInt(r[1]), parseInt(r[2]), parseInt(r[3]), parseInt(r[4]));
                 ctx.stroke();
@@ -79,8 +80,14 @@
 
                 ctx.lineWidth = 3;
                 ctx.font = "30px Arial";
+                ctx.fillStyle = 'white';
                 ctx.beginPath();
-
+                ctx.fillRect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+                ctx.fillStyle = 'black';
+                ctx.strokeStyle='#000000';
+                ctx.beginPath();
+                ctx.rect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+                  ctx.stroke();
                 ctx.fillText(r[1],parseInt(r[2]), parseInt(r[3]));
                 ctx.stroke();
               }
@@ -88,8 +95,8 @@
               if(r[0]=='pen'){
 
                 ctx.lineCap = 'round';
-
-                    ctx.lineWidth = 3;
+                ctx.strokeStyle = r[r.length-2];
+                ctx.lineWidth = r[r.length-1];
                     ctx.beginPath();
                     ctx.moveTo(r[1], r[2]);
 
@@ -165,7 +172,7 @@
             </form>
 
             @foreach($photoslocations as $photoslocation)
-
+                    <br>
                   <center><div class="">
 
                       <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">

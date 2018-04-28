@@ -44,8 +44,9 @@
 
                 var r = res[i].split(",");
                 if(r[0]=='rect'){
-                  ctx.lineWidth = 3;
-                    ctx.beginPath();
+                  ctx.strokeStyle = r[5];
+                  ctx.lineWidth = r[6];
+                  ctx.beginPath();
                   ctx.rect(parseInt(r[1]), parseInt(r[2]), parseInt(r[3]), parseInt(r[4]));
                   ctx.stroke();
                 }
@@ -58,8 +59,10 @@
                   ctx.beginPath();
                   ctx.fillRect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
                   ctx.fillStyle = 'black';
+                  ctx.strokeStyle='#000000';
                   ctx.beginPath();
                   ctx.rect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+                    ctx.stroke();
                   ctx.fillText(r[1],parseInt(r[2]), parseInt(r[3]));
 
                     ctx.stroke();
@@ -78,8 +81,9 @@
                 if(r[0]=='pen'){
 
                   ctx.lineCap = 'round';
+                  ctx.strokeStyle = r[r.length-2];
+                  ctx.lineWidth = r[r.length-1];
 
-                      ctx.lineWidth = 3;
                       ctx.beginPath();
                       ctx.moveTo(r[1], r[2]);
 
@@ -123,6 +127,7 @@
                      contextin.beginPath();
                      contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillStyle = 'black';
+                     contextin.strokeStyle='#000000';
                      contextin.beginPath();
                      contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
@@ -140,6 +145,7 @@
                      contextin.beginPath();
                      contextin.fillRect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillStyle = 'black';
+                        contextin.strokeStyle='#000000';
                      contextin.beginPath();
                      contextin.rect(strokes[id+''].points[i].x-20, strokes[id+''].points[i].y-40,160,60);
                      contextin.fillText(strokes[id+''].points[i].text,strokes[id+''].points[i].x, strokes[id+''].points[i].y);
@@ -343,6 +349,67 @@
             @endforeach
 
   </form>
-    </body>
+</body>
+</div>
 
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto);
+    @import url(https://fonts.googleapis.com/css?family=Handlee);
+
+    body {
+        margin: 0 0 0;
+        /* background: #FFFFCC; */
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .paper {
+        position: relative;
+        width: 90%;
+        max-width: 800px;
+        min-width: 400px;
+        height: 390px;
+        margin: 0 auto;
+        background: #fafafa;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.3);
+        overflow: hidden;
+    }
+    .paper:before {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; left: 0;
+        width: 60px;
+        background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
+        background-size: 30px 30px;
+        border-right: 3px solid #D44147;
+        box-sizing: border-box;
+    }
+
+    .paper-content {
+        position: absolute;
+        top: 30px; right: 0; bottom: 30px; left: 60px;
+        background: linear-gradient(transparent, transparent 28px, #91D1D3 28px);
+        background-size: 30px 30px;
+    }
+
+    .paper-content textarea {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        line-height: 30px;
+        padding: 0 10px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: mediumblue;
+        font-family: 'Handlee', cursive;
+        font-weight: bold;
+        font-size: 18px;
+        box-sizing: border-box;
+        z-index: 1;
+
+
+    }
+    </style>
 @endsection

@@ -53,11 +53,6 @@ Route::delete('/photoslocations/{photoslocation}','ParkingsController@destroypho
 Route::get('/parkings/{parking}/edit/map','ParkingsController@editphoto');
 Route::put('/parkings/{parking}/updatecarpark','ParkingsController@updatecarpark')->where('id','[0-9]+');
 
-
-
-
-
-
 Route::get('/contact','HomeController@sendMailForm');
 Route::post('/contact','HomeController@sendMail');
 Route::get('/package', 'PackagesController@index');
@@ -73,3 +68,4 @@ Route::get('/register_owner/payments/{object}', 'PaymentsController@index');
 Route::put('/register_owner/payments/{object}', 'PaymentsController@update');
 
 Route::get('/readQRcode/{token}','ParkingsController@readQRcode');
+Route::get('/qr-code', 'ParkingsController@genQRcode');

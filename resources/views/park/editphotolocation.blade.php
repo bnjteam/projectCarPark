@@ -62,8 +62,9 @@ function myFunction (id) {
 
     var r = res[i].split(",");
     if(r[0]=='rect'){
-      ctx.lineWidth = 3;
-        ctx.beginPath();
+      ctx.strokeStyle = r[5];
+      ctx.lineWidth = r[6];
+      ctx.beginPath();
       ctx.rect(parseInt(r[1]), parseInt(r[2]), parseInt(r[3]), parseInt(r[4]));
       ctx.stroke();
     }
@@ -71,9 +72,15 @@ function myFunction (id) {
     if(r[0]=='font'){
 
       ctx.lineWidth = 3;
-      ctx.font = "30px Arial";
+      ctx.fillStyle = 'white';
+        ctx.beginPath();
+      ctx.fillRect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+      ctx.fillStyle = 'black';
+      ctx.strokeStyle='#000000';
       ctx.beginPath();
-
+      ctx.rect(parseInt(r[2])-20, parseInt(r[3])-40,160,60);
+        ctx.stroke();
+      ctx.font = "30px Arial";
       ctx.fillText(r[1],parseInt(r[2]), parseInt(r[3]));
       ctx.stroke();
     }
@@ -81,8 +88,9 @@ function myFunction (id) {
     if(r[0]=='pen'){
 
       ctx.lineCap = 'round';
+      ctx.strokeStyle = r[r.length-2];
+      ctx.lineWidth = r[r.length-1];
 
-          ctx.lineWidth = 3;
           ctx.beginPath();
           ctx.moveTo(r[1], r[2]);
 
