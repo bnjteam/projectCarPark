@@ -172,7 +172,7 @@
             </form>
 
             @foreach($photoslocations as $photoslocation)
-
+                    <br>
                   <center><div class="">
 
                       <img onload="myFunction({{$photoslocation->id}})" hidden id="scream{{$photoslocation->id}}" width="220" height="277" src="{{ $photoslocation->photo }}" alt="The Scream">
