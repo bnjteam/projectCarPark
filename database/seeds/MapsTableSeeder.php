@@ -44,6 +44,22 @@ class MapsTableSeeder extends Seeder
       $map->id_photo = $mapArray[$i][1];
       $map->save();
     }
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 3;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 4;
+      $map->save();
+    }
+
 
 
     }
