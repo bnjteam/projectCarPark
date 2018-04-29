@@ -46,7 +46,7 @@ Route::post('/parkings', 'ParkingsController@store');
 Route::put('/parkings/{parking}','ParkingsController@update')->where('id','[0-9]+');
 Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[0-9]+');
 Route::get('/parkings', 'ParkingsController@index');
-Route::get('/parkings/info/{user}','HomeController@InfoParking');
+Route::get('/parkings/info/{user}','ParkingsController@InfoParking');
 
 
 Route::put('/parkings/{parking}/addphoto','ParkingsController@updatephoto')->where('id','[0-9]+');
