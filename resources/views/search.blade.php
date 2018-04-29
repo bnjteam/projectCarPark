@@ -44,13 +44,17 @@
                 @endif
 
                 <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
-                @if (strlen($details[$i]->address) > 40)
-                  Location : {{substr($details[$i]->address,0,40)."..."}}
-                @else
-                  Location : {{$details[$i]->address}}
-                @endif
+                <?php
+                    if  (strlen($details[$i]->address) > 60){
+                        echo 'Location : '.substr($details[$i]->address,0,60)."...";
+                    }
+                    else {
+                      echo 'Location : '.$details[$i]->address;
+                    }
+                    // echo strlen(utf8_decode($details[$i]->address));
+                 ?>
 
-                {{strlen($details[$i]->address) }}
+
               </div>
               </a>
             </div>
@@ -67,12 +71,16 @@
                   <img src="/storage/noimage.png" width="100%" height="250px" alt="">
                 @endif
                 <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
-                @if (strlen($details[$i]->address) > 40)
-                  Location : {{substr($details[$i]->address,0,40)."..."}}
-                @else
-                  Location : {{$details[$i]->address}}
-                @endif
-                {{ strlen($details[$i]->address)}}
+                <?php
+                    if  (strlen($details[$i]->address) > 60){
+                        echo 'Location : '.substr($details[$i]->address,0,60)."...";
+                    }
+                    else {
+                      echo 'Location : '.$details[$i]->address;
+                    }
+                    // echo strlen(utf8_decode($details[$i]->address));
+                 ?>
+
               </div>
               </a>
             </div>
