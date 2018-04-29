@@ -78,7 +78,8 @@
           </div>
             <br>
               <center><img id="imageold" style="height:300px;weight:300px;"  src='' > </center>
-              @if (Auth::user()->level="admin")
+
+              @if (Auth::user()->level=="admin")
                 <a class="btn btn-primary disabled">Submit</a>
               @elseif (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] < Package::all()->pluck('limit','name')[Auth::user()->type])
                 <button type="submit" name="button" class="btn btn-primary">Submit</button>
