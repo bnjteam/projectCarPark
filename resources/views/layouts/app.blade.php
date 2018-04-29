@@ -101,7 +101,13 @@
                         @endif
                         <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
+                                    <span>
+                                      @if ( !file_exists( Auth::user()->avatar ) )
+                                        <img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt="">
+                                      @else
+                                      <img style="border-radius: 50%" width='50'  src="/storage/noimage.png" alt="">
+                                      @endif
+                                      </span>
                                      สวัสดีคุณ {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -136,7 +142,13 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  <span><img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt=""></span>
+                                  <span>
+                                    @if ( !file_exists( Auth::user()->avatar ) )
+                                      <img style="border-radius: 50%" width='50'  src="{{ Auth::user()->avatar }}" alt="">
+                                    @else
+                                      <img style="border-radius: 50%" width='50'  src="/storage/noimage.png" alt="">
+                                    @endif
+                                  </span>
                                    สวัสดีคุณ {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" style="background-color:#666699" aria-labelledby="navbarDropdown">
@@ -173,7 +185,7 @@
           <br>
 
             @yield('head')
-            <div class="" style="" >
+            <div class="" style="padding:50px" >
                 @yield('content')
 
       
@@ -260,6 +272,7 @@
     var win_dim = getWindowSize();
     var height_win = win_dim['height'];
   if (height_win < height_page){
+    console.log('height Window: '+height_win,'height Page :'+height_page);
     console.log('win_less');
   }
   else{
