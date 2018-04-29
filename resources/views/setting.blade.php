@@ -26,6 +26,14 @@ function readURL(input) {
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+          @if (isset($aleartMesg))
+            <div class="alert alert-dismissible alert-warning">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <h4 class="alert-heading">Warning!</h4>
+              <p class="mb-0">{{$aleartMesg}}</p>
+            </div>
+
+          @endif
           <div class="card">
           <div class="card-header">{{ __('Setting') }}</div>
 
