@@ -287,7 +287,7 @@ class ParkingsController extends Controller
           $log->save();
 
           return $this->InfoParking();
-          
+
         }else{
           return  redirect('/package');
         }
