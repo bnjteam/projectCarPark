@@ -29,11 +29,12 @@
       </form>
     </div>
   </div>
+</div>
 @endsection
 @section('content')
 <div class="container">
         <div class="container">
-          <div class="row" style="padding-top:50px;padding-bottom:50px;">
+          <div class="row" style="margin-top: -50px;padding-bottom:50px;">
             <div class="col-6 " style="text-align: center">
               <img src="/storage/find.jpg"  width="400px" alt="">
             </div>

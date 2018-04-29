@@ -121,7 +121,7 @@ class SettingController extends Controller
          $log->save();
             return View('/profile',['user'=>$user]);
          }else{
-           return redirect('/setting');
+            return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }
 
 
