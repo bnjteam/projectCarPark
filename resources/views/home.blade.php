@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('head')
-<div class="" style="background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
+
+<div class="" style="margin-top:-40px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
   <div class="row justify-content-center" style="padding:50px;">
     <div class="" style="font-size:80px;color:white;font-weight: 800;" >
       Parking on your hand
@@ -34,7 +35,7 @@
 @section('content')
 <div class="container">
         <div class="container">
-          <div class="row" style="margin-top: -50px;padding-bottom:50px;">
+          <div class="row" style="margin-top:20px;padding-bottom:50px;">
             <div class="col-6 " style="text-align: center">
               <img src="/storage/find.jpg"  width="400px" alt="">
             </div>
@@ -46,6 +47,9 @@
                 <div class=""style="margin-top:-20px;margin-left:20px">
                   LOCATION
                 </div>
+              </div>
+              <div class="" style="font-size:20px;">
+                with search bar
               </div>
 
             </div>

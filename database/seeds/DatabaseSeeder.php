@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(LogsTableSeeder::class);
         $this->call(PackagesTableSeeder::class);
         $this->call(PackageUsersTableSeeder::class);
+        $this->call(PhotolocationsTableSeeder::class);
+        $this->call(MapsTableSeeder::class);
+        $this->call(CurrentMapsTableSeeder::class);
     }
 }

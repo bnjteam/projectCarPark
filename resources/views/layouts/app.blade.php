@@ -20,6 +20,7 @@
     <?php
       use App\Package;
       use App\Package_user;
+
     ?>
     @stack('style')
 <style >
@@ -33,7 +34,7 @@
 </style>
 </head>
 
-<body style-="height:100%;position:relative">
+<body style-="height:100%;position:relative" id="page">
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
             <div class="container">
@@ -56,6 +57,7 @@
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Regist Owner</a></li>
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li>
+                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Buy Package to reserve </a></li>
                           @elseif (Auth::check() && Auth::user()->level=="member" )
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li>
                           @elseif (Auth::check() && Auth::user()->level == "parking_owner")
@@ -67,6 +69,7 @@
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Upgrade Package</a></li>
                           @else
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Create Your Parking</a></li>
+                            <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Buy Package to reserve </a></li>
                           @endif
                           </ul>
                         </div>

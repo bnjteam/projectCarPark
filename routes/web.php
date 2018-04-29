@@ -37,6 +37,7 @@ Route::get('/userManager/logs/', 'LogController@showAllLog');
 
 
 Route::get('/parkings/info','ParkingsController@InfoParking');
+Route::delete('/parkings/info/{current_map}','ParkingsController@deletereserve')->where('id','[0-9]+');
 
 
 Route::put('/parkings/updatemap','ParkingsController@updatemap');

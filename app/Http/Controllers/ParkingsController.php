@@ -342,7 +342,6 @@ class ParkingsController extends Controller
 
       }
       public function InfoParking(){
-
           $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
           if ($cur_map!=null){
             $map = Map::all()->where('id','LIKE',$cur_map->id_map)->first();
@@ -352,12 +351,17 @@ class ParkingsController extends Controller
             $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
             $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
 
-              return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo]);
+              return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
           }
           else{
               return view('/park.infoparking');
           }
-
       }
+
+      public function deletereserve(Current_map $current_map){
+            $current_map->delete();
+            dd($current_map);
+      }
+
 
 }
