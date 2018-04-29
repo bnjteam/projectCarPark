@@ -15,14 +15,16 @@
             <div class="card">
             <div class="card-header">{{ __('Profile') }}</div>
             <div class="card-body">
-    <div class="panel-heading">
-  <ul class="list-group">
+
   @if(isset($user->start_date_package) and isset($user->end_date_package))
-    <li style="text-transform: capitalize;" class="mb-0 list-group-item">Your Package :  {{ $user->type }} Package </li>
+  <div class="panel-heading">
+    <ul class="list-group">
+    <li style="text-transform: capitalize;" class="mb-0 list-group-item">Your Package : <span style="cursor:default" class="btn btn-success"> {{ $user->type }} Package </span></li>
     <li class="mb-0 list-group-item">Start Package Date: {{ $user->start_date_package }}</li>
     <li class="mb-0 list-group-item">End Package Date: {{ $user->end_date_package }}</li>
   </ul>
-  </div>
+</div>
+
   @else
 
   <div class="alert alert-dismissible alert-warning">
@@ -54,13 +56,14 @@
         Status {!! $user->is_enabled ?
           '<i class="fa fa-check">Active</i>' : '<i class="fa fa-times">Suspends</i>' !!}
       </li>
-      </li>
+
       <li class="list-group-item">
         Joining Date : {{ $user->created_at->diffForHumans() }}
       </li>
       <li class="list-group-item">
         Last Update : {{ $user->updated_at->diffForHumans() }}
       </li>
+
       @if(empty($user->start_date_package) and empty($user->end_date_package))
       <li class="list-group-item">
         Your package has emtry or expired
@@ -68,11 +71,13 @@
       </li>
       @endif
     </ul>
-    <br>
-    <div class="panel-footer">
-      <a class="btn btn-primary" role="button"
-         href="/setting">Edit</a>
-    </div>
 </div>
-</center>
+</div>
+<center>
+</div>
+
+
+
+
+
 @endsection
