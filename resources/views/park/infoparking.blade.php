@@ -1,14 +1,4 @@
 @extends('layouts.app')
-@push('style')
-<style media="screen">
-.footer{
-  position: absolute;
-  width:100%;
-  bottom: 0;
-}
-</style>
-
-@endpush
 @section('head')
 
 

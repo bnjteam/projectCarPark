@@ -67,7 +67,7 @@ class UsersTableSeeder extends Seeder
       $admin->email = 'parking_owner@hotmail.com';
       $admin ->password=bcrypt('parking_owner');
       $admin->level='parking_owner';
-      $admin->type='small';
+      $admin->type='large';
       $admin->start_date_package=Carbon::now()->toDateTimeString();
       $admin->end_date_package=Carbon::now()->addMonths(4)->toDateTimeString();
       $admin->remember_token= str_random(64);
@@ -154,6 +154,34 @@ class UsersTableSeeder extends Seeder
       $admin->type='weekly';
       $admin->start_date_package=Carbon::now()->toDateTimeString();
       $admin->end_date_package=Carbon::now()->addDays(1)->toDateTimeString();
+      $admin->remember_token= str_random(64);
+      $admin->is_enabled=true;
+      $admin->avatar='/storage/photos/avatar123.png';
+      $admin->save();
+
+      $admin = new App\User;
+      $admin ->name ='Owner';
+      $admin ->lastname ='Yu';
+      $admin->email = 'parking_owner2@hotmail.com';
+      $admin ->password=bcrypt('parking_owner2');
+      $admin->level='parking_owner';
+      $admin->type='large';
+      $admin->start_date_package=Carbon::now()->toDateTimeString();
+      $admin->end_date_package=Carbon::now()->addMonths(4)->toDateTimeString();
+      $admin->remember_token= str_random(64);
+      $admin->is_enabled=true;
+      $admin->avatar='/storage/photos/avatar123.png';
+      $admin->save();
+
+      $admin = new App\User;
+      $admin ->name ='Owner';
+      $admin ->lastname ='M';
+      $admin->email = 'parking_owner3@hotmail.com';
+      $admin ->password=bcrypt('parking_owner3');
+      $admin->level='parking_owner';
+      $admin->type='large';
+      $admin->start_date_package=Carbon::now()->toDateTimeString();
+      $admin->end_date_package=Carbon::now()->addMonths(4)->toDateTimeString();
       $admin->remember_token= str_random(64);
       $admin->is_enabled=true;
       $admin->avatar='/storage/photos/avatar123.png';

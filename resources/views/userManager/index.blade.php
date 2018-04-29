@@ -68,7 +68,13 @@ td ,th ,tr {
 
     <tr>
       <td>{{ $loop->iteration }}</td>
-      <td><img style="border-radius: 20%" width="80"  src="{{ $item->avatar }}" alt=""></td>
+      <td>
+          @if ( !file_exists( $item->avatar ) ) 
+            <img style="border-radius: 20%" width="80"  src="{{ $item->avatar }}" alt="">
+          @else
+            <img style="border-radius: 20%" width="80"  src="/storage/noimage.png" alt="">
+          @endif
+      </td>
       <td> <a href="/userManager/show/{{$item->id}}">
           {{ $item->name }}
         </a> </td>

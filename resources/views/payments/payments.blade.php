@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
 	<div class="row justify-content-center">
@@ -11,6 +12,7 @@
 				@if ($errors->any())
 					<div class="alert alert-danger" id="error">
 						<ul>
+
 						@foreach ($errors->all() as $error)
 								<li>{{ $error }}</li>
 						@endforeach
@@ -28,7 +30,6 @@
 				</div>
 				<div class="row col-12">
 					<input type="tel" value="" id="bt-number" name="card" 	 class=" braintree-field form-control" placeholder="Your Card Number (16-digits)" style="width:540px;">
-					{{$errors->first('card')}}
 					<div class="">
 						<label for="bt-exp-month" class="no-wrap">EXPIRATION DATE (MM/YYYY)
 						</label>
@@ -37,15 +38,12 @@
 						<div class="row">
 							<div class="col-2">
 									<input type="tel" value="" id="bt-exp-month" data-field-name="expirationMonth" data-braintree-name="expiration_month" name="month" class=" braintree-field form-control" placeholder="Month">
-									{{$errors->first('month')}}
 							</div>
 							<div class="col-2">
 									<input type="tel" style="margin-left:-30px" value="" id="bt-exp-year" data-field-name="expirationYear" data-braintree-name="expiration_year" name="year" class=" braintree-field form-control" placeholder="Year" >
-									{{$errors->first('year')}}
 							</div>
 							<div class="col-2">
 									<input type="tel" style="margin-left:0px" value="" id="bt-cvv" data-field-name="cvv" data-braintree-name="cvv"  name="cvv" class=" braintree-field form-control" placeholder="123">
-									{{$errors->first('cvv')}}
 							</div>
 						</div>
 						<div class="">
