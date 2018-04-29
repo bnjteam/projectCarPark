@@ -6,11 +6,6 @@
     <meta charset="utf-8">
     <title>parking reserve info</title>
 
-
-
-
-
-
   </head>
   <body><br><br><br><br><br>
     <center>

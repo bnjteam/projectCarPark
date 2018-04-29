@@ -53,8 +53,11 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-
+      if (\Gate::allows('index-profile',\Auth::user())){
       return View('/profile',['user'=>$user]);
+    }else {
+      return view('/denieViews.denie');
+    }
     }
 
     /**
@@ -118,7 +121,7 @@ class SettingController extends Controller
          $log->save();
         return view('/profile',['user'=>$user]);
          }else{
-           return view('/setting',['aleartMesg'=>'Your password are wrong.']);
+
          }
 
 
