@@ -645,15 +645,38 @@
         <form method="POST" action="/parkings/{{$parking->id}}/updatecarpark" enctype="multipart/form-data">
           @csrf
           @method('PUT')
-            Floor : <input type="text" name="floor" value="">
+
             <br><br>
             <input  type="hidden" name="list" value="" id='list'>
 
+            <div class="form-group">
+              <div class="row justify-content-center">
+                <div class="col-0" style="margin-top:10px">
+                  Floor :
+                </div>
+                <div class="col-4">
+                   <input  class="form-control" type="text" name="floor" value="">
+
+                </div>
+              </div>
+          </div>
+
+
+          <div class="col-4">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" class="form-control-file" name="fileToUpload" id="imgInp" aria-describedby="fileHelp"   onchange="showpic(this)">
+                  <label class="custom-file-label" for="imgInp">Choose file</label>
+                </div>
+              </div>
+            </div>
+          </div>
         <div class="top-bar">
           <div class="col-md-6">
 
-          <input type="file" class="form-control-file" name="fileToUpload" id="imgInp" aria-describedby="fileHelp"   onchange="showpic(this)">
 
+        
 
           </div>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="setselect()">
@@ -730,7 +753,7 @@
         </div>
         </div>
 
-
+        <br>
 
         <canvas id="draw" style="border:1px solid #000000;"></canvas>
         <br><br>
