@@ -297,6 +297,9 @@ class ParkingsController extends Controller
         $current_map=new Current_map;
         $current_map->id_user=Auth::user()->id;
         $current_map->id_map=$map->id;
+        while (count(Current_map::all()->where('password','LIKE',$number)->get()) > 0) {
+          $number = str_random(64);
+        }
         $current_map->password=str_random(64);
         $current_map->status='empty';
         $current_map->save();
@@ -309,7 +312,10 @@ class ParkingsController extends Controller
           if (count(Current_map::all()->where('password','LIKE',$token))) {
             $current = Current_map::all()->where('password','LIKE',$token)->last();
             $current->status = "full";
-            $current->password = '';
+            while (count(Current_map::all()->where('password','LIKE',$number)->get()) > 0) {
+              $number = str_random(64);
+            }
+            $current->password=str_random(64);
             $current->save();
                 $log = new Log();
                    $log->id_user = $current->id_user;

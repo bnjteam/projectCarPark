@@ -19,14 +19,42 @@ class PackageUsersTableSeeder extends Seeder
 
         $p = new App\Package_user;
         $p->id_user = 5;
-        $p->id_package = 2;
-        $p->numbers = 1;
+        $p->id_package = 4;
+        $p->numbers = 12;
         $p->save();
-
-
 
         $p = new App\Package_user;
         $p->id_user = 6;
+        $p->id_package = 6;
+        $p->numbers = 1;
+        $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 7;
+        $p->id_package = 6;
+        $p->numbers = 1;
+        $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 8;
+        $p->id_package = 6;
+        $p->numbers = 1;
+        $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 9;
+        $p->id_package = 6;
+        $p->numbers = 1;
+        $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 10;
+        $p->id_package = 6;
+        $p->numbers = 1;
+        $p->save();
+
+        $p = new App\Package_user;
+        $p->id_user = 11;
         $p->id_package = 6;
         $p->numbers = 1;
         $p->save();
