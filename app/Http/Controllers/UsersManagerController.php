@@ -7,6 +7,7 @@ use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 class UsersManagerController extends Controller
 {
 
@@ -61,7 +62,20 @@ class UsersManagerController extends Controller
     public function show(User $user)
     {
       if (\Gate::allows('index-userManagers',$user)){
+        if ($user->end_date_package!=null){
+          $date = Carbon::parse($user->end_date_package);
+          $date = Carbon::now()->diffInDays($date);
+          if ($date == 0 ){
+            $date = 'Today ';
+          }
+          if ($date ==1 ){
+            $date = 'Tomorrow';
+          }
+          return view('userManager.show',['user' => $user,'endDate'=>$date]);
+        }
         return view('userManager.show',['user' => $user]);
+
+
       }
       else{
           return view('/denieViews.denie');
