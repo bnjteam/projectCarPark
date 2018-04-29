@@ -634,6 +634,16 @@
 
 
         </script>
+        @if ($errors->any())
+          <div class="alert alert-danger" id="error">
+            <ul>
+
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+          </div>
+        @endif
 
       <center><div class="">
         <br>
@@ -673,6 +683,7 @@
           </div>
         <div class="top-bar">
           <div class="col-md-6">
+
 
 
 
