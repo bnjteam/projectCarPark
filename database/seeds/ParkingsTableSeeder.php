@@ -11,6 +11,11 @@ class ParkingsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Parking::class,10)->create();
+        $parking = new App\Parking;
+        $parking->id_user = 5;
+        $parking->location = 'The Mall Ngamwongwan';
+        $parking->address = '30/39-50 M.2 Ngamwongwan Rd, Bangken,Nonthaburi, 11000';
+        $parking->photo = '/storage/mall.png';
+        $parking->save();
     }
 }

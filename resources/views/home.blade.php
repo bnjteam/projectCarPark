@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('head')
+    
 <div class="" style="background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
   <div class="row justify-content-center" style="padding:50px;">
     <div class="" style="font-size:80px;color:white;font-weight: 800;" >
@@ -28,6 +29,9 @@
       </div>
       </form>
     </div>
+    <a class="" href="/package" style="font-size:60px" >
+      Buy Package to reserve
+    </a>
   </div>
 </div>
 @endsection

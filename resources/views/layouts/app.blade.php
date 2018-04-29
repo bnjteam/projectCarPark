@@ -20,6 +20,7 @@
     <?php
       use App\Package;
       use App\Package_user;
+
     ?>
     @stack('style')
 <style >
@@ -33,7 +34,7 @@
 </style>
 </head>
 
-<body style-="height:100%;position:relative">
+<body style-="height:100%;position:relative" id="page"> 
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
             <div class="container">
