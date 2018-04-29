@@ -139,6 +139,10 @@ class ParkingsController extends Controller
      */
     public function update(Request $request, Parking $parking)
     {
+      $request->validate(
+          ['location' =>'required',
+          'address' =>'required'
+        ]);
               $parking->location=$request->input('location');
               $parking->address=$request->input('address');
               if ($request->fileToUpload2!=null){
@@ -196,6 +200,9 @@ class ParkingsController extends Controller
     public function updatecarpark(Request $request, Parking $parking)
     {
 
+      $request->validate(
+          ['floor' =>'required'
+        ]);
             $photolocation=new Photolocation;
             $photolocation->id_parking=$parking->id;
 
@@ -205,9 +212,13 @@ class ParkingsController extends Controller
                 $photolocation->canvas='';
             }
 
+
             if ($request->fileToUpload!=null){
               $path = $request->fileToUpload->store('/public/photoslocation');
               $photolocation->photo = '/storage/photoslocation/'.basename($path);
+              }
+              else{
+                $photolocation->photo = '/storage/noimage.png';
               }
               $photolocation->floor=$request->input('floor');
               $photolocation->save();
@@ -237,7 +248,7 @@ class ParkingsController extends Controller
                   }
 
               }
-              
+
 
         return redirect('/parkings/'.$parking->id.'/edit');
     }

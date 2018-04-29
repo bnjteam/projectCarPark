@@ -634,7 +634,16 @@
 
 
         </script>
+        @if ($errors->any())
+          <div class="alert alert-danger" id="error">
+            <ul>
 
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+          </div>
+        @endif
 
       <center><div class="">
         <br>
@@ -676,7 +685,7 @@
           <div class="col-md-6">
 
 
-        
+
 
           </div>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" onclick="setselect()">
@@ -761,6 +770,8 @@
 
 
 
+
+
       <table  width="600" id="myTable"  >
         <thead>
           <tr>
@@ -772,12 +783,27 @@
         <tbody>
 
         </tbody>
-      </table>
+      </table> 
+
         <br><br>
         <button class="btn btn-info" type="submit" name="button" >submit</button>
     </form>
 
       </div></center>
 
+      <style>
+      table {
+          border-collapse: collapse;
+          border-spacing: 0;
+          width: 100%;
+          border: 1px solid #ddd;
+      }
 
+      th, td {
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even){background-color: #f2f2f2}
+      </style>
 @endsection
