@@ -30,10 +30,11 @@ function readURL(input) {
           <div class="card-body">
 <center>
 <div class="panel-heading">
-@if (file_exists( $user->avatar ))
-  <img id="imageold" style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
+  {{ $user->avatar}}
+@if (!file_exists( $user->avatar ))
+  AA<img id="imageold" style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
 @else
-  <img id="imageold" style="border-radius: 50%" width='300'  src="/storage/noimage.png" alt=""><br><br>
+  BB<img id="imageold" style="border-radius: 50%" width='300'  src="/storage/noimage.png" alt=""><br><br>
 @endif
 </div>
 </center>

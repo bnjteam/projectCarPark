@@ -85,7 +85,11 @@
         <h3>Location : {{ $parking->location}}</h3>
 
         <div class="" style="width:1100px">
-            <img class="card-img-top" src="{{ $parking->photo}}"  >
+            @if (!file_exists($parking->photo))
+              <img class="card-img-top" src="{{ $parking->photo}}"  >
+            @else
+            <img class="card-img-top" src="/storage/noimage.png"  >
+            @endif
         </div>
                 <br>
                 <p>Address</p>

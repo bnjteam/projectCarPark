@@ -64,7 +64,13 @@ td ,th ,tr {
     <tr>
       <td>{{ $loop->iteration }}</td>
 
-      <td><img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt=""></td>
+      <td>
+        @if ( !file_exists( $item->photo ) ) 
+            <img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt="">
+          @else
+            <img style="border-radius: 20%" width="150"  src="/storage/noimage.png" alt="">
+          @endif
+      </td>
       <td><a href="/parkings/{{ $item->id }}">{{ $item->location }}</a></td>
       <td>{{ $item->address }}</td>
 

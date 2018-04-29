@@ -6,7 +6,7 @@
 <center>
 <div class="panel panel-default">
     <div class="panel-heading">
-      @if (file_exists( $user->avatar ))
+      @if (!file_exists( $user->avatar ))
         <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
       @else
         <img style="border-radius: 50%" width='300'  src="/storage/noimage.png" alt=""><br><br>
