@@ -14,6 +14,8 @@ use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Response\QrCodeResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class ParkingsController extends Controller
 {
@@ -261,7 +263,7 @@ class ParkingsController extends Controller
         if(Auth::check() && Auth::user()->level=='member'
         && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
                                             <
-                 Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
+          Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
 
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
           $current_map=new Current_map;
@@ -337,6 +339,24 @@ class ParkingsController extends Controller
         else{
           return view('/login');
         }
+
+      }
+      public function InfoParking(){
+
+          $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
+          if ($cur_map!=null){
+            $map = Map::all()->where('id','LIKE',$cur_map->id_map)->first();
+
+            $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
+
+            $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
+            $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+
+              return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo]);
+          }
+          else{
+              return view('/park.infoparking');
+          }
 
       }
 

@@ -11,7 +11,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');
 Route::post('/search','HomeController@search');
 Route::get('/search', 'HomeController@show_search');
-Route::put('/home/{id}','SettingController@update');
+Route::put('/profile/update','SettingController@update');
 Route::get('/profile', 'SettingController@index');
 Route::get("/profile/show/{user}", 'SettingController@show');
 Route::get('/userManager', 'UsersManagerController@index');
@@ -36,7 +36,9 @@ Route::put('/change/{id}','ChangePasswordController@update');
 Route::get('/userManager/logs/', 'LogController@showAllLog');
 
 
-Route::get('/parkings/info','HomeController@InfoParking');
+Route::get('/parkings/info','ParkingsController@InfoParking');
+
+
 Route::put('/parkings/updatemap','ParkingsController@updatemap');
 Route::get('/parkings/{parking}/addcarpark', 'ParkingsController@addcarpark');
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');
@@ -47,6 +49,7 @@ Route::post('/parkings', 'ParkingsController@store');
 Route::put('/parkings/{parking}','ParkingsController@update')->where('id','[0-9]+');
 Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[0-9]+');
 Route::get('/parkings', 'ParkingsController@index');
+
 
 
 

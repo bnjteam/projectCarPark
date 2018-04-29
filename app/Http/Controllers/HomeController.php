@@ -95,21 +95,7 @@ class HomeController extends Controller
        $log->save();
        return redirect()->back();
     }
-    public function InfoParking(){
 
-        $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
-        if ($cur_map!=null){
-          $map = Map::all()->where('id','LIKE',$cur_map->id)->first();
-          $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
-          $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
-          $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
-            return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout]);
-        }
-        else{
-            return view('/park.infoparking');
-        }
-
-    }
 
 
 }
