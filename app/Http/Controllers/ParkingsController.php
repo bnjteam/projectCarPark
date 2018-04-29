@@ -62,6 +62,10 @@ class ParkingsController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate(
+          ['location' =>'required',
+          'address' =>'required'
+        ]);
 
       $parking=new Parking;
       $parking->location=$request->input('location');
