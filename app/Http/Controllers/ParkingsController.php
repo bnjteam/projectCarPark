@@ -303,7 +303,11 @@ class ParkingsController extends Controller
           $current_map=new Current_map;
           $current_map->id_user=Auth::user()->id;
           $current_map->id_map=$map->id;
-          $current_map->password=str_random(64);
+          $pass = str_random(64);
+          while ($pass == $current_map->password){
+            $pass = str_random(64);
+          }
+          $current_map->password=$pass;
           $current_map->status='empty';
           $current_map->save();
 
@@ -331,21 +335,40 @@ class ParkingsController extends Controller
         // return view('park.readQRcode');
           if (count(Current_map::all()->where('password','LIKE',$token))) {
             $current = Current_map::all()->where('password','LIKE',$token)->last();
-            $current->status = "full";
-            $current->password = '';
-            $current->save();
-                $log = new Log();
-                   $log->id_user = $current->id_user;
-                $users = User::all()->pluck('name','id');
-                $log->description = "user ".$log->id_user.' entry the park ';
-                $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
-                $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
-                $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
-                $log->save();
-                return view('park.readQRcode');
+            if ($current->status=="empty")
+            {
+              $current->status = "full";
+              $pass = str_random(64);
+              while ($pass == $current->password){
+                $pass = str_random(64);
+              }
+              $current->password = $pass;
+              $current->save();
+                  $log = new Log();
+                     $log->id_user = $current->id_user;
+                  $users = User::all()->pluck('name','id');
+                  $log->description = "user ".$log->id_user.' enter the park ';
+                  $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
+                  $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
+                  $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+                  $log->save();
+                  return view('park.readQRcode',['word'=>'Enter']);
+            }
+            else{
+              $this->deletereserve($current);
+              $log = new Log();
+                 $log->id_user = $current->id_user;
+              $users = User::all()->pluck('name','id');
+              $log->description = "user ".$log->id_user.' leave the park ';
+              $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
+              $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
+              $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+              $log->save();
+              return view('park.readQRcode',['word'=>'Leave']);
+            }
           }
           else{
-             view('park.invalidQRcode');
+             return view('park.invalidQRcode');
           }
 
       }
