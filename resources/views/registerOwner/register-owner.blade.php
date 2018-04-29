@@ -42,6 +42,9 @@
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> 4 Months
                                         </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถจองที่จอดรถ
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -88,6 +91,9 @@
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> 8 Months
                                         </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถจองที่จอดรถ
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -133,6 +139,9 @@
                                         </div>
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> 12 Months
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถจองที่จอดรถ
                                         </div>
                                       </div>
                                     </div>

@@ -5,16 +5,21 @@
   <div class="row justify-content-center ">
     <div class="col-10">
       <div class="card border-primary ">
-        <div class="card-header" style="text-align:center">Entry the park</div>
+        <div class="card-header" style="text-align:center">
+
+            Enter/Leave the park
+        </div>
         <div class="card-body">
           <div class="" >
             <div class="row justify-content-center">
-                <img src="/storage/tenor.gif" loop=1 alt="" style="padding:20px">
+              <div class="">
+                <h1>FAIL</h1>
+              </div>
+
+
             </div>
-            <h3 style="text-align:center">Fail</h3>
-            <p class="card-text" style="text-align:center"></p>
-            <div class="" style="text-align:center">
-                <!-- <a href="/search" class="btn btn-primary" >Go to reserve</a> -->
+            <div class="row justify-content-center">
+              Your QRcode is Incorrect.
             </div>
           </div>
         </div>
