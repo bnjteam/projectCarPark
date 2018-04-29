@@ -9,8 +9,12 @@
   </head>
   <body><br><br><br><br><br>
     <center>
-    <div class="card" style="width: 40rem;">
+    <div class="card" style="width: 35rem;">
+      @if (isset($parking->photo))
       <img class="card-img-top" src="{{ $parking->photo }}" alt="Card image cap">
+      @else
+      <img class="card-img-top" src="/storage/photoslocation/empty.png" alt="Card image cap">
+      @endif
       <div class="card-body">
         <h5 class="card-title">My Reserve </h5>
         @if (isset($parking))
