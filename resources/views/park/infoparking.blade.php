@@ -1,4 +1,14 @@
 @extends('layouts.app')
+@push('style')
+<style media="screen">
+.footer{
+  position: absolute;
+  width:100%;
+  bottom: 0;
+}
+</style>
+
+@endpush
 @section('head')
 
 
@@ -66,10 +76,15 @@
 
   }
   </script>
-  <body><br><br><br><br><br>
+      @if (isset($current_map))
+
+
+    <form method="POST" action="/parkings/info/{{$current_map->id}}" enctype="multipart/form-data">
+      @csrf
+      @method('DELETE')
     <center>
 
-    <div class="card" style="width: 40rem;">
+    <div class="card" style="width: 100rem;">
 
 
 
@@ -77,17 +92,19 @@
 
       <div class="card-body">
 
-        <p class="card-text">Location : {{ $parking->location}}</p>
-                <img class="card-img-top" src="{{ $parking->photo}}" >
-                <br>
+        <h3>Location : {{ $parking->location}}</h3>
 
+        <div class="" style="width:1100px">
+            <img class="card-img-top" src="{{ $parking->photo}}"  >
+        </div>
+                <br>
                 <p>Address</p>
                 <textarea disabled name="name" rows="8" cols="65"> {{ $parking->address }}</textarea>
-
       </div>
-      <li class="list-group-item">
 
-        <p class="card-text">Floor : {{$photolocation->floor}}</p>
+      <li class="list-group-item">
+        <h3>Floor : {{$photolocation->floor}}</h3>
+          <input  type="hidden" name="list" value="{{ $photolocation->canvas }}" id='list{{$photolocation->id}}'>
             <img onload="myFunction({{$photolocation->id}})" hidden id="scream{{$photolocation->id}}" width="220" height="277" src="{{ $photolocation->photo }}" alt="The Scream">
         <canvas  id="draw{{$photolocation->id}}" style="border:1px solid #000000;"></canvas>
 
@@ -95,7 +112,8 @@
 
 
            <li class="list-group-item">
-              <p>reserve: {{$map->number}}</p>
+
+              <h3>reserve space : {{$map->number}}</h3>
                     <p class="card-text">TimeOut reserve At : {{ $timeOut }}</p>
 
                        Show this qrcode when you arrive the location<br>
@@ -104,9 +122,18 @@
 
 
       <div class="card-body">
-        <a href="#" role="button" class="card-link btn btn-success">Unreserve</a>
+
+
+        <input type="submit" class="card-link btn btn-success" name="" value="Unreserve">
       </div>
     </div>
   </center>
+  </form>
+  @else
+  <br>
+    <div class="card" >
+      <center><h1>you not have a reserve space</h1><center>
+    </div>
 
+  @endif
 @endsection
