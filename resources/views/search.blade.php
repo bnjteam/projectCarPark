@@ -37,8 +37,20 @@
               <a href="/parkings/{{$details[$i]->id}}">
               <div class="card-header" style="text-align:center;">{{$details[$i]->location}}</div>
               <div class="card-body">
-                <img src="{{$details[$i]->photo}}" width="100%" height="250px" alt="">
-                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >Location : {{strlen($details[$i]->address) > 60 ? substr($details[$i]->address,0,60)."..." : $details[$i]->address}}
+                @if (!file_exists($details[$i]->photo))
+                  <img src="{{$details[$i]->photo}}" width="100%" height="250px" alt="">
+                @else
+                  <img src="/storage/noimage.png" width="100%" height="250px" alt="">
+                @endif
+
+                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
+                @if (strlen($details[$i]->address) > 40)
+                  Location : {{substr($details[$i]->address,0,40)."..."}}
+                @else
+                  Location : {{$details[$i]->address}}
+                @endif
+
+                {{strlen($details[$i]->address) }}
               </div>
               </a>
             </div>
@@ -49,8 +61,18 @@
               <a href="/parkings/{{$details[$i]->id}}">
               <div class="card-header" style="text-align:center">{{$details[$i]->location}}</div>
               <div class="card-body">
-                <img src="{{$details[$i]->photo}}" width="100%" height="250px" alt="">
-                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >Location : {{strlen($details[$i]->address) > 60 ? substr($details[$i]->address,0,60)."..." : $details[$i]->address}}
+                @if (!file_exists($details[$i]->photo))
+                  <img src="{{$details[$i]->photo}}" width="100%" height="250px" alt="">
+                @else
+                  <img src="/storage/noimage.png" width="100%" height="250px" alt="">
+                @endif
+                <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
+                @if (strlen($details[$i]->address) > 40)
+                  Location : {{substr($details[$i]->address,0,40)."..."}}
+                @else
+                  Location : {{$details[$i]->address}}
+                @endif
+                {{ strlen($details[$i]->address)}}
               </div>
               </a>
             </div>

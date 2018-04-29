@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Current_map extends Model
 {
-    //
+  use SoftDeletes;
+  protected $dates = ['deleted_at'];
 }

@@ -47,12 +47,12 @@ class HomeController extends Controller
         $locationWord='';
       }
       if (Input::get('filter')=="location"){
-          $location = DB::table('parkings')->where('location','like','%'.$locationWord.'%')->paginate(6);
+          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('location','like','%'.$locationWord.'%')->paginate(6);
 
 
       }
       else{
-          $location = DB::table('parkings')->where('address','like','%'.$locationWord.'%')->paginate(6);
+          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('address','like','%'.$locationWord.'%')->paginate(6);
 
       }
       // dd($location);
@@ -67,7 +67,7 @@ class HomeController extends Controller
     }
     public function show_search(){
       $d = DB::table('parkings')->orderBy('id', 'DESC')->paginate(6);
-  
+
       return view('/search',['start'=>1,'details'=>$d,'query'=>'','filters'=>$this->filter]);
 
 
