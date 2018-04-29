@@ -6,7 +6,7 @@
 <center>
 <div class="panel panel-default">
     <div class="panel-heading">
-      @if (file_exists( $user->avatar ))
+      @if (!file_exists( $user->avatar ))
         <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
       @else
         <img style="border-radius: 50%" width='300'  src="/storage/noimage.png" alt=""><br><br>
@@ -35,7 +35,17 @@
         Start Package Date: {{ $user->start_date_package }}
       </li>
       <li class="list-group-item">
-        End Package Date: {{ $user->end_date_package }}
+        @if (isset($endDate))
+          @if ($endDate!='Today' && $endDate!='Tomorrow')
+              End Package Date: {{ $user->end_date_package }} (remain : {{$endDate}})
+          @else
+              End Package Date: {{ $user->end_date_package }} ({{$endDate}})
+          @endif
+
+
+        @else
+          End Package Date: {{ $user->end_date_package }}
+        @endif
       </li>
     </ul>
     <br>
