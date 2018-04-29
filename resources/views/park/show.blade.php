@@ -313,7 +313,7 @@
               <div class="modal-body">
 
 
-              <center>  <select   class="" name="" id='select{{$photoslocation->id}}'>
+              <center>  <select  hidden class="" name="" id='select{{$photoslocation->id}}'>
                   @foreach($maps as $map)
 
                   @if($photoslocation->id == $map->id_photo)
