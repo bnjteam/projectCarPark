@@ -46,6 +46,17 @@ class AuthServiceProvider extends ServiceProvider
             $user = \Auth::user();
             return $user->isSuperAdmin() ;
         });
+        Gate::define('index-profile',function($user,$object){
+            if ($user->level=='parking_owner') {
+              
+              return $user->id==$object->id ;
+
+              }
+            else{
+            return $user->isSuperAdmin() ;
+
+          }
+        });
 
 
 
