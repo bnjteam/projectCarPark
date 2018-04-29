@@ -360,7 +360,10 @@ class ParkingsController extends Controller
 
       public function deletereserve(Current_map $current_map){
             $current_map->delete();
-            dd($current_map);
+            $pack= Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first();
+            $pack->numbers=$pack->numbers-1;
+            $pack->save();
+              return view('/park.infoparking');
       }
 
 

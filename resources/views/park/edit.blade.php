@@ -163,11 +163,11 @@
 
 
             <!-- <a href="addcarpark" ><button type="button" name="button">ADD</button></a> -->
-            <button type="submit" class="btn btn-success" name="button" formaction="/parkings/{{$parking->id}}">submit</button>
+            <button type="submit" class="btn btn-info" name="button" formaction="/parkings/{{$parking->id}}">submit</button>
             <br>
             <br>
             <br>
-            <button type="submit"  name="button" onclick="">ADD/DELETE Photo location</button>
+            <button type="submit"  name="button" onclick="" class="btn btn-info">ADD/DELETE Photo location</button>
             <br><br>
             </form>
 
