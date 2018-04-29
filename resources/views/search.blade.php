@@ -28,9 +28,9 @@
       The Search results for your query <b> '{{ $query }}' </b> are :
     </div>
         <?php $contentCount=0  ?>
-      @for($i = count($details)-1;$i >= 0; $i--,$start++)
+      @for($i = 0;$i < count($details); $i++,$start++)
         <?php $contentCount= $contentCount+1 ?>
-        @if ($start ==1)
+        @if ($i%3==0)
           <div class="row">
           <div class="col-4" style="padding:10px">
             <div class="card border-primary mb-3" style="height:400px">
@@ -56,8 +56,7 @@
             </div>
           </div>
         @endif
-        @if ($start == 3 || $i == 0)
-          <?php $start = 0 ?>
+        @if ($i == 2 || $i==count($details)-1)
           </div>
         @endif
 
