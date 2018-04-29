@@ -153,18 +153,16 @@
                 </div>
             </div>
         </nav>
-        <div class="">
-          @yield('head')
-        </div>
+
 
         <main class="py-4">
           <br>
           <br>
           <br>
-          <br>
+
+            @yield('head')
             @yield('content')
         </main>
-
     </div>
     <footer class="footer">
       <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">

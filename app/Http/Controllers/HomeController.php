@@ -38,7 +38,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home',['filters'=>$this->filter]);
+        $photos = ['/storage/01.jpg','/storage/car.jpg'];
+        return view('home',['filters'=>$this->filter,'photos'=>$photos]);
     }
     public function search(){
       $locationWord = Input::get ( 'search' );

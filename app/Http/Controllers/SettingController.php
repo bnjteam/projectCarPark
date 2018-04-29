@@ -53,8 +53,11 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-
+      if (\Gate::allows('index-profile',\Auth::user())){
       return View('/profile',['user'=>$user]);
+    }else {
+      return view('/denieViews.denie');
+    }
     }
 
     /**
@@ -75,7 +78,7 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
        $request->validate([
             'name' => 'required|string|max:255',
@@ -85,7 +88,7 @@ class SettingController extends Controller
 
             ]);
 
-        $user = User::findOrFail($id);
+        $user = Auth::user();
         //dd($user->avatar!=null);
         if (Hash::check($request->input('password'), $user->password)) {
           if($request->fileToUpload!=null){
@@ -116,9 +119,9 @@ class SettingController extends Controller
          $users = User::all()->pluck('name','id');
          $log->description = "user ".$log->id_user.' setting user';
          $log->save();
-        return view('/profile',['user'=>$user]);
+            return View('/profile',['user'=>$user]);
          }else{
-           return view('/setting',['aleartMesg'=>'Your password are wrong.']);
+            return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }
 
 

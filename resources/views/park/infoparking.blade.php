@@ -68,11 +68,20 @@
   </script>
   <body><br><br><br><br><br>
     <center>
+<<<<<<< HEAD
     <div class="card" style="width: 40rem;">
 
 
 
         <li class="list-group-item">    <h1 class="card-title">My Reserve </h1></li>
+=======
+    <div class="card" style="width: 35rem;">
+      @if (isset($parking->photo))
+      <img class="card-img-top" src="{{ $parking->photo }}" alt="Card image cap">
+      @else
+      <img class="card-img-top" src="/storage/photoslocation/empty.png" alt="Card image cap">
+      @endif
+>>>>>>> 3179ec29df03e5962e9ffa9024dcbbf45cb52392
       <div class="card-body">
 
         <p class="card-text">Location : {{ $parking->location}}</p>
@@ -102,7 +111,6 @@
 
 
       <div class="card-body">
-
         <a href="#" role="button" class="card-link btn btn-success">Unreserve</a>
       </div>
     </div>
