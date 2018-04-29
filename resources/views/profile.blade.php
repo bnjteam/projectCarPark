@@ -21,7 +21,19 @@
     <ul class="list-group">
     <li style="text-transform: capitalize;" class="mb-0 list-group-item">Your Package : <span style="cursor:default" class="btn btn-success"> {{ $user->type }} Package </span></li>
     <li class="mb-0 list-group-item">Start Package Date: {{ $user->start_date_package }}</li>
-    <li class="mb-0 list-group-item">End Package Date: {{ $user->end_date_package }}</li>
+    <li class="mb-0 list-group-item">
+      @if (isset($endDate))
+        @if ($endDate!='Today' && $endDate!='Tomorrow')
+            End Package Date: {{ $user->end_date_package }} (remain : {{$endDate}})
+        @else
+            End Package Date: {{ $user->end_date_package }} ({{$endDate}})
+        @endif
+
+
+      @else
+        End Package Date: {{ $user->end_date_package }}
+      @endif
+    </li>
   </ul>
 </div>
 

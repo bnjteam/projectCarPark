@@ -163,14 +163,20 @@ class ParkingsController extends Controller
      */
     public function destroy(Parking $parking)
     {
-      $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
+      if (Auth::user()->level=="admin"){
+        $pack = Package_user::all()->where('id_user','like',$parking->id_user)->first();
+      }
+      else{
+        $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
+      }
       $pack->numbers = $pack->numbers-1;
       $pack->save();
       $parking->delete();
       $parking->save();
 
+
       $log = new Log();
-         $log->id_user = Auth::user()->id;
+      $log->id_user = Auth::user()->id;
       $users = User::all()->pluck('name','id');
       $log->description = "user ".$log->id_user.' delete parking';
       $log->location = $parking->location;
@@ -231,6 +237,7 @@ class ParkingsController extends Controller
                   }
 
               }
+              
 
         return redirect('/parkings/'.$parking->id.'/edit');
     }
@@ -240,6 +247,12 @@ class ParkingsController extends Controller
       {
           $p = Photolocation::findOrFail($request->input('photo_id'));
           $p->delete();
+          $log = new Log();
+          $log->id_user = Auth::user()->id;
+          $users = User::all()->pluck('name','id');
+          $log->description = "user ".$log->id_user.' delete parking floor';
+          $log->location = $request->location;
+          $log->save();
           return redirect('/parkings/'.$request->input('park_id').'/edit');
       }
       public function updatephoto(Request $request, Parking $parking)
@@ -251,6 +264,12 @@ class ParkingsController extends Controller
           $parking->photo= '/storage/photosparking/'.basename($path2);
         }
         $parking->save();
+        $log = new Log();
+        $log->id_user = Auth::user()->id;
+        $users = User::all()->pluck('name','id');
+        $log->description = "user ".$log->id_user.' add parking floor';
+        $log->location = $parking->location;
+        $log->save();
         $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
         return view('park.editphotolocation',['parking'=>$parking,'photoslocations'=>$p]);

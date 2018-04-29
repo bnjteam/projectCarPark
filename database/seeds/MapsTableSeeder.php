@@ -30,18 +30,37 @@ class MapsTableSeeder extends Seeder
                     ['17A','1'],
                     ['18A','1'],
                     ['19A','1'],
-                    ['20A','1'],
+                    ['20A','1']];
+      $mapArray2 = [
+
                     ['1B','2'],
                     ['2B','2'],
                     ['3B','2'],
                     ['4B','2'],
                     ['5B','2'],
-    ];
+                    ['6B','2'],
+                    ['7B','2'],
+                    ['8B','2'],
+                    ['9B','2'],
+                    ['10B','2'],
+                    ['11B','2'],
+                    ['12B','2'],
+                    ['13B','2'],
+                    ['14B','2'],
+                    ['15B','2']
+                      ];
     for ($i=0; $i <count($mapArray) ; $i++) {
       $map = new App\Map;
       // dd($mapArray[$i]);
       $map->number = $mapArray[$i][0];
       $map->id_photo = $mapArray[$i][1];
+      $map->save();
+    }
+    for ($i=0; $i <count($mapArray2) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray2[$i][0];
+      $map->id_photo = $mapArray2[$i][1];
       $map->save();
     }
     for ($i=0; $i <count($mapArray) ; $i++) {
@@ -52,10 +71,10 @@ class MapsTableSeeder extends Seeder
       $map->save();
     }
 
-    for ($i=0; $i <count($mapArray) ; $i++) {
+    for ($i=0; $i <count($mapArray2) ; $i++) {
       $map = new App\Map;
       // dd($mapArray[$i]);
-      $map->number = $mapArray[$i][0];
+      $map->number = $mapArray2[$i][0];
       $map->id_photo = 4;
       $map->save();
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User ;
 use App\Log;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,15 @@ class SettingController extends Controller
     public function show(User $user)
     {
       if (\Gate::allows('index-profile',\Auth::user())){
-      return View('/profile',['user'=>$user]);
+        $date = Carbon::parse($user->end_date_package);
+        $date = Carbon::now()->diffInDays($date);
+        if ($date == 0 ){
+          $date = 'Today ';
+        }
+        if ($date ==1 ){
+          $date = 'Tomorrow';
+        }
+      return View('/profile',['user'=>$user,'endDate'=>$date]);
     }else {
       return view('/denieViews.denie');
     }
