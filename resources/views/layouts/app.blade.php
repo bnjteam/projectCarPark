@@ -187,6 +187,8 @@
             @yield('head')
             <div class="" style="padding:50px" >
                 @yield('content')
+
+      
             </div>
 
         </main>
