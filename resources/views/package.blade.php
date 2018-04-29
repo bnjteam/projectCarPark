@@ -39,7 +39,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-      <h1>{{ __('Package') }}</h1>
+      <h1>{{ __("Package's Reserve ") }}</h1>
         <div class="col-12">
                 <div class="card-body">
 
@@ -64,6 +64,9 @@
                                         </div>
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถสร้างที่จอดรถ
                                         </div>
                                       </div>
                                     </div>
@@ -103,6 +106,9 @@
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
                                         </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถสร้างที่จอดรถ
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -140,6 +146,9 @@
                                         </div>
                                         <div class="" style="margin:10px">
                                           <span class="fa fa-check" style="color:green"></span> สามารถจองได้ 1 ที่
+                                        </div>
+                                        <div class="" style="margin:10px">
+                                          <span class="fa fa-times" style="color:green"></span> ไม่สามารถสร้างที่จอดรถ
                                         </div>
                                       </div>
                                     </div>

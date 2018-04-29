@@ -277,6 +277,7 @@
   }
   else{
     $('#footer').addClass('footer');
+    console.log('height Window: '+height_win,'height Page :'+height_page);
     console.log("page les");
   }
 </script>

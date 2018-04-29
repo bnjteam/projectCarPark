@@ -5,7 +5,7 @@
   <div class="row justify-content-center ">
     <div class="col-10">
       <div class="card border-primary ">
-        <div class="card-header" style="text-align:center">Entry the park</div>
+        <div class="card-header" style="text-align:center">{{ $word}} the park</div>
         <div class="card-body">
           <div class="" >
             <div class="row justify-content-center">

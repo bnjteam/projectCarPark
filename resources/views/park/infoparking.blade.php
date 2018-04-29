@@ -108,10 +108,16 @@
            <li class="list-group-item">
 
               <h3>reserve space : {{$map->number}}</h3>
-                    <p class="card-text">TimeOut reserve At : {{ $timeOut }}</p>
+                    @if ($current_map->status=='full')
+                        Show this qrcode when you leave the location.
+                    @else
+                        <p class="card-text">TimeOut reserve At : {{ $timeOut }}</p>
 
-                       Show this qrcode when you arrive the location<br>
-                            <a href="/qr-code">This is your QR-code</a>
+                        Show this qrcode when you arrive the location.<br>
+
+                    @endif
+                    <a href="/qr-code">This is your QR-code</a>
+
                 </li>
 
 
