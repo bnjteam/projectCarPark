@@ -23,7 +23,7 @@
         </script>
 
     <body>
-
+      <br>
 
       <center><div class="col-8">
 
@@ -31,16 +31,16 @@
           @csrf
             <div class="form-group">
               <div class="row justify-content-center">
-                <div class="col-2" style="margin-top:10px">
+                <div class="col-0" style="margin-top:10px">
                   Location Name:
                 </div>
-                <div class="col-7">
+                <div class="col-4">
                   <input type="text" class="form-control"name="location" value="">
                 </div>
               </div>
           </div>
               <br>
-              <br>
+
               <div class="paper">
                  <div class="paper-content">
                 Address  <br>  <textarea name="address" rows="8" cols="80"></textarea>
@@ -51,10 +51,10 @@
             <br>
             <div class="form-group">
               <div class="row justify-content-center">
-                <div class="col-2" style="margin-top:10px">
+                <div class="col-0" style="margin-top:10px">
                   Image Location
                 </div>
-                <div class="col-7">
+                <div class="col-4">
                   <div class="form-group">
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -68,13 +68,13 @@
           </div>
             <br>
               <center><img id="imageold" style="height:300px;weight:300px;"  src='' > </center>
-              <br>
+
               @if (Package_user::all()->pluck('numbers','id_user')[Auth::user()->id] < Package::all()->pluck('limit','name')[Auth::user()->type])
                 <button type="submit" name="button" class="btn btn-primary">Submit</button>
               @else
                 <div class="alert alert-dismissible alert-danger">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Oh !</strong>You have limit of numbers Parking .<br><a href="/register_owner" class="alert-link">click here to Upgrade Package</a> 
+                  <strong>Oh !</strong>You have limit of numbers Parking .<br><a href="/register_owner" class="alert-link">click here to Upgrade Package</a>
                 </div>
                 <a class="btn btn-primary disabled">Submit</a>
               @endif

@@ -635,7 +635,6 @@
 
         </script>
 
-    <body>
 
       <center><div class="">
         <br>
@@ -757,12 +756,5 @@
 
       </div></center>
 
-
-
-
-
-
-
-    </body>
 
 @endsection

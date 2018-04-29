@@ -175,6 +175,8 @@
             @yield('head')
             <div class="" style="" >
                 @yield('content')
+
+      
             </div>
 
         </main>

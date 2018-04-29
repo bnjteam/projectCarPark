@@ -128,7 +128,7 @@
       </script>
 
     <body>
-
+      <br>
 
       <center><div class="">
 
@@ -137,7 +137,17 @@
           @method('PUT')
 
 
-            Location Name:    <input type="text" name="location" value="{{ $parking->location }}">
+          <div class="form-group">
+            <div class="row justify-content-center">
+              <div class="col-0" style="margin-top:10px">
+                Location Name:
+              </div>
+              <div class="col-4">
+                <input type="text" name="location" value="{{ $parking->location }}" class="form-control">
+              </div>
+            </div>
+        </div>
+
               <br>
               <br>
 
@@ -145,25 +155,43 @@
                 <label>Address</label> <br>
                 <div class="paper">
                    <div class="paper-content">
-       <textarea   name="address" rows="8" cols="80">{{old('address') ?? $parking->address }}</textarea>
-     </div>
-   </div>
-<!-- </div> -->
+                      <textarea   name="address" rows="8" cols="80">{{old('address') ?? $parking->address }}</textarea>
+                 </div>
+               </div>
+
 
             <input  type="hidden" name="list" value="" id='list' >
 
             <br>
             <br>
-            Image Location
-            <br>
-            <input onchange="readURL(this)" type="file" name="fileToUpload2" id="fileToUpload2" value="">
+
+
+
+            <div class="form-group">
+              <div class="row justify-content-center">
+                <div class="col-0" style="margin-top:10px">
+                  Image Location
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input onchange="readURL(this)" type="file" name="fileToUpload2" id="fileToUpload2" class="custom-file-input" value="">
+                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
               <center><img id="imageold" name="photo" style="height:300px;weight:300px;"  src="{{old('photo') ?? $parking->photo }}" > </center>
               <br>
 
 
 
             <!-- <a href="addcarpark" ><button type="button" name="button">ADD</button></a> -->
-            <button type="submit" class="btn btn-info" name="button" formaction="/parkings/{{$parking->id}}">submit</button>
+            <button type="submit" class="btn btn-success" name="button" formaction="/parkings/{{$parking->id}}">submit</button>
             <br>
             <br>
             <br>
@@ -189,11 +217,9 @@
             <br>
 
 
-      </div></center>
-    </div>
+      </div></center></div>
     </body>
-    </div>
-
+      </div>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Handlee);
