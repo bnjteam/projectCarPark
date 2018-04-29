@@ -335,11 +335,9 @@ class ParkingsController extends Controller
                     return $response;
         }
         else{
-
+          return view('/login');
         }
 
       }
-      public function InfoParking(User $user){
-          return view('/park.infoparking');
-      }
+
 }

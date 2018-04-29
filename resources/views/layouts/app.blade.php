@@ -97,9 +97,7 @@
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="/parkings/info/{{ Auth::user()->id}}">
-                                        {{ __('My reserve info') }}
-                                    </a>
+
 
 
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
@@ -132,6 +130,9 @@
                                 <div class="dropdown-menu" style="background-color:#666699" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="/parkings/info">
+                                        {{ __('My reserve info') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ url('/setting') }}">
                                         {{ __('Setting') }}

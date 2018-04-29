@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\OrderShipped;
+use App\Photolocation;
+use App\Current_map;
+use App\Map;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Collection;
@@ -90,13 +94,21 @@ class HomeController extends Controller
        $log->save();
        return redirect()->back();
     }
-    public function InfoParking(User $user){
+    public function InfoParking(){
 
-
-
-        return view('/park.infoparking');
-
+        $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
+        if ($cur_map!=null){
+          $map = Map::all()->where('id','LIKE',$cur_map->id)->first();
+          $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
+          $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
+          $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+            return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout]);
+        }
+        else{
+            return view('/park.infoparking');
+        }
 
     }
+
 
 }
