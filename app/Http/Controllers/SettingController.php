@@ -53,7 +53,7 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-      
+
       return View('/profile',['user'=>$user]);
     }
 
@@ -118,7 +118,7 @@ class SettingController extends Controller
          $log->save();
         return view('/profile',['user'=>$user]);
          }else{
-
+           return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }
 
 
