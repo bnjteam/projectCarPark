@@ -49,49 +49,49 @@ class ParkingsTableSeeder extends Seeder
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 12;
         $parking->location = 'Siam Paragon';
         $parking->address = 'สยามพารากอน 991 Rama I Rd, Khwaeng Pathum Wan, Khet Pathum Wan, Krung Thep Maha Nakhon 10330';
         $parking->photo = '/storage/siamParagon.jpg';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 12;
         $parking->location = 'Siam Square One';
         $parking->address = '991 ถนน พระราม 1 Wang Mai, Khet Pathum Wan, Krung Thep Maha Nakhon 10330';
         $parking->photo = '/storage/siamsquareone.jpg';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 12;
         $parking->location = 'Tops Market MBK';
         $parking->address = '444 Phayathai Rd, Patumwan, Wangmai, Krung Thep Maha Nakhon 10330';
         $parking->photo = '/storage/top-Market.png';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 12;
         $parking->location = 'Big C Supercenter';
         $parking->address = '97/11 Ratchadamri Rd, Khwaeng Lumphini, Khet Pathum Wan, กรุงเทพมหานคร 10330';
         $parking->photo = '/storage/destination-Big-C.jpg';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 12;
         $parking->location = 'บิ๊กซี ราชดำริ';
         $parking->address = '97/11 ถนน ราชดำริ แขวง ลุมพินี เขต ปทุมวัน กรุงเทพมหานคร 10330';
         $parking->photo = '/storage/bigC.jpg';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 13;
         $parking->location = 'Esplanade Ngamwongwan – Khae Rai';
         $parking->address = 'อาคารศูนย์การค้าเอสพลานาด Rattanathibet Rd, Tambon Bang Kraso, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000';
         $parking->photo = '/storage/explanadeRattana.jpg';
         $parking->save();
 
         $parking = new App\Parking;
-        $parking->id_user = 5;
+        $parking->id_user = 13;
         $parking->location = 'CentralPlaza Rattanathibet';
         $parking->address = '562, 566 Rattanathibet Rd, Tambon Bang Kraso, Amphoe Mueang Nonthaburi, Chang Wat Nonthaburi 11000';
         $parking->photo = '/storage/cen.jpg';

@@ -9,7 +9,11 @@
         <div class="card-body">
           <div class="" >
             <div class="row justify-content-center">
-                <img src="/storage/check.gif" loop=1 alt="" style="padding:20px">
+                @if (file_exists( '/storage/check.gif' ))
+                  <img src="/storage/check.gif" loop=1 alt="" style="padding:20px">
+                @else
+                  <img src="/storage/noimage.png" alt="" style="padding:20px">
+                @endif
             </div>
             <h3 style="text-align:center">Success</h3>
             <p class="card-text" style="text-align:center">you have register completed.</p>

@@ -12,7 +12,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
@@ -30,8 +30,17 @@
     right: 0;
     left: 0;
     z-index: 1030;
+    }
+
+    .footer{
+      position:absolute;
+      width:100%;
+      bottom: 0;
+    }
 }
 </style>
+
+
 </head>
 
 <body style-="height:100%;position:relative" id="page">
@@ -164,10 +173,13 @@
           <br>
 
             @yield('head')
-            @yield('content')
+            <div class="" style="" >
+                @yield('content')
+            </div>
+
         </main>
     </div>
-    <footer class="footer">
+    <footer id="footer">
       <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
         <div class="container">
           <div class="row">
@@ -227,5 +239,30 @@
     </footer>
 </body>
 
-
+<script type="text/javascript">
+  var height_page = document.body.offsetHeight ? document.body.offsetHeight : document.height;
+  function getWindowSize() {
+      var win_size = new Array;
+      if (self.innerHeight) {
+        win_size['height'] = self.innerHeight;
+        win_size['width'] = self.innerWidth;
+      } else if (document.documentElement && document.documentElement.clientHeight) {
+        win_size['height'] = document.documentElement.clientHeight;
+        win_size['width'] = document.documentElement.Width;
+      } else if (document.body) {
+        win_size['height'] = document.body.clientHeight;
+        win_size['width'] = document.body.clientWidth;
+      }
+      return win_size;
+    }
+    var win_dim = getWindowSize();
+    var height_win = win_dim['height'];
+  if (height_win < height_page){
+    console.log('win_less');
+  }
+  else{
+    $('#footer').addClass('footer');
+    console.log("page les");
+  }
+</script>
 </html>
