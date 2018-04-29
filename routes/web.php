@@ -35,12 +35,10 @@ Route::get('/changePW', 'ChangePasswordController@index');
 Route::put('/change/{id}','ChangePasswordController@update');
 Route::get('/userManager/logs/', 'LogController@showAllLog');
 
-<<<<<<< HEAD
 
 Route::get('/parkings/info','ParkingsController@InfoParking');
-=======
-Route::get('/parkings/info','HomeController@InfoParking');
->>>>>>> 3179ec29df03e5962e9ffa9024dcbbf45cb52392
+
+
 Route::put('/parkings/updatemap','ParkingsController@updatemap');
 Route::get('/parkings/{parking}/addcarpark', 'ParkingsController@addcarpark');
 Route::get('/parkings/{parking}/edit','ParkingsController@edit');
@@ -52,10 +50,7 @@ Route::put('/parkings/{parking}','ParkingsController@update')->where('id','[0-9]
 Route::delete('/parkings/{parking}','ParkingsController@destroy')->where('id','[0-9]+');
 Route::get('/parkings', 'ParkingsController@index');
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3179ec29df03e5962e9ffa9024dcbbf45cb52392
 
 
 Route::put('/parkings/{parking}/addphoto','ParkingsController@updatephoto')->where('id','[0-9]+');
