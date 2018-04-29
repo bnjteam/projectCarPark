@@ -9,6 +9,30 @@
 
 @section('content')
 <center>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+            <div class="card-header">{{ __('Profile') }}</div>
+            <div class="card-body">
+    <div class="panel-heading">
+  <ul class="list-group">
+  @if(isset($user->start_date_package) and isset($user->end_date_package))
+    <li style="text-transform: capitalize;" class="mb-0 list-group-item">Your Package :  {{ $user->type }} Package </li>
+    <li class="mb-0 list-group-item">Start Package Date: {{ $user->start_date_package }}</li>
+    <li class="mb-0 list-group-item">End Package Date: {{ $user->end_date_package }}</li>
+  </ul>
+  </div>
+  @else
+
+  <div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+    <P class="mb-0">Your package has emtry or expired</p>
+    <P class="mb-0">Please apply for package<a href="/package"> Member</a> or <a href="/register_owner">Parking Owner</a></p>
+    @endif
+  </div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
     <img style="border-radius: 50%" width='300'  src="{{ $user->avatar }}" alt=""><br><br>
@@ -27,23 +51,13 @@
       </li>
       </li>
       <li class="list-group-item">
-        Type of this user: {{ $user->type }}
-      </li>
-      <li class="list-group-item">
         Joining Date: {{ $user->created_at->diffForHumans() }}
-      </li>
-      <li class="list-group-item">
-        Start Package Date: {{ $user->start_date_package }}
-      </li>
-      <li class="list-group-item">
-        End Package Date: {{ $user->end_date_package }}
       </li>
     </ul>
     <br>
     <div class="panel-footer">
       <a class="btn btn-primary" role="button"
          href="/setting">Edit</a>
-
     </div>
 </div>
 </center>

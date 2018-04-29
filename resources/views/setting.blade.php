@@ -3,7 +3,7 @@
 @section('head')
 <ul class="breadcrumb">
   <li><a href="/home">Home</a> / </li>
-  <li class = "active">Profile</a></li>
+  <li class = "active">Setting</a></li>
 </ul>
 
 @endsection
@@ -39,7 +39,7 @@ function readURL(input) {
 
           <div class="card-body">
           <center>
-<div class="panel-heading">
+          <div class="panel-heading">
 
     <img id="imageold" style="border-radius: 50%" width='300'  src="{{ Auth::user()->avatar }}" alt=""><br><br>
 </div>
