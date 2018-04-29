@@ -74,7 +74,7 @@
       @method('DELETE')
     <center>
 
-    <div class="card" style="width: 100rem;">
+    <div class="card" style="width: 1200px;">
 
 
 
