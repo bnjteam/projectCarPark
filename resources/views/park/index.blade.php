@@ -51,7 +51,9 @@ td ,th ,tr {
       <th onclick="sortTable(1)" scope="col">Photo</th>
       <th onclick="sortTable(2)" scope="col">Location</th>
       <th onclick="sortTable(3)" scope="col">address</th>
+      @if(\Auth::user()->level=='admin')
       <th onclick="sortTable(4)" scope="col">Owner</th>
+      @endif
       <th onclick="sortTable(5)" scope="col">Create</th>
       <th onclick="sortTable(6)" scope="col">Last</th>
       <th onclick="sortTable(7)" scope="col">Edit</th>
@@ -65,9 +67,12 @@ td ,th ,tr {
       <td><img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt=""></td>
       <td><a href="/parkings/{{ $item->id }}">{{ $item->location }}</a></td>
       <td>{{ $item->address }}</td>
+
+      @if(\Auth::user()->level=='admin')
       <td> <a href="/profile/show/{{$item->id_user}}">
         {{ $names[$item->id_user] }}
         </a> </td>
+      @endif
       <td>{{ $item->created_at->diffForHumans() }}</td>
       <td>{{ $item->updated_at->diffForHumans() }}</td>
       <td class="table-success"><a class="btn btn-info" role="button"

@@ -36,7 +36,6 @@
         @endif
       </ul>
       <div class="card-body">
-
         <a href="#" role="button" class="card-link btn btn-success">Unreserve</a>
       </div>
     </div>
