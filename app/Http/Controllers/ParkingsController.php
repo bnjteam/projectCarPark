@@ -89,12 +89,9 @@ class ParkingsController extends Controller
            $log->id_user = Auth::user()->id;
         }
 
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
-        $log->description = "user ".$log->id_user.' create parking';
-        $log->location = $parking->location;
+        $log->description = "user ". Auth::user()->name.' create park '.$parking->location;
+        // $log->location = $parking->location;
         $log->save();
 
         return redirect('/parkings');
@@ -153,8 +150,8 @@ class ParkingsController extends Controller
               $log = new Log();
                  $log->id_user = Auth::user()->id;
               $users = User::all()->pluck('name','id');
-              $log->description = "user ".$log->id_user.' edit parking';
-              $log->location = $parking->location;
+              $log->description = "user ".Auth::user()->name.' edit park '.$parking->location;
+              // $log->location = $parking->location;
               $log->save();
       return redirect('/parkings');
     }
@@ -181,9 +178,8 @@ class ParkingsController extends Controller
 
       $log = new Log();
       $log->id_user = Auth::user()->id;
-      $users = User::all()->pluck('name','id');
-      $log->description = "user ".$log->id_user.' delete parking';
-      $log->location = $parking->location;
+      $log->description = "user ".Auth::user()->name.' delete park '.$parking->location;
+      // $log->location = $parking->location;
       $log->save();
 
 
@@ -249,6 +245,11 @@ class ParkingsController extends Controller
 
               }
 
+              $log = new Log();
+              $log->id_user = Auth::user()->id;
+              $log->description = "user ".Auth::user()->name.' add photolocation floor '.$photolocation->floor.' to park '.$parking->location;
+              // $log->location = $parking->location;
+              $log->save();
 
         return redirect('/parkings/'.$parking->id.'/edit');
     }
@@ -256,13 +257,14 @@ class ParkingsController extends Controller
 
     public function destroyphoto(Photolocation $pho,Request $request)
       {
+
           $p = Photolocation::findOrFail($request->input('photo_id'));
+            $park = Parking::all()->where('id','like',$p->id_parking)->first();
           $p->delete();
           $log = new Log();
           $log->id_user = Auth::user()->id;
-          $users = User::all()->pluck('name','id');
-          $log->description = "user ".$log->id_user.' delete parking floor';
-          $log->location = $request->location;
+          $log->description = "user ".Auth::user()->name.' delete photolocation floor '.$p->floor.' to park '.$park->location;
+          // $log->location = $request->location;
           $log->save();
           return redirect('/parkings/'.$request->input('park_id').'/edit');
       }
@@ -277,9 +279,8 @@ class ParkingsController extends Controller
         $parking->save();
         $log = new Log();
         $log->id_user = Auth::user()->id;
-        $users = User::all()->pluck('name','id');
-        $log->description = "user ".$log->id_user.' add parking floor';
-        $log->location = $parking->location;
+        $log->description = "user ".Auth::user()->name.' edit park '.$parking->location;
+        // $log->location = $parking->location;
         $log->save();
         $p=Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
@@ -317,11 +318,10 @@ class ParkingsController extends Controller
 
           $log = new Log();
              $log->id_user = Auth::user()->id;
-          $users = User::all()->pluck('name','id');
-          $log->description = "user ".$log->id_user.' reserve the park ';
-          $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first()->id_parking;
-          $loca = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
-          $log->location = $loca;
+
+          $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
+          $loca = Parking::all()->where('id','LIKE',$id_parking)->first();
+          $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->id.' space '.$map->number;
           $log->save();
 
           return $this->InfoParking();
@@ -335,6 +335,10 @@ class ParkingsController extends Controller
         // return view('park.readQRcode');
           if (count(Current_map::all()->where('password','LIKE',$token))) {
             $current = Current_map::all()->where('password','LIKE',$token)->last();
+            $map = Map::all()->where('id','LIKE',$current->id_map)->first();
+            $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
+            $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
+
             if ($current->status=="empty")
             {
               $current->status = "full";
@@ -346,11 +350,11 @@ class ParkingsController extends Controller
               $current->save();
                   $log = new Log();
                      $log->id_user = $current->id_user;
-                  $users = User::all()->pluck('name','id');
-                  $log->description = "user ".$log->id_user.' enter the park ';
+                       $users = User::all()->where('id','LIKE',$log->id_user)->first();
+                  $log->description = "user ".$users->name.' enter the space '.$map->number.' floor '.$photo->floor.' park '.$parking->location;
                   $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
                   $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
-                  $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+                  // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
                   $log->save();
                   return view('park.readQRcode',['word'=>'Enter']);
             }
@@ -358,11 +362,11 @@ class ParkingsController extends Controller
               $this->deletereserve($current);
               $log = new Log();
                  $log->id_user = $current->id_user;
-              $users = User::all()->pluck('name','id');
-              $log->description = "user ".$log->id_user.' leave the park ';
+              $users = User::all()->where('id','LIKE',$log->id_user)->first();
+              $log->description = "user ".$users->name.' leave the park ';
               $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
               $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
-              $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+              // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
               $log->save();
               return view('park.readQRcode',['word'=>'Leave']);
             }
@@ -409,6 +413,16 @@ class ParkingsController extends Controller
             $pack= Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first();
             $pack->numbers=$pack->numbers-1;
             $pack->save();
+
+            $log = new Log();
+            $log->id_user = Auth::user()->id;
+
+            $map = Map::all()->where('id','LIKE',$current_map->id_map)->first();
+            $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
+            $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
+            // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
+            $log->description = "user ".Auth::user()->name.' unreserve '.$map->number.' floor '.$photo->floor.' park '.$parking->location;
+            $log->save();
               return view('/park.infoparking');
       }
 
