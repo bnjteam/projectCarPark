@@ -97,7 +97,7 @@
                                     <a class="dropdown-item" href="{{ url('/profile') }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="/parkings/info/{{ Auth::user()->id}}">
+                                    <a class="dropdown-item" href="/parkings/info/">
                                         {{ __('My reserve info') }}
                                     </a>
 
