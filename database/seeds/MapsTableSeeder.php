@@ -71,11 +71,83 @@ class MapsTableSeeder extends Seeder
       $map->save();
     }
 
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 4;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 5;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 6;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 7;
+      $map->save();
+    }
+
     for ($i=0; $i <count($mapArray2) ; $i++) {
       $map = new App\Map;
       // dd($mapArray[$i]);
       $map->number = $mapArray2[$i][0];
-      $map->id_photo = 4;
+      $map->id_photo = 8;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray2) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray2[$i][0];
+      $map->id_photo = 9;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 10;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray2) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray2[$i][0];
+      $map->id_photo = 11;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray[$i][0];
+      $map->id_photo = 12;
+      $map->save();
+    }
+
+    for ($i=0; $i <count($mapArray2) ; $i++) {
+      $map = new App\Map;
+      // dd($mapArray[$i]);
+      $map->number = $mapArray2[$i][0];
+      $map->id_photo = 13;
       $map->save();
     }
 

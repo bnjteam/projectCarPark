@@ -14,6 +14,16 @@
                 @method('PUT')
 
                 <div class="form-group row">
+                      @if ($errors->any())
+              					<div class="alert alert-danger" id="error">
+              						<ul>
+
+              						@foreach ($errors->all() as $error)
+              								<li>{{ $error }}</li>
+              						@endforeach
+              						</ul>
+              					</div>
+              				@endif
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Old Password') }}</label>
                     <div class="col-md-6">
                         <input id="oldpassword" type="password" class="form-control{{ $errors->has('oldpassword') ? ' is-invalid' : '' }}" name="oldpassword" required>

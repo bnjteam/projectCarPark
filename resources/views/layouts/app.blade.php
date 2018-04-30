@@ -270,7 +270,7 @@
       return win_size;
     }
     var win_dim = getWindowSize();
-    var height_win = win_dim['height'];
+    var height_win = win_dim['height']-100;
   if (height_win < height_page){
     console.log('height Window: '+height_win,'height Page :'+height_page);
     console.log('win_less');

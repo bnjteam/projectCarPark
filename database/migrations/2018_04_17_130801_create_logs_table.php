@@ -17,11 +17,10 @@ class CreateLogsTable extends Migration
             $table->increments('id');
             $table->string('id_user');
             $table->string('description');
-            $table->string('location')->nullable();
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
-            
+
         });
     }
 

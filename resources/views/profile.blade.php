@@ -24,7 +24,7 @@
     <li class="mb-0 list-group-item">
       @if (isset($endDate))
         @if ($endDate!='Today' && $endDate!='Tomorrow')
-            End Package Date: {{ $user->end_date_package }} (remain : {{$endDate}})
+            End Package Date: {{ $user->end_date_package }} (remain : {{$endDate}} days)
         @else
             End Package Date: {{ $user->end_date_package }} ({{$endDate}})
         @endif

@@ -22,7 +22,15 @@ class SettingController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('/profile',['user'=>$user]);
+        $date = Carbon::parse($user->end_date_package);
+        $date = Carbon::now()->diffInDays($date);
+        if ($date == 0 ){
+          $date = 'Today ';
+        }
+        if ($date ==1 ){
+          $date = 'Tomorrow';
+        }
+        return view('/profile',['user'=>$user,'endDate'=>$date]);
     }
 
     /**
@@ -54,7 +62,7 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-      if (\Gate::allows('index-profile',\Auth::user())){
+      if (\Gate::allows('index-profile',$user)){
         $date = Carbon::parse($user->end_date_package);
         $date = Carbon::now()->diffInDays($date);
         if ($date == 0 ){
@@ -118,17 +126,12 @@ class SettingController extends Controller
         $user->save();
 
         $log = new Log();
-        if (Auth::check()){
-            $log->id_user = Auth::user()->id;
-         }
 
-         else{
-           $log->id_user = '2';
-         }
+            $log->id_user = Auth::user()->id;
          $users = User::all()->pluck('name','id');
          $log->description = "user ".$log->id_user.' setting user';
          $log->save();
-            return View('/profile',['user'=>$user]);
+            return $this->show($user);
          }else{
             return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }
