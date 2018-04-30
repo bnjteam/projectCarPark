@@ -1,11 +1,32 @@
 @extends('layouts.app')
-@push('style')
 <script type="text/javascript">
-$( document ).ready(function() {
+  var height_page = document.body.offsetHeight ? document.body.offsetHeight : document.height;
+  function getWindowSize() {
+      var win_size = new Array;
+      if (self.innerHeight) {
+        win_size['height'] = self.innerHeight;
+        win_size['width'] = self.innerWidth;
+      } else if (document.documentElement && document.documentElement.clientHeight) {
+        win_size['height'] = document.documentElement.clientHeight;
+        win_size['width'] = document.documentElement.Width;
+      } else if (document.body) {
+        win_size['height'] = document.body.clientHeight;
+        win_size['width'] = document.body.clientWidth;
+      }
+      return win_size;
+    }
+    var win_dim = getWindowSize();
+    var height_win = win_dim['height']-100;
+  if (height_win < height_page){
+    console.log('height Window: '+height_win,'height Page :'+height_page);
+    console.log('win_less');
+  }
+  else{
     $('#footer').addClass('footer');
-});
+    console.log('height Window: '+height_win,'height Page :'+height_page);
+    console.log("page les");
+  }
 </script>
-@endpush
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

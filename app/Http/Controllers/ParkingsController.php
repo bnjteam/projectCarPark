@@ -312,9 +312,12 @@ $this->checkreserve();
                                             <
           Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
             // dd($request->input('selectmap2'));
+            // dd($request->input('selectmap'));
+            
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
           // dd($map);
           $current_map=new Current_map;
+          // dd($map);
           $current_map->id_user=Auth::user()->id;
           $current_map->id_map=$map->id;
           $pass = str_random(64);
