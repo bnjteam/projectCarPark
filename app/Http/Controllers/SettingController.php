@@ -22,7 +22,15 @@ class SettingController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('/profile',['user'=>$user]);
+        $date = Carbon::parse($user->end_date_package);
+        $date = Carbon::now()->diffInDays($date);
+        if ($date == 0 ){
+          $date = 'Today ';
+        }
+        if ($date ==1 ){
+          $date = 'Tomorrow';
+        }
+        return view('/profile',['user'=>$user,'endDate'=>$date]);
     }
 
     /**
@@ -123,7 +131,7 @@ class SettingController extends Controller
          $users = User::all()->pluck('name','id');
          $log->description = "user ".$log->id_user.' setting user';
          $log->save();
-            return redirect('/profile');
+            return $this->show($user);
          }else{
             return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }

@@ -330,8 +330,9 @@ class ParkingsController extends Controller
         && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
                                             <
           Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
-
+            // dd($request->input('selectmap2'));
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+          // dd($map);
           $current_map=new Current_map;
           $current_map->id_user=Auth::user()->id;
           $current_map->id_map=$map->id;
@@ -348,10 +349,12 @@ class ParkingsController extends Controller
           $pack->save();
 
           $log = new Log();
-             $log->id_user = Auth::user()->id;
+          $log->id_user = Auth::user()->id;
 
           $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
-          $loca = Parking::all()->where('id','LIKE',$id_parking->id)->first();
+          // dd($id_parking);
+          $loca = Parking::all()->where('id','LIKE',$id_parking->id_parking)->first();
+
           $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->id.' space '.$map->number;
           $log->save();
 
@@ -410,7 +413,7 @@ class ParkingsController extends Controller
       public function genQRcode(){
         if (Auth::check()) {
                     if (count(Current_map::all()->where('id_user','LIKE',Auth::user()->id))>0){
-                      $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->last()->password );
+                      $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first()->password );
                       header('Content-Type: '.$qrCode->getContentType());
                       // Save it to a file
                       // $qrCode->writeFile(__DIR__.'/qrcode.png');
