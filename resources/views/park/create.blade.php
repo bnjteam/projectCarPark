@@ -33,14 +33,14 @@
 				@endif
 
     <body>
-
+      <br>
       <br>
       <div align="center">
       <div class="card"   style="width: 50rem; background-color:rgba(0, 0, 0, 0.5); color:white;">
       <div class="card-header">{{ __('Create You parkings') }}</div>
 
       <div class="card-body" >
-      <center><div class="col-10">
+      <center><div class="col-15">
 
         <form method="POST" action="/parkings" enctype="multipart/form-data">
           @csrf
@@ -114,8 +114,7 @@
 
     body {
 
-        background-image: url('https://hdwallsource.com/img/2014/5/street-parking-wallpaper-45023-46185-hd-wallpapers.jpg');
-        font-family: 'Roboto', sans-serif;
+      
     }
 
     .paper {
