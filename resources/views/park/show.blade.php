@@ -268,13 +268,16 @@
     <body>
 
       <center><h1>  {{$parking->location}}</h1></center>
-
+      <img src="{{ $parking->photo}}" width=100% alt="">
       <center><label>Address</label> <br>
       <div class="paper">
          <div class="paper-content">
-      <textarea disabled  name="address" rows="8" cols="80">{{$parking->address}}</textarea>
+      <textarea disabled  name="address" rows="3" cols="80">{{$parking->address}}</textarea>
       </div>
-    </div></center>
+    </div>
+
+
+  </center>
 
 
       <form method="POST" action="/parkings/updatemap" enctype="multipart/form-data">

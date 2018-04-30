@@ -81,7 +81,11 @@
         <li class="list-group-item">    <h1 class="card-title">My Reserve </h1></li>
 
       <div class="card-body">
-
+        @if (isset($msg))
+            <div class="alert alert-warning">
+                {{ $msg }}
+            </div>
+        @endif
         <h3>Location : {{ $parking->location}}</h3>
 
         <div class="" style="width:1100px">
@@ -95,7 +99,6 @@
                 <p>Address</p>
                 <textarea disabled name="name" rows="8" cols="65"> {{ $parking->address }}</textarea>
       </div>
-
       <li class="list-group-item">
         <h3>Floor : {{$photolocation->floor}}</h3>
           <input  type="hidden" name="list" value="{{ $photolocation->canvas }}" id='list{{$photolocation->id}}'>
@@ -116,7 +119,11 @@
                         Show this qrcode when you arrive the location.<br>
 
                     @endif
-                    <a href="/qr-code">This is your QR-code</a>
+                    @if (isset($msg))
+                      This is your QR-code
+                    @else
+                      <a href="/qr-code">This is your QR-code</a>
+                    @endif
 
                 </li>
 

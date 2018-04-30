@@ -98,7 +98,7 @@ class ChangePasswordController extends Controller
 
         $log->description = "user ".$log->id_user.' change password';
         $log->save();
-        return view('/home');
+        return redirect('/');
         }
         return redirect('/changePW'); //ส่งerror
     }
