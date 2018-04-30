@@ -268,14 +268,26 @@ $this->checkreserve();
 
     public function destroyphoto(Photolocation $pho,Request $request)
       {
+          $photo = Photolocation::findOrFail($request->input('photo_id'));
+          $maps = Map::all()->where('id_photo','LIKE',$photo->id);
+          foreach ($maps as $map) {
 
-          $p = Photolocation::findOrFail($request->input('photo_id'));
-            $park = Parking::all()->where('id','like',$p->id_parking)->first();
-          $p->delete();
+
+                $current = Current_map::all()->where('id_map','LIKE',$map->id)->first();
+
+                if($current!=null){
+                          $pack = Package_user::all()->where('id_user','like',$current->id_user)->first();
+                          $pack->numbers = $pack->numbers-1;
+                          $pack->save();
+                        $current->delete();
+                }
+          }
+
+          $park  = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
+          $photo->delete();
           $log = new Log();
           $log->id_user = Auth::user()->id;
-          $log->description = "user ".Auth::user()->name.' delete photolocation floor '.$p->floor.' to park '.$park->location;
-          // $log->location = $request->location;
+          $log->description = "user ".Auth::user()->name.' delete photolocation floor '.$photo->floor.' to park '.$park->location;
           $log->save();
           return redirect('/parkings/'.$request->input('park_id').'/edit');
       }
@@ -311,11 +323,9 @@ $this->checkreserve();
         && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
                                             <
           Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
-            // dd($request->input('selectmap2'));
-            // dd($request->input('selectmap'));
-            
+
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
-          // dd($map);
+
           $current_map=new Current_map;
           // dd($map);
           $current_map->id_user=Auth::user()->id;

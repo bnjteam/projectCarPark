@@ -43,7 +43,7 @@
     }
 
     .footer{
-      position:absolute;
+      position:fixed;
       width:100%;
       bottom: 0;
     }
@@ -194,16 +194,20 @@
 
         <main class="">
 
-          <br>
-          <br>
+
+
             @yield('head')
-              <div class=""  style="padding:50px">
+              <div class=""  style="padding:50px; background-image: url('http://www.papermichey.com/wp-content/uploads/2015/08/1920x1080-pale-pink-solid-color-background.jpg');padding-top:30px;padding-bottom:80px;background-size: cover;width:100%;" >
+                  <br>
+                  <br>
+                  <br>
+
                   @yield('content')
               </div>
         </main>
     </div>
     <footer id="footer" >
-      <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
+      <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:40px;background-size: cover;background-repeat: no-repeat;width:100%">
         <div class="container">
           <div class="row">
             <div class="col-6" style="margin-left:-60px">
