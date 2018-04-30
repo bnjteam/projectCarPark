@@ -71,7 +71,7 @@
                         <!-- <div style="font-family: 'Jua', sans-serif;font-size:30px;color:white;">
                           For Bussiness
                         </div> -->
-                        <div style="font-size:17px;color:white;margin-left: 15px;">
+                        <div style="font-size:13px;color:white;margin-left: 15px;">
                           <ul class="navbar-nav ml-auto">
                           @if (Auth::check() && Auth::user()->level=="admin" )
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Regist Owner</a></li>
