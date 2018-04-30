@@ -82,7 +82,7 @@
             <div class="col-6" >
               <div  style="font-size:40px;font-weight: 700;margin-top:70px">
                 DRIVE ARRIVE
-                <div class="" style="margin-top:-20px;margin-left:-120px">
+                <div class="" style="margin-top:-20px;">
                   &
                 </div>
                 <div class="text-info" style="margin-left: 30px;margin-top:-60px">

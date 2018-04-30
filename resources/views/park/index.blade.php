@@ -1,5 +1,24 @@
 @extends('layouts.app')
 
+@push('style')
+<script type="text/javascript">
+$( document ).ready(function() {
+  $('#footer').removeClass('footer');
+    if (height_win < height_page){
+
+      console.log('height Window: '+height_win,'height Page :'+height_page);
+
+      console.log('win_less');
+    }
+    else{
+        $('#footer').addClass('footer');
+      console.log('height Window: '+height_win,'height Page :'+height_page);
+      console.log("page les");
+    }
+
+});
+</script>
+@endpush
 @section('head')
 <ul class="breadcrumb">
   <li><a href="/home">Home</a> / </li>
@@ -43,8 +62,8 @@ td ,th ,tr {
 @section('content')
 
 <br>
-<div style="overflow-x:auto;">
-<table class="table" id="myTable">
+<div style="overflow-x:auto">
+<table class="table" id="myTable" style="min-height:300px">
 
     <tr>
       <th onclick="sortTable(0)" scope="col">ID</th>
@@ -65,7 +84,7 @@ td ,th ,tr {
       <td>{{ $loop->iteration }}</td>
 
       <td>
-        @if ( !file_exists( $item->photo ) ) 
+        @if ( !file_exists( $item->photo ) )
             <img style="border-radius: 20%" width="150"  src="{{ $item->photo }}" alt="">
           @else
             <img style="border-radius: 20%" width="150"  src="/storage/noimage.png" alt="">

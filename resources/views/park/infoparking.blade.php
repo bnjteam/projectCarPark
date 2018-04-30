@@ -114,7 +114,7 @@
                     @if ($current_map->status=='full')
                         Show this qrcode when you leave the location.
                     @else
-                        <p class="card-text">TimeOut reserve At : {{ $timeOut }}</p>
+                        <p class="card-text">Expired reserve At : {{ $timeOut }}</p>
 
                         Show this qrcode when you arrive the location.<br>
 

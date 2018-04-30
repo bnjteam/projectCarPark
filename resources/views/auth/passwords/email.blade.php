@@ -1,14 +1,11 @@
 @extends('layouts.app')
 
 @push('style')
-<style media="screen">
-.footer{
-  position: absolute;
-  width:100%;
-  bottom: 0;
-}
-</style>
-
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('#footer').addClass('footer');
+});
+</script>
 @endpush
 @section('content')
 <div class="container">
