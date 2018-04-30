@@ -89,9 +89,6 @@ class ParkingsController extends Controller
            $log->id_user = Auth::user()->id;
         }
 
-        else{
-          $log->id_user = '2';
-        }
         $users = User::all()->pluck('name','id');
         $log->description = "user ". Auth::user()->name.' create park '.$parking->location;
         // $log->location = $parking->location;
@@ -468,6 +465,7 @@ class ParkingsController extends Controller
             $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
             // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
             $log->description = "user ".Auth::user()->name.' unreserve '.$map->number.' floor '.$photo->floor.' park '.$parking->location;
+            $log->save();
               return view('/park.infoparking');
       }
 
