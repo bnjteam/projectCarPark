@@ -266,8 +266,13 @@
 
         </script>
     <body>
+      <div align="center">
+      <div class="card"   style="width: 1400px; background-color:rgba(0, 0, 0, 0.5); color:white;">
+      <div class="card-header">  <h1>  {{$parking->location}}</h1></div>
 
-      <center><h1>  {{$parking->location}}</h1>
+      <div class="card-body" >
+        <center>
+
 
       <img src="{{ $parking->photo}}" width=1100px alt=""><br>
       <label>Address</label> <br>
@@ -352,7 +357,10 @@
 </body>
 </div>
 </div>
+</div>
+</div>
 
+</div>
     <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto);
     @import url(https://fonts.googleapis.com/css?family=Handlee);
