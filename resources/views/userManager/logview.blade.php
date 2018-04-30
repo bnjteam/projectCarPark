@@ -77,7 +77,6 @@ td ,th ,tr {
           </a>
         </td>
       <td>{{ $item->description }}</td>
-      <td>{{ $item->location }}</td>
       <td>{{ $item->created_at->diffForHumans() }}</td>
     </tr>
     @endforeach
