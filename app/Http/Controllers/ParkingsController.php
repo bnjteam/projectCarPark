@@ -169,11 +169,42 @@ class ParkingsController extends Controller
       }
       else{
         $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
+        $pack->numbers = $pack->numbers-1;
+        $pack->save();
       }
-      $pack->numbers = $pack->numbers-1;
-      $pack->save();
+      // dd($parking->id);
+      $par_id = $parking->id;
+
+      $mapArray = [];
+      $photo = Photolocation::all()->where('id_parking','LIKE',$par_id);
+        foreach ($photo as $key) {
+          $m = Map::all()->where('id_photo','LIKE',$key->id);
+          $key->delete();
+          // dd($m);
+          foreach ($m as $valueIn) {
+            // dd($valueIn->id);
+            array_push($mapArray,$valueIn->id);
+          }
+          // dd($mapArray);
+        }
+
+        foreach ($mapArray as $key) {
+
+          $current = Current_map::all()->where('id_map','LIKE',$key)->first();
+
+          if ($current!=null){
+              // $current = $current->first();
+              $current->delete();
+              // $current->save();
+          }
+
+          // $current->save();
+        }
+
+
+
       $parking->delete();
-      $parking->save();
+      // $parking->save();
 
 
       $log = new Log();
@@ -299,8 +330,9 @@ class ParkingsController extends Controller
         && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
                                             <
           Package::all()->where('id','LIKE',Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->id_package)->first()->limit) ) {
-
+            // dd($request->input('selectmap2'));
           $map=Map::all()->where('id_photo','LIKE',$request->input('selectmap2'))->where('number','LIKE',$request->input('selectmap'))->first();
+          // dd($map);
           $current_map=new Current_map;
           $current_map->id_user=Auth::user()->id;
           $current_map->id_map=$map->id;
@@ -317,10 +349,12 @@ class ParkingsController extends Controller
           $pack->save();
 
           $log = new Log();
-             $log->id_user = Auth::user()->id;
+          $log->id_user = Auth::user()->id;
 
           $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
-          $loca = Parking::all()->where('id','LIKE',$id_parking)->first();
+          // dd($id_parking);
+          $loca = Parking::all()->where('id','LIKE',$id_parking->id_parking)->first();
+
           $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->id.' space '.$map->number;
           $log->save();
 
@@ -378,13 +412,19 @@ class ParkingsController extends Controller
       }
       public function genQRcode(){
         if (Auth::check()) {
-                    $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->last()->password );
-                    header('Content-Type: '.$qrCode->getContentType());
-                    // Save it to a file
-                    // $qrCode->writeFile(__DIR__.'/qrcode.png');
-                    // Create a response object
-                    $response = new QrCodeResponse($qrCode);
-                    return $response;
+                    if (count(Current_map::all()->where('id_user','LIKE',Auth::user()->id))>0){
+                      $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first()->password );
+                      header('Content-Type: '.$qrCode->getContentType());
+                      // Save it to a file
+                      // $qrCode->writeFile(__DIR__.'/qrcode.png');
+                      // Create a response object
+                      $response = new QrCodeResponse($qrCode);
+                      return $response;
+                    }
+                    else{
+                      return view('park.notQRcode');
+                    }
+
         }
         else{
           return view('/login');
@@ -394,16 +434,28 @@ class ParkingsController extends Controller
       public function InfoParking(){
           $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
           if ($cur_map!=null){
+
             $map = Map::all()->where('id','LIKE',$cur_map->id_map)->first();
 
             $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
 
-            $parking = Parking::all()->where('id','LIKE',$photo->id_parking)->first();
-            $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+            $parking = Parking::all()->where('id','LIKE',$photo->id_parking);
+            if (count($parking)>0){
+              $parking = $parking->first();
+            }
+            else{
 
-              return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
+              $parkingTrash = Parking::onlyTrashed()->where('id','LIKE',$photo->id_parking)->first();
+              // dd($parkingTrash);
+              $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+
+              return view('/park.infoparking',['msg'=>'This location has deleted','parking'=>$parkingTrash,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
+            }
+            $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+            return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
           }
           else{
+
               return view('/park.infoparking');
           }
       }
