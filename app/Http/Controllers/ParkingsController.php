@@ -107,7 +107,7 @@ class ParkingsController extends Controller
      */
     public function show(Parking $parking)
     {
-
+$this->checkreserve();
         $p= Photolocation::all()->where('id_parking','LIKE',$parking->id);
           $map  = Map::all();
           $current_map  = Current_map::all();
@@ -326,6 +326,7 @@ class ParkingsController extends Controller
 
       public function updatemap(Request $request)
       {
+        $this->checkreserve();
         if(Auth::check() && Auth::user()->level=='member'
         && (Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first()->numbers
                                             <
@@ -413,6 +414,7 @@ class ParkingsController extends Controller
 
       }
       public function genQRcode(){
+        $this->checkreserve();
         if (Auth::check()) {
                     if (count(Current_map::all()->where('id_user','LIKE',Auth::user()->id))>0){
                       $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first()->password );
@@ -434,6 +436,7 @@ class ParkingsController extends Controller
 
       }
       public function InfoParking(){
+        $this->checkreserve();
           $cur_map = Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first();
           if ($cur_map!=null){
 
@@ -461,7 +464,6 @@ class ParkingsController extends Controller
               return view('/park.infoparking');
           }
       }
-
       public function deletereserve(Current_map $current_map){
             $current_map->delete();
             $pack= Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first();
@@ -488,9 +490,5 @@ class ParkingsController extends Controller
                 $cur_map->delete();
               }
             }
-
-
       }
-
-
 }

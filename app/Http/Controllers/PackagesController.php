@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Package_user;
+use App\Package;
 use App\Http\Controllers\Controller;
 use App\User;
 
@@ -18,7 +20,6 @@ class PackagesController extends Controller
      */
     public function index()
     {
-
         return view('package');
     }
 
