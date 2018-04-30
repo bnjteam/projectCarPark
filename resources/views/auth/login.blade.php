@@ -1,11 +1,5 @@
 @extends('layouts.app')
-@push('style')
-<script type="text/javascript">
-$( document ).ready(function() {
-    $('#footer').addClass('footer');
-});
-</script>
-@endpush
+
 @section('content')
 
 <br>
