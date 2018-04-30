@@ -464,7 +464,6 @@ $this->checkreserve();
               return view('/park.infoparking');
           }
       }
-
       public function deletereserve(Current_map $current_map){
             $current_map->delete();
             $pack= Package_user::all()->where('id_user','LIKE',Auth::user()->id)->first();
@@ -491,9 +490,5 @@ $this->checkreserve();
                 $cur_map->delete();
               }
             }
-
-
       }
-
-
 }

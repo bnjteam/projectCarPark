@@ -33,6 +33,227 @@
     ?>
     @stack('style')
 <style >
+.cssload-box-loading {
+width: 49px;
+height: 49px;
+margin: auto;
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+}
+.cssload-box-loading:before {
+content: '';
+width: 49px;
+height: 5px;
+background: rgb(0,0,0);
+opacity: 0.1;
+position: absolute;
+top: 58px;
+left: 0;
+border-radius: 50%;
+animation: shadow 0.58s linear infinite;
+-o-animation: shadow 0.58s linear infinite;
+-ms-animation: shadow 0.58s linear infinite;
+-webkit-animation: shadow 0.58s linear infinite;
+-moz-animation: shadow 0.58s linear infinite;
+}
+.cssload-box-loading:after {
+content: '';
+width: 49px;
+height: 49px;
+background: rgb(26,54,104);
+position: absolute;
+top: 0;
+left: 0;
+border-radius: 3px;
+animation: cssload-animate 0.58s linear infinite;
+-o-animation: cssload-animate 0.58s linear infinite;
+-ms-animation: cssload-animate 0.58s linear infinite;
+-webkit-animation: cssload-animate 0.58s linear infinite;
+-moz-animation: cssload-animate 0.58s linear infinite;
+}
+
+
+
+@keyframes cssload-animate {
+17% {
+border-bottom-right-radius: 3px;
+}
+25% {
+transform: translateY(9px) rotate(22.5deg);
+}
+50% {
+transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+border-bottom-right-radius: 39px;
+}
+75% {
+transform: translateY(9px) rotate(67.5deg);
+}
+100% {
+transform: translateY(0) rotate(90deg);
+}
+}
+
+@-o-keyframes cssload-animate {
+17% {
+border-bottom-right-radius: 3px;
+}
+25% {
+-o-transform: translateY(9px) rotate(22.5deg);
+}
+50% {
+-o-transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+border-bottom-right-radius: 39px;
+}
+75% {
+-o-transform: translateY(9px) rotate(67.5deg);
+}
+100% {
+-o-transform: translateY(0) rotate(90deg);
+}
+}
+
+@-ms-keyframes cssload-animate {
+17% {
+border-bottom-right-radius: 3px;
+}
+25% {
+-ms-transform: translateY(9px) rotate(22.5deg);
+}
+50% {
+-ms-transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+border-bottom-right-radius: 39px;
+}
+75% {
+-ms-transform: translateY(9px) rotate(67.5deg);
+}
+100% {
+-ms-transform: translateY(0) rotate(90deg);
+}
+}
+
+@-webkit-keyframes cssload-animate {
+17% {
+border-bottom-right-radius: 3px;
+}
+25% {
+-webkit-transform: translateY(9px) rotate(22.5deg);
+}
+50% {
+-webkit-transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+border-bottom-right-radius: 39px;
+}
+75% {
+-webkit-transform: translateY(9px) rotate(67.5deg);
+}
+100% {
+-webkit-transform: translateY(0) rotate(90deg);
+}
+}
+
+@-moz-keyframes cssload-animate {
+17% {
+border-bottom-right-radius: 3px;
+}
+25% {
+-moz-transform: translateY(9px) rotate(22.5deg);
+}
+50% {
+-moz-transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+border-bottom-right-radius: 39px;
+}
+75% {
+-moz-transform: translateY(9px) rotate(67.5deg);
+}
+100% {
+-moz-transform: translateY(0) rotate(90deg);
+}
+}
+
+@keyframes shadow {
+0%,
+100% {
+transform: scale(1, 1);
+}
+50% {
+transform: scale(1.2, 1);
+}
+}
+
+@-o-keyframes shadow {
+0%,
+100% {
+-o-transform: scale(1, 1);
+}
+50% {
+-o-transform: scale(1.2, 1);
+}
+}
+
+@-ms-keyframes shadow {
+0%,
+100% {
+-ms-transform: scale(1, 1);
+}
+50% {
+-ms-transform: scale(1.2, 1);
+}
+}
+
+@-webkit-keyframes shadow {
+0%,
+100% {
+-webkit-transform: scale(1, 1);
+}
+50% {
+-webkit-transform: scale(1.2, 1);
+}
+}
+
+@-moz-keyframes shadow {
+0%,
+100% {
+-moz-transform: scale(1, 1);
+}
+50% {
+-moz-transform: scale(1.2, 1);
+}
+}
+@-webkit-keyframes spin {
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+position: relative;
+-webkit-animation-name: animatebottom;
+-webkit-animation-duration: 1s;
+animation-name: animatebottom;
+animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+from { bottom:-100px; opacity:0 }
+to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+from{ bottom:-100px; opacity:0 }
+to{ bottom:0; opacity:1 }
+}
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
     .fixed-top {
     position: fixed;
     top: 0;
@@ -44,15 +265,15 @@
     .footer{
       position:absolute;
       width:100%;
-      bottom: 0;
+      bottom: 5;
     }
 }
 </style>
 
 
 </head>
+<body>
 
-<body style-="height:100%;position:relative" id="page">
 
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
@@ -107,7 +328,6 @@
                             <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/parkings') }}">{{ __('PARKINGS MANAGER') }}</a></li>
                             @if (Auth::user()->level =='admin')
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="{{ url('/userManager') }}">{{ __('USERS MANAGER') }}</a></li>
-
                         @endif
                         <li class="nav-item dropdown" style="background-color:#666699">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -189,21 +409,17 @@
         </nav>
 
 
-        <main class="py-4">
-          <br>
-          <br>
-          <br>
+        <main class="">
 
+          <br>
+          <br>
             @yield('head')
-            <div class="" style="padding:50px" >
-                @yield('content')
-
-
-            </div>
-
+              <div class=""  style="padding:50px">
+                  @yield('content')
+              </div>
         </main>
     </div>
-    <footer id="footer">
+    <footer id="footer" >
       <div style="background-image:url(/storage/bg01.jpg);padding-top:30px;padding-bottom:20px;background-size: cover;background-repeat: no-repeat;width:100%">
         <div class="container">
           <div class="row">
@@ -261,7 +477,10 @@
         </div>
       </div>
     </footer>
+
+
 </body>
+
 
 <script type="text/javascript">
   var height_page = document.body.offsetHeight ? document.body.offsetHeight : document.height;
