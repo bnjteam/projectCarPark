@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('head')
 
 
@@ -66,16 +67,17 @@
 
   }
   </script>
+
       @if (isset($current_map))
 
-    
+
 
     <form method="POST" action="/parkings/info/{{$current_map->id}}" enctype="multipart/form-data">
       @csrf
       @method('DELETE')
     <center>
 
-    <div class="card" style="width: 1200px;">
+    <div class="card" style="width: 1200px;margin-top:100px">
 
 
 
@@ -150,10 +152,3 @@
 
   @endif
 @endsection
-@push('style')
-<script>
-    $( document ).ready(function() {
-        $("#footer").addClass('footer');
-      });
-</script>
-@endpush
