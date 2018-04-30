@@ -336,7 +336,7 @@
 
               </div>
               <div class="modal-footer">
-                @if ( Auth::user()->level=='member' &&  Auth::user()->level=='guest' )
+                @if ( Auth::user()->level=='member' ||  Auth::user()->level=='guest' )
                   <button type="submit" class="btn btn-primary">reserve</button>
                 @endif
                 <button type="button" onclick="closemodal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
