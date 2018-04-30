@@ -398,7 +398,7 @@ class ParkingsController extends Controller
               $log = new Log();
                  $log->id_user = $current->id_user;
               $users = User::all()->where('id','LIKE',$log->id_user)->first();
-              $log->description = "user ".$users->name.' leave the park ';
+              $log->description = "user ".$users->name.' leave '.$map->number.' floor '.$photo->floor.' park '.$parking->location;
               $id_photo = Map::all()->pluck('id_photo','id')[$current->id_map];
               $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
               // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
