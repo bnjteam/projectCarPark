@@ -6,7 +6,7 @@
 @if ($level == 'error')
 # Whoops!
 @else
-# Hello!
+# สวัสดี ! สมาชิกที่น่ารัก นี่คือ e-mail สำหรับ กู้คืนรหัสผ่าน ถ้าไม่ใช่การร้องขอของคุณกรุณาเมินเฉยอีเมล์นี้
 @endif
 @endif
 
@@ -46,7 +46,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Regards,<br>{{ config('app.name') }}
+Noel Admin,<br>{{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
