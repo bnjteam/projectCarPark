@@ -199,6 +199,8 @@
             @yield('head')
               <div class=""  style="padding:50px; background-image: url('http://www.papermichey.com/wp-content/uploads/2015/08/1920x1080-pale-pink-solid-color-background.jpg');padding-top:30px;padding-bottom:80px;background-size: cover;width:100%;" >
                   <br>
+                  <br>
+                  <br>
 
                   @yield('content')
               </div>
