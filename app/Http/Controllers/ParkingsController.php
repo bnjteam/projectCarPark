@@ -478,6 +478,18 @@ class ParkingsController extends Controller
             $log->save();
               return view('/park.infoparking');
       }
+      function checkreserve(){
+            $cur_maps = Current_map::all();
+            foreach ($cur_maps as $cur_map) {
+              $timeout = Carbon::parse($cur_map->created_at);
+              $minutes = Carbon::now()->diffInMinutes($timeout);
+              if ($minutes>20){
+                $cur_map->delete();
+              }
+            }
+
+
+      }
 
 
 }
