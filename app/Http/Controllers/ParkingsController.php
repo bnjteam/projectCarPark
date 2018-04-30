@@ -351,7 +351,7 @@ class ParkingsController extends Controller
              $log->id_user = Auth::user()->id;
 
           $id_parking = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
-          $loca = Parking::all()->where('id','LIKE',$id_parking)->first();
+          $loca = Parking::all()->where('id','LIKE',$id_parking->id)->first();
           $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->id.' space '.$map->number;
           $log->save();
 
@@ -409,13 +409,19 @@ class ParkingsController extends Controller
       }
       public function genQRcode(){
         if (Auth::check()) {
-                    $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->last()->password );
-                    header('Content-Type: '.$qrCode->getContentType());
-                    // Save it to a file
-                    // $qrCode->writeFile(__DIR__.'/qrcode.png');
-                    // Create a response object
-                    $response = new QrCodeResponse($qrCode);
-                    return $response;
+                    if (count(Current_map::all()->where('id_user','LIKE',Auth::user()->id))>0){
+                      $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->last()->password );
+                      header('Content-Type: '.$qrCode->getContentType());
+                      // Save it to a file
+                      // $qrCode->writeFile(__DIR__.'/qrcode.png');
+                      // Create a response object
+                      $response = new QrCodeResponse($qrCode);
+                      return $response;
+                    }
+                    else{
+                      return view('park.notQRcode');
+                    }
+
         }
         else{
           return view('/login');

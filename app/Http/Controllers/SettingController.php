@@ -118,17 +118,12 @@ class SettingController extends Controller
         $user->save();
 
         $log = new Log();
-        if (Auth::check()){
-            $log->id_user = Auth::user()->id;
-         }
 
-         else{
-           $log->id_user = '2';
-         }
+            $log->id_user = Auth::user()->id;
          $users = User::all()->pluck('name','id');
          $log->description = "user ".$log->id_user.' setting user';
          $log->save();
-            return View('/profile',['user'=>$user]);
+            return redirect('/profile');
          }else{
             return view('/setting',['aleartMesg'=>'Your password are wrong.']);
          }
