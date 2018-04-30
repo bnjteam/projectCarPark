@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @push('style')
-<script type="text/javascript">
-$( document ).ready(function() {
-    $('#footer').addClass('footer');
-});
-</script>
+
 @endpush
 @section('content')
+<br>
+<br>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
