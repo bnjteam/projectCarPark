@@ -68,7 +68,7 @@ class HomeController extends Controller
       }
     }
     public function show_search(){
-      $d = DB::table('parkings')->orderBy('id', 'DESC')->paginate(6);
+      $d = DB::table('parkings')->orderBy('id', 'DESC')->whereNull('deleted_at')->paginate(6);
 
       return view('/search',['start'=>1,'details'=>$d,'query'=>'','filters'=>$this->filter]);
 

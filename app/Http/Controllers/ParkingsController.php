@@ -164,47 +164,27 @@ $this->checkreserve();
      */
     public function destroy(Parking $parking)
     {
-      if (Auth::user()->level=="admin"){
-        $pack = Package_user::all()->where('id_user','like',$parking->id_user)->first();
-      }
-      else{
-        $pack = Package_user::all()->where('id_user','like',Auth::user()->id)->first();
-        $pack->numbers = $pack->numbers-1;
-        $pack->save();
-      }
-      // dd($parking->id);
-      $par_id = $parking->id;
+        $photos = Photolocation::all()->where('id_parking','LIKE',$parking->id);
 
-      $mapArray = [];
-      $photo = Photolocation::all()->where('id_parking','LIKE',$par_id);
-        foreach ($photo as $key) {
-          $m = Map::all()->where('id_photo','LIKE',$key->id);
-          $key->delete();
-          // dd($m);
-          foreach ($m as $valueIn) {
-            // dd($valueIn->id);
-            array_push($mapArray,$valueIn->id);
+        foreach ($photos as $photo) {
+          $maps = Map::all()->where('id_photo','LIKE',$photo->id);
+          foreach ($maps as $map) {
+
+
+                $current = Current_map::all()->where('id_map','LIKE',$map->id)->first();
+
+                if($current!=null){
+                          $pack = Package_user::all()->where('id_user','like',$current->id_user)->first();
+                          $pack->numbers = $pack->numbers-1;
+                          $pack->save();
+                        $current->delete();
+                }
           }
-          // dd($mapArray);
+          $photo->delete();
         }
-
-        foreach ($mapArray as $key) {
-
-          $current = Current_map::all()->where('id_map','LIKE',$key)->first();
-
-          if ($current!=null){
-              // $current = $current->first();
-              $current->delete();
-              // $current->save();
-          }
-
-          // $current->save();
-        }
-
 
 
       $parking->delete();
-      // $parking->save();
 
 
       $log = new Log();
