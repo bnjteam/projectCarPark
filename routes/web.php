@@ -6,6 +6,7 @@
 Route::get('/setting', function () {
     return view('setting');
 });
+Route::get('/check','ParkingsController@checkreserve');
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index');

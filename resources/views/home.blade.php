@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('head')
-
 <div class="" style="margin-top:-40px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
   <div class="row justify-content-center" style="padding:50px;">
     <div class="" style="font-size:80px;color:white;font-weight: 800;" >
