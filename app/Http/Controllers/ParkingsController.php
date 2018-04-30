@@ -488,7 +488,12 @@ $this->checkreserve();
               $minutes = Carbon::now()->diffInMinutes($timeout);
               if ($minutes>20){
                 $cur_map->delete();
+                  $pack= Package_user::all()->where('id_user','LIKE',$cur_map->id_user)->first();
+                  $pack->numbers=$pack->numbers-1;
+                  $pack->save();
               }
+
+
             }
       }
 }
