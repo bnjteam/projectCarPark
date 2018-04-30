@@ -265,7 +265,7 @@ to{ bottom:0; opacity:1 }
     .footer{
       position:absolute;
       width:100%;
-      bottom: 5;
+      bottom: 0;
     }
 }
 </style>
@@ -502,6 +502,7 @@ to{ bottom:0; opacity:1 }
     var height_win = win_dim['height']-100;
   if (height_win < height_page){
     console.log('height Window: '+height_win,'height Page :'+height_page);
+
     console.log('win_less');
   }
   else{
