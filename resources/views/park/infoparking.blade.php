@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('head')
 
 
@@ -66,7 +67,9 @@
 
   }
   </script>
+
       @if (isset($current_map))
+
 
 
     <form method="POST" action="/parkings/info/{{$current_map->id}}" enctype="multipart/form-data">
@@ -74,7 +77,7 @@
       @method('DELETE')
     <center>
 
-    <div class="card" style="width: 1200px;">
+    <div class="card" style="width: 1200px;margin-top:100px">
 
 
 
@@ -114,7 +117,7 @@
                     @if ($current_map->status=='full')
                         Show this qrcode when you leave the location.
                     @else
-                        <p class="card-text">TimeOut reserve At : {{ $timeOut }}</p>
+                        <p class="card-text">Expired reserve At : {{ $timeOut }}</p>
 
                         Show this qrcode when you arrive the location.<br>
 
@@ -139,7 +142,11 @@
   </form>
   @else
   <br>
-    <div class="card" >
+  <br>
+  <br>
+  <br>
+  <br>
+    <div class="card"  style="padding:50px">
       <center><h1>you not have a reserve space</h1><center>
     </div>
 
