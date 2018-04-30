@@ -360,7 +360,8 @@ $this->checkreserve();
           $log->description = "user ".Auth::user()->name.' reserve space '.$map->number.' floor '.$id_parking->floor.' park '.$loca->location;
           $log->save();
 
-          return $this->InfoParking();
+          // return $this->InfoParking();
+          return view('park.page');
 
         }else{
           return  redirect('/package');
@@ -482,11 +483,18 @@ $this->checkreserve();
               return view('/park.infoparking');
       }
       function checkreserve(){
+
             $cur_maps = Current_map::all();
+
             foreach ($cur_maps as $cur_map) {
               $timeout = Carbon::parse($cur_map->created_at);
               $minutes = Carbon::now()->diffInMinutes($timeout);
+            // echo $minutes;
+            //         echo '<br>';
+            //         echo $timeout;
+            //     dd($cur_map);
               if ($minutes>20){
+                  // dd($cur_maps);
                 $cur_map->delete();
                   $pack= Package_user::all()->where('id_user','LIKE',$cur_map->id_user)->first();
                   $pack->numbers=$pack->numbers-1;
