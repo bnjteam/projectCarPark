@@ -36,7 +36,7 @@
         <div class="container">
           <div class="row" style="margin-top:20px;padding-bottom:50px;">
             <div class="col-6 " style="text-align: center">
-              <img src="/storage/find.jpg"  width="400px" alt="">
+              <img src="/storage/find.png"  width="200px" style="" alt="">
             </div>
             <div class="col-6">
               <div style="font-size:40px;font-weight: 700;margin-top:70px">
@@ -77,7 +77,7 @@
         <div class="container">
           <div class="row" style="">
             <div class="col-6" style="text-align: center">
-              <img src="/storage/car.jpg" width="400px"alt="">
+              <img src="/storage/car.png" width="400px" style="margin-top:70px" alt="">
             </div>
             <div class="col-6" >
               <div  style="font-size:40px;font-weight: 700;margin-top:70px">
