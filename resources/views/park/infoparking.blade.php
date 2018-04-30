@@ -139,9 +139,20 @@
   </form>
   @else
   <br>
-    <div class="card" >
+  <br>
+  <br>
+  <br>
+  <br>
+    <div class="card"  style="padding:50px">
       <center><h1>you not have a reserve space</h1><center>
     </div>
 
   @endif
 @endsection
+@push('style')
+<script>
+    $( document ).ready(function() {
+        $("#footer").addClass('footer');
+      });
+</script>
+@endpush

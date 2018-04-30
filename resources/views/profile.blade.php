@@ -78,7 +78,7 @@
 
       @if(empty($user->start_date_package) and empty($user->end_date_package))
       <li class="list-group-item">
-        Your package has emtry or expired
+        Your package has empty or expired
         <P>Please apply for package<a href="/package"> Member</a> or <a href="/register_owner">Parking Owner</a></p>
       </li>
       @endif
