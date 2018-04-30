@@ -129,7 +129,7 @@ class SettingController extends Controller
 
             $log->id_user = Auth::user()->id;
          $users = User::all()->pluck('name','id');
-         $log->description = "user ".$log->id_user.' setting user';
+         $log->description = "user ".Auth::user()->name.' setting user';
          $log->save();
             return $this->show($user);
          }else{

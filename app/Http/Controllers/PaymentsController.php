@@ -162,7 +162,7 @@ class PaymentsController extends Controller
               $log = new Log();
                  $log->id_user = Auth::user()->id;
               $users = User::all()->pluck('name','id');
-              $log->description = "user ".$log->id_user.' buy package '.$user->type;
+              $log->description = "user ".Auth::user()->name.' buy package '.$user->type;
               $log->save();
 
               return view('payments.complete');
@@ -172,7 +172,7 @@ class PaymentsController extends Controller
               $log = new Log();
                  $log->id_user = Auth::user()->id;
               $users = User::all()->pluck('name','id');
-              $log->description = "user ".$log->id_user.' buy package '.$user->type;
+              $log->description = "user ".Auth::user()->name.' buy package '.$user->type;
               $log->save();
               return view('registerOwner.success',['user'=>$user]);
             }
