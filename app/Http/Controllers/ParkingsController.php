@@ -368,7 +368,8 @@ class ParkingsController extends Controller
 
       public function readQRcode($token){
         // return view('park.readQRcode');
-          if (count(Current_map::all()->where('password','LIKE',$token))) {
+        $this->checkreserve();
+          if (count(Current_map::all()->where('password','LIKE',$token))>0) {
             $current = Current_map::all()->where('password','LIKE',$token)->last();
             $map = Map::all()->where('id','LIKE',$current->id_map)->first();
             $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
