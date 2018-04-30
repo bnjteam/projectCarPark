@@ -143,7 +143,7 @@
       <br>
       <div align="center">
       <div class="card"   style="width: 1400px; background-color:rgba(0, 0, 0, 0.5); color:white;">
-      <div class="card-header">{{ __('Create You parkings') }}</div>
+      <div class="card-header">{{ __('Edit You Parking') }}</div>
 
       <div class="card-body" >
       <center><div class="col-10">
