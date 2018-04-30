@@ -13,12 +13,13 @@
 table {
     border-spacing: 0;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     text-align: center;
 }
 
 th {
     cursor: pointer;
+    background-color: white;
 }
 
 th, td {
@@ -26,18 +27,14 @@ th, td {
     padding: 16px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-th:hover {
-    background-color: pink
-}
+
+
 th:active {
     background-color: #666699;
 }
 
-tr:hover {
-  background-color:#f5f5f5;
+tr{
+  background-color: white
 }
 td ,th ,tr {
   word-wrap: break-word;

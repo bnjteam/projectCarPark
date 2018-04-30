@@ -143,7 +143,7 @@
       <br>
       <div align="center">
       <div class="card"   style="width: 1400px; background-color:rgba(0, 0, 0, 0.5); color:white;">
-      <div class="card-header">{{ __('Create You parkings') }}</div>
+      <div class="card-header">{{ __('Edit You Parking') }}</div>
 
       <div class="card-body" >
       <center><div class="col-10">
@@ -246,7 +246,7 @@
 
 body {
 
-    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/B0xO8Q47eiwdg4eb8/abstract-moving-background-for-title-text-in-the-center-white-dots-connected-with-lines-on-2016-pantone-color-mix-rose-quartz-and-serenity-gradient-background_svfx6j-cqe_thumbnail-full01.png');
+
     font-family: 'Roboto', sans-serif;
 
     /* background-repeat: no-repeat; */

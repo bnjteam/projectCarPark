@@ -5,9 +5,12 @@
   use App\Package_user;
  ?>
 @section('content')
-
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row justify-content-center">
+
       <h1>{{ __('Register Parking Owner') }}</h1>
         <div class="col-12">
           @if (Auth::user()->level=="parking_owner")

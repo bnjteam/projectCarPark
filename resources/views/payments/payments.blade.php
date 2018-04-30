@@ -21,7 +21,7 @@
 				@endif
 				<div class="row">
 					<div class="col-md-6 text-align-md-right" >
-						
+
 						<img src="https://static1.squarespace.com/static/5600504ae4b0dbc400a4ac20/t/58fa7ba429687fad40c97378/1492810694353/" alt="Workplace" usemap="#workmap" width="250" height="30">
 					</div>
 				</div>
