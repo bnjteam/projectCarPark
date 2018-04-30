@@ -1,6 +1,10 @@
 
 @extends('layouts.app')
-
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('#footer').removeClass('footer');
+});
+</script>
 
 
 @section('content')

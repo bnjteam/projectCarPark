@@ -61,6 +61,7 @@ class LoginController extends Controller
 
              if ($time->gt($u->end_date_package))
              {
+
                // dd($u->end_date_package,$time->toDateTimeString(),'expired');
                $log = new Log();
                $email = $request->email;
