@@ -24,6 +24,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet" type="text/css">
     <!-- Styles -->
+    <link rel="shortcut icon" href="https://i.pinimg.com/originals/ad/6c/a6/ad6ca62825e0ce4beadce04eaeec8a89.png">
     <link href="{{ asset('css/united.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <?php

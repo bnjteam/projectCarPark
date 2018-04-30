@@ -108,6 +108,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                              <input type="checkbox" name="checkbox" value="check" id="agree" required /> I have agree to the <a href="/userpolicy">Terms & Privacy Policy</a><br><br>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
