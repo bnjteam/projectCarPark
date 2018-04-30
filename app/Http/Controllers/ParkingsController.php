@@ -418,7 +418,7 @@ $this->checkreserve();
         $this->checkreserve();
         if (Auth::check()) {
                     if (count(Current_map::all()->where('id_user','LIKE',Auth::user()->id))>0){
-                      $qrCode = new QrCode('localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first()->password );
+                      $qrCode = new QrCode('http://localhost:8000/readQRcode/'.Current_map::all()->where('id_user','LIKE',Auth::user()->id)->first()->password );
                       header('Content-Type: '.$qrCode->getContentType());
                       // Save it to a file
                       // $qrCode->writeFile(__DIR__.'/qrcode.png');
