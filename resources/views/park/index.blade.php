@@ -42,18 +42,14 @@ th, td {
     text-align: left;
     padding: 16px;
 }
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-th:hover {
-    background-color: pink
+
+tr{
+  background-color: white
 }
 th:active {
     background-color: #666699;
 }
-tr:hover {
-  background-color:#f5f5f5;
-}
+
 td ,th ,tr {
   word-wrap: break-word;
 }
@@ -61,7 +57,6 @@ td ,th ,tr {
 </style>
 @section('content')
 
-<br>
 <div style="overflow-x:auto">
 <table class="table" id="myTable" style="min-height:300px">
 

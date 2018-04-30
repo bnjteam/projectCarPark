@@ -246,7 +246,7 @@
 
 body {
 
-    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/B0xO8Q47eiwdg4eb8/abstract-moving-background-for-title-text-in-the-center-white-dots-connected-with-lines-on-2016-pantone-color-mix-rose-quartz-and-serenity-gradient-background_svfx6j-cqe_thumbnail-full01.png');
+
     font-family: 'Roboto', sans-serif;
 
     /* background-repeat: no-repeat; */
