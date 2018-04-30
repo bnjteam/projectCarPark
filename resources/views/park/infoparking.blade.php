@@ -130,8 +130,9 @@
 
       <div class="card-body">
 
-
+        @if ({{current_map->status!='full'}})
         <input type="submit" class="card-link btn btn-success" name="" value="Unreserve">
+        @endif
       </div>
     </div>
   </center>
