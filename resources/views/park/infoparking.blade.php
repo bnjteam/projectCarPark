@@ -68,6 +68,7 @@
   </script>
       @if (isset($current_map))
 
+    
 
     <form method="POST" action="/parkings/info/{{$current_map->id}}" enctype="multipart/form-data">
       @csrf
