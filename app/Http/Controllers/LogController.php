@@ -54,7 +54,8 @@ class LogController extends Controller
         $log = Log::all()->where('id_user','=',$user);
         $users= User::all()->where('id','=',$user);
         $names = User::all()->pluck('name','id');
-
+        //dd($users);
+        //return view('/home');
         return view('/userManager.logview',['names'=>$names,'logData'=>$log,'user'=>$users]);
       }else {
         return view('/denieViews.denie');
