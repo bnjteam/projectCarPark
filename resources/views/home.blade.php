@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('head')
+<<<<<<< HEAD
 <div class="" style="margin-top:40px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
+=======
+<div class="" style="margin-top:25px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
+>>>>>>> 1e8edca0c7f094c2cb69f756f4cce9cf94f068c7
   <div class="row justify-content-center" style="padding:50px;">
     <div class="" style="font-size:80px;color:white;font-weight: 800;" >
       Parking on your hand
@@ -9,7 +13,7 @@
       <form action="/search" method="POST" role="search" >
       {{ csrf_field() }}
       <div class="row justify-content-center">
-        <div class="input-group" style="border-radius: 5px 0 0 5px;width:700px;margin-top:10px">
+        <div class="input-group" style="border-radius: 5px 0 0 5px;width:700px;margin-top:85px">
           <div class="" >
           <select name="filter" id="filter" class="form-control input" style="height:100%;width:100%;font-size:30px">
             @foreach($filters as $filter=>$filterValue)
@@ -17,7 +21,7 @@
               @endforeach
           </select>
           </div>
-            <input type="text" class="form-control" name="search" style=";font-size:30px;background-image: url(/storage/pin-icon.svg);padding-left: 40px;background-repeat: no-repeat;background-size: 20px;    background-position: 10px;"
+            <input type="text" class="form-control" name="search" style=";font-size:30px;background-image: url(/storage/pin-icon.svg);padding-left: 40px;background-repeat: no-repeat;background-size: 25px;    background-position: 10px;"
                 placeholder="Search location">
                 <span class="input-group-btn">
                 <button type="submit" class="btn btn-success" style="font-size:30px;padding-right: 60px;background-image: url(/storage/glass-icon.svg);    background-repeat: no-repeat;    background-position: right 25px center;    background-size: 25px;">
