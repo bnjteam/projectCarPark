@@ -14,6 +14,8 @@ use App\Photolocation;
 use App\Current_map;
 use App\Map;
 use Carbon\Carbon;
+use App\Package_user;
+use App\Package;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Collection;
