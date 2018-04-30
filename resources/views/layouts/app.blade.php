@@ -2,15 +2,15 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
       setInterval( function() {
           console.log('123');
              $.ajax({
                type: "get",
               url: "/check",
             });
-       }, 1000);
-  </script>
+       }, 5000);
+  </script> -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
