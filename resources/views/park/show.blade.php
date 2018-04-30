@@ -267,9 +267,10 @@
         </script>
     <body>
 
-      <center><h1>  {{$parking->location}}</h1></center>
-      <img src="{{ $parking->photo}}" width=100% alt="">
-      <center><label>Address</label> <br>
+      <center><h1>  {{$parking->location}}</h1>
+
+      <img src="{{ $parking->photo}}" width=1100px alt=""><br>
+      <label>Address</label> <br>
       <div class="paper">
          <div class="paper-content">
       <textarea disabled  name="address" rows="3" cols="80">{{$parking->address}}</textarea>
