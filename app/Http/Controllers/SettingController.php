@@ -62,7 +62,7 @@ class SettingController extends Controller
      */
     public function show(User $user)
     {
-      if (\Gate::allows('index-profile',\Auth::user())){
+      if (\Gate::allows('index-profile',$user)){
         $date = Carbon::parse($user->end_date_package);
         $date = Carbon::now()->diffInDays($date);
         if ($date == 0 ){
