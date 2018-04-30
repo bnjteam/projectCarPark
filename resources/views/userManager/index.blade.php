@@ -69,7 +69,7 @@ td ,th ,tr {
     <tr>
       <td>{{ $loop->iteration }}</td>
       <td>
-          @if ( !file_exists( $item->avatar ) ) 
+          @if ( !file_exists( $item->avatar ) )
             <img style="border-radius: 20%" width="80"  src="{{ $item->avatar }}" alt="">
           @else
             <img style="border-radius: 20%" width="80"  src="/storage/noimage.png" alt="">
@@ -82,8 +82,8 @@ td ,th ,tr {
       <td >{{ $item->email }}</td>
       <td >{{ $item->level }}</td>
       <td >{{ $item->created_at->diffForHumans() }}</td>
-
-      @if($item->is_enabled==1)
+    @if(!$item->isSuperAdmin())
+      @if($item->is_enabled==1 )
 
       <td class="table-success">
         <form class="" action="/userManager/suspend/{{$item->id}}" method="post">
@@ -101,6 +101,10 @@ td ,th ,tr {
             <button onclick="return confirm('Are you sure you want to active this user?')" type="submit" class="btn btn-success btn-sm">Active</button>/<i style="color:red" class="fa fa-times">Suspend</i>
           </form>
           </td>
+          @endif
+        @else
+        <td >-------------</td>
+
       @endif
       <td >{{ $item->type }}</td>
       <td >{{ $item->end_date_package }}</td>
@@ -114,6 +118,7 @@ td ,th ,tr {
       </div>
     </tr>
     @endforeach
+
 
 </table>
 </div>

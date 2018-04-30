@@ -42,7 +42,7 @@
   <div class="alert alert-dismissible alert-warning">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
 
-    <P class="mb-0">Your package has emtry or expired</p>
+    <P class="mb-0">Your package has empty or expired</p>
     <P class="mb-0">Please apply for package<a href="/package"> Member</a> or <a href="/register_owner">Parking Owner</a></p>
     @endif
   </div>

@@ -370,7 +370,7 @@ $this->checkreserve();
       public function readQRcode($token){
         // return view('park.readQRcode');
         $this->checkreserve();
-          if (count(Current_map::all()->where('password','LIKE',$token))>0 ) {
+          if (count(Current_map::all()->where('password','LIKE',$token))>0) {
             $current = Current_map::all()->where('password','LIKE',$token)->last();
             $map = Map::all()->where('id','LIKE',$current->id_map)->first();
             $photo = Photolocation::all()->where('id','LIKE',$map->id_photo)->first();
