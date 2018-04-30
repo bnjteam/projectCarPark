@@ -56,7 +56,6 @@ td ,th ,tr {
       <th onclick="sortTable(1)" scope="col">User ID</th>
       <th onclick="sortTable(2)" scope="col">name</th>
       <th onclick="sortTable(3)" scope="col">Description</th>
-      <th onclick="sortTable(4)" scope="col">Location</th>
       <th onclick="sortTable(5)" scope="col">Create Date</th>
     </tr>
 

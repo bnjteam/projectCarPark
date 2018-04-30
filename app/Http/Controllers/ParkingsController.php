@@ -355,7 +355,8 @@ class ParkingsController extends Controller
           // dd($id_parking);
           $loca = Parking::all()->where('id','LIKE',$id_parking->id_parking)->first();
 
-          $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->id.' space '.$map->number;
+          // $log->description = "user ".Auth::user()->name.' reserve the park '.$loca->location.' floor '.$id_parking->floor.' space '.$map->number;
+          $log->description = "user ".Auth::user()->name.' reserve space '.$map->number.' floor '.$id_parking->floor.' park '.$loca->location;
           $log->save();
 
           return $this->InfoParking();
