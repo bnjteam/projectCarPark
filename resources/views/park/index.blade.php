@@ -1,21 +1,7 @@
 @extends('layouts.app')
 
 @push('style')
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#footer').removeClass('footer');
-  if (height_win < height_page){
-    $('#footer').addClass('footer');
-    console.log('height Window: '+height_win,'height Page :'+height_page);
 
-    console.log('win_less');
-  }
-  else{
-
-    console.log('height Window: '+height_win,'height Page :'+height_page);
-    console.log("page les");
-  }
-});
 
 </script>
 @endpush

@@ -37,6 +37,8 @@
 </style>
 @endpush
 @section('content')
+<br>
+<br>
 <div class="container">
     <div class="row justify-content-center">
       <h1>{{ __("Package's Reserve ") }}</h1>

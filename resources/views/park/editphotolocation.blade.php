@@ -3,30 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-$(document).ready(function(){
-  $('#footer').removeClass('footer');
-  if (height_win < height_page){
-    $('#footer').addClass('footer');
-    console.log('height Window: '+height_win,'height Page :'+height_page);
 
-    console.log('win_less');
-  }
-  else{
-
-    console.log('height Window: '+height_win,'height Page :'+height_page);
-    console.log("page les");
-  }
-});
-  if (height_win < height_page){
-    console.log('height Window: '+height_win,'height Page :'+height_page);
-
-    console.log('win_less');
-  }
-  else{
-    $('#footer').addClass('footer');
-    console.log('height Window: '+height_win,'height Page :'+height_page);
-    console.log("page les");
-  }
 function readURL(input) {
 if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -37,9 +14,6 @@ if (input.files && input.files[0]) {
     reader.readAsDataURL(input.files[0]);
 }
 }
-
-
-
 
 
 var canvas, ctx,
@@ -143,7 +117,9 @@ function setclick () {
 
 </script>
 
-
+<br>
+<br>
+<br>
   <center><a href="addcarpark"  ><button  class="btn btn-info"   style="padding: 16px 100px;" type="button" name="button">ADD</button></a></center>
   <br>
 @foreach($photoslocations as $photoslocation)
