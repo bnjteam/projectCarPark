@@ -39,7 +39,7 @@ class ForgotPasswordController extends Controller
     {
 
       $log = new Log();
-      $users = User::all()->pluck('id','email');
+      $users = User::all()->pluck('name','email');
 
       $log->id_user = $users[$request->email];
       $log->description = "Email :".$request->email. ' has request to reset password';

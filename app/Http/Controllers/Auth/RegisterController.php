@@ -88,7 +88,7 @@ class RegisterController extends Controller
       //หลังสมัครสมาชิกจะให้ทำอะไร
       $log = new Log();
       $log->id_user = $user->id;
-      $log->description = "User id :".$user->id. ' has registered';
+      $log->description = "User :".Auth::user()->name. ' has registered';
       $log->save();
     }
 }

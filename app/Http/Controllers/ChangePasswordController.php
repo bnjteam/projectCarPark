@@ -92,11 +92,9 @@ class ChangePasswordController extends Controller
            $log->id_user = Auth::user()->id;
         }
 
-        else{
-          $log->id_user = '2';
-        }
 
-        $log->description = "user ".$log->id_user.' change password';
+
+        $log->description = "user ".Auth::user()->name.' change password';
         $log->save();
         return redirect('/');
         }

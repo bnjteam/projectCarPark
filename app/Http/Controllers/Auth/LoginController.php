@@ -49,9 +49,9 @@ class LoginController extends Controller
         if (count(User::all()->where('email','LIKE',$request->email))){
           $log = new Log();
           $email = $request->email;
-           $users = User::all()->pluck('id','email');
+           $users = User::all()->pluck('name','email');
            $log->id_user = $users[$email];
-           $log->description = "user id : ".$users[$email].' has login';
+           $log->description = "user : ".$users[$email].' has login';
            $log->save();
            $u = User::all()->where('id','LIKE',$log->id_user)->first();
            // dd($u->level!="admin" , $u->end_date_package!=null,$u);
@@ -63,9 +63,9 @@ class LoginController extends Controller
                // dd($u->end_date_package,$time->toDateTimeString(),'expired');
                $log = new Log();
                $email = $request->email;
-                $users = User::all()->pluck('id','email');
+                $users = User::all()->pluck('name','email');
                 $log->id_user = $users[$email];
-                $log->description = "User id :".$users[$email]." have expired package's ".$u->type;
+                $log->description = "user :".$users[$email]." have expired package's ".$u->type;
                 $log->save();
                $u->level='guest';
                $u->type="none";
@@ -104,10 +104,10 @@ class LoginController extends Controller
 
         $log = new Log();
 
-        $users = User::all()->pluck('id','email');
+        $users = User::all()->pluck('name','email');
         $email= \Auth::user()->email ;
         $log->id_user = $users[$email];
-        $log->description = "User id :".$users[$email].' has logout';
+        $log->description = "User :".$users[$email].' has logout';
 
         $log->save();
         $this->guard()->logout();
