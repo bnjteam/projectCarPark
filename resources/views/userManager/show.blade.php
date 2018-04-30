@@ -3,6 +3,7 @@
 
 
 @section('content')
+<br><br>
 <center>
 <div class="panel panel-default">
     <div class="panel-heading">

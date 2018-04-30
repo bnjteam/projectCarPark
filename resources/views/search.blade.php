@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
+<br><br>
 <div class="container">
   <div class="row justify-content-center">
     <form action="/search" method="POST" role="search" >

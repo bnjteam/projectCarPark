@@ -1,9 +1,14 @@
 
 @extends('layouts.app')
-
+<script type="text/javascript">
+$( document ).ready(function() {
+    $('#footer').removeClass('footer');
+});
+</script>
 
 
 @section('content')
+<br><br>
 <div class="container">
   <div class="row justify-content-center ">
     <div class="col-10">

@@ -199,6 +199,8 @@
             @yield('head')
               <div class=""  style="padding:50px; background-image: url('http://www.papermichey.com/wp-content/uploads/2015/08/1920x1080-pale-pink-solid-color-background.jpg');padding-top:30px;padding-bottom:80px;background-size: cover;width:100%;" >
                   <br>
+                  <br>
+                  <br>
 
                   @yield('content')
               </div>
@@ -287,7 +289,6 @@
     var height_win = win_dim['height']-100;
   if (height_win < height_page){
     console.log('height Window: '+height_win,'height Page :'+height_page);
-
     console.log('win_less');
   }
   else{
