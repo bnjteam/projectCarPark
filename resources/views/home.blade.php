@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('head')
-<<<<<<< HEAD
-<div class="" style="margin-top:40px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
-=======
 <div class="" style="margin-top:25px;background-image:url(/storage/01.jpg);padding:80px;background-size: cover;background-repeat: no-repeat;width:100%">
->>>>>>> 1e8edca0c7f094c2cb69f756f4cce9cf94f068c7
   <div class="row justify-content-center" style="padding:50px;">
     <div class="" style="font-size:80px;color:white;font-weight: 800;" >
       Parking on your hand
