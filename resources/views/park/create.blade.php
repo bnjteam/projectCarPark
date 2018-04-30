@@ -33,9 +33,14 @@
 				@endif
 
     <body>
-      <br>
 
-      <center><div class="col-8">
+      <br>
+      <div align="center">
+      <div class="card"   style="width: 50rem; background-color:rgba(0, 0, 0, 0.5); color:white;">
+      <div class="card-header">{{ __('Create You parkings') }}</div>
+
+      <div class="card-body" >
+      <center><div class="col-10">
 
         <form method="POST" action="/parkings" enctype="multipart/form-data">
           @csrf
@@ -62,9 +67,9 @@
             <div class="form-group">
               <div class="row justify-content-center">
                 <div class="col-0" style="margin-top:10px">
-                  Image Location
-                </div>
-                <div class="col-4">
+                  Image Location :
+                 </div>
+                <div class="">
                   <div class="form-group">
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -92,6 +97,9 @@
               @endif
 
     </form>
+  </div>
+</div>
+</div>
 
   </div></center>
 
@@ -106,7 +114,7 @@
 
     body {
 
-        /* background:  #FFFFCC; */
+        background-image: url('https://hdwallsource.com/img/2014/5/street-parking-wallpaper-45023-46185-hd-wallpapers.jpg');
         font-family: 'Roboto', sans-serif;
     }
 

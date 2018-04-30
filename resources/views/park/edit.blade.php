@@ -140,7 +140,14 @@
     <body>
       <br>
 
-      <center><div class="">
+      <br>
+      <div align="center">
+      <div class="card"   style="width: 1200px; background-color:rgba(0, 0, 0, 0.5); color:white;">
+      <div class="card-header">{{ __('Create You parkings') }}</div>
+
+      <div class="card-body" >
+      <center><div class="col-10">
+
 
         <form method="POST" action="/parkings/{{$parking->id}}/addphoto" enctype="multipart/form-data">
           @csrf
@@ -180,9 +187,9 @@
             <div class="form-group">
               <div class="row justify-content-center">
                 <div class="col-0" style="margin-top:10px">
-                  Image Location
+                  Image Location :
                 </div>
-                <div class="col-4">
+                <div class="">
                   <div class="form-group">
                     <div class="input-group mb-3">
                       <div class="custom-file">
@@ -230,14 +237,19 @@
       </div></center></div>
     </body>
       </div>
+    </div>
+  </div>
+</div>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 
 body {
-    margin: 0 0 0;
-    /* background: #FFFFCC; */
+
+    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/B0xO8Q47eiwdg4eb8/abstract-moving-background-for-title-text-in-the-center-white-dots-connected-with-lines-on-2016-pantone-color-mix-rose-quartz-and-serenity-gradient-background_svfx6j-cqe_thumbnail-full01.png');
     font-family: 'Roboto', sans-serif;
+    
+    /* background-repeat: no-repeat; */
 }
 
 .paper {
