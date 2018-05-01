@@ -49,12 +49,12 @@ class HomeController extends Controller
         $locationWord='';
       }
       if (Input::get('filter')=="location"){
-          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('location','like','%'.$locationWord.'%')->paginate(6);
+          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('location','like','%'.$locationWord.'%')->whereNull('deleted_at')->paginate(6);
 
 
       }
       else{
-          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('address','like','%'.$locationWord.'%')->paginate(6);
+          $location = DB::table('parkings')->orderBy('id', 'DESC')->where('address','like','%'.$locationWord.'%')->whereNull('deleted_at')->paginate(6);
 
       }
       // dd($location);

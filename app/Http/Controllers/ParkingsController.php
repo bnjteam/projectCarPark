@@ -183,7 +183,9 @@ $this->checkreserve();
           $photo->delete();
         }
 
-
+      $pack = Package_user::all()->where('id_user','like',$parking->id_user)->first();
+      $pack->numbers = $pack->numbers-1;
+      $pack->save();
       $parking->delete();
 
 
