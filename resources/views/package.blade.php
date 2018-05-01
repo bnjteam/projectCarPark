@@ -76,7 +76,7 @@
                                 </p>
                                     <div class="" style="text-align:center;margin-top:40px">
                                       @if (Auth::user()->type=="daily")
-                                        <a href="" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                        <a href="" class="btn btn-primary disabled">{{ __('Bought') }}</a>
                                       @elseif (Auth::user()->level=="parking_owner" || Auth::user()->level=="admin" || Auth::user()->type=="monthly" || Auth::user()->type=="weekly")
                                         <a href="" class="btn btn-primary disabled">{{ __("Can't Buy") }}</a>
                                       @elseif (Auth::user()->type!="daily" && Auth::user()->level!="admin")
@@ -118,7 +118,7 @@
 
                                 <div class="" style="text-align:center;margin-top:40px">
                                   @if (Auth::user()->type=="weekly")
-                                    <a href="" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                    <a href="" class="btn btn-primary disabled">{{ __('Bought') }}</a>
                                   @elseif (Auth::user()->level=="parking_owner"  || Auth::user()->level=="admin" || Auth::user()->type=="monthly")
                                     <a href="" class="btn btn-primary disabled">{{ __("Can't Buy") }}</a>
                                   @elseif (Auth::user()->type!="weekly" && Auth::user()->level!="admin")
@@ -159,7 +159,7 @@
 
                                 <div class="" style="text-align:center;margin-top:40px">
                                   @if (Auth::user()->type=="monthly")
-                                    <a href="" class="btn btn-primary disabled">{{ __('Buyed') }}</a>
+                                    <a href="" class="btn btn-primary disabled">{{ __('Bought') }}</a>
                                   @elseif (Auth::user()->level=="parking_owner" || Auth::user()->level=="admin")
                                     <a href="" class="btn btn-primary disabled">{{ __("Can't Buy") }}</a>
                                   @elseif (Auth::user()->type!="monthly" && Auth::user()->level!="admin")

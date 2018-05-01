@@ -46,10 +46,10 @@
                 <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
                 <?php
                     if  (strlen($details[$i]->address) > 60){
-                        echo 'Location : '.substr($details[$i]->address,0,60)."...";
+                        echo 'Address : '.substr($details[$i]->address,0,60)."...";
                     }
                     else {
-                      echo 'Location : '.$details[$i]->address;
+                      echo 'Address : '.$details[$i]->address;
                     }
                     // echo strlen(utf8_decode($details[$i]->address));
                  ?>
@@ -73,10 +73,10 @@
                 <img src="/storage/pin-icon.svg" style="margin-left:5px;margin-right:5px" alt="" >
                 <?php
                     if  (strlen($details[$i]->address) > 60){
-                        echo 'Location : '.substr($details[$i]->address,0,60)."...";
+                        echo 'Address : '.substr($details[$i]->address,0,60)."...";
                     }
                     else {
-                      echo 'Location : '.$details[$i]->address;
+                      echo 'Address : '.$details[$i]->address;
                     }
                     // echo strlen(utf8_decode($details[$i]->address));
                  ?>

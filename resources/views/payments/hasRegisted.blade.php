@@ -13,7 +13,7 @@
             <!-- <div class="row justify-content-center">
                 <img src="/storage/check.png" alt="" style="padding:20px">
             </div> -->
-            <h3 style="text-align:center">You have already buyed this package</h3>
+            <h3 style="text-align:center">You have already bought this package</h3>
             <!-- <p class="card-text" style="text-align:center">you have register completed.</p> -->
           </div>
         </div>

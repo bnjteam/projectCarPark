@@ -66,7 +66,7 @@ class UsersManagerController extends Controller
           $date = Carbon::parse($user->end_date_package);
           $date = Carbon::now()->diffInDays($date);
           if ($date == 0 ){
-            $date = 'Today ';
+            $date = 'Today';
           }
           if ($date ==1 ){
             $date = 'Tomorrow';

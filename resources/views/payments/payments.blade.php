@@ -35,7 +35,7 @@
 					<div class="">
 						<label for="bt-exp-month" class="no-wrap">EXPIRATION DATE (MM/YYYY)
 						</label>
-						<label for="bt-exp-month" class="no-wrap" style="margin-left:30px">ZIP CODE
+						<label for="bt-exp-month" class="no-wrap" style="margin-left:30px">CVV
 						</label>
 						<div class="row">
 							<div class="col-2">

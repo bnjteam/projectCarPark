@@ -75,10 +75,10 @@
                         <div style="font-size:13px;color:white;margin-left: 15px;">
                           <ul class="navbar-nav ml-auto">
                           @if (Auth::check() && Auth::user()->level=="admin" )
-                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Regist Owner</a></li>
-                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li>
-                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li>
-                              <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Buy Package to reserve </a></li>
+                              <!-- <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/register_owner">Regist Owner</a></li> -->
+                              <!-- <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/parkings/create">Create Your Parking</a></li> -->
+                              <!-- <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li> -->
+                              <!-- <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Buy Package to reserve </a></li> -->
                           @elseif (Auth::check() && Auth::user()->level=="member" )
                               <li class="navbar-collapse collapse"><a style="font-family: 'Jua', sans-serif;" class="nav-link" href="/package">Upgrade Package</a></li>
                           @elseif (Auth::check() && Auth::user()->level == "parking_owner")

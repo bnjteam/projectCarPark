@@ -89,7 +89,7 @@
                 {{ $msg }}
             </div>
         @endif
-        <h3>Location : {{ $parking->location}}</h3>
+        <h3>{{ $parking->location}}</h3>
 
         <div class="" style="width:1100px">
             @if (!file_exists($parking->photo))

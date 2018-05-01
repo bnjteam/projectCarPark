@@ -401,6 +401,10 @@ $this->checkreserve();
               $id_parking = Photolocation::all()->pluck('id_parking','id')[$id_photo];
               // $log->location = Parking::all()->where('id','LIKE',$id_parking)->first()->location;
               $log->save();
+
+                    $pack = Package_user::all()->where('id_user','like',$current->id_user)->first();
+                    $pack->numbers = 0;
+                    $pack->save();
               return view('park.readQRcode',['word'=>'Leave']);
             }
           }
@@ -448,11 +452,11 @@ $this->checkreserve();
 
               $parkingTrash = Parking::onlyTrashed()->where('id','LIKE',$photo->id_parking)->first();
               // dd($parkingTrash);
-              $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+              $timeout = Carbon::parse($cur_map->created_at)->addMinutes(20);
 
               return view('/park.infoparking',['msg'=>'This location has deleted','parking'=>$parkingTrash,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
             }
-            $timeout = Carbon::parse($cur_map->created_at)->addMinutes(30);
+            $timeout = Carbon::parse($cur_map->created_at)->addMinutes(20);
             return view('/park.infoparking',['parking'=>$parking,'timeOut'=>$timeout,'map'=>$map,'photolocation'=>$photo,'current_map'=>$cur_map]);
           }
           else{
@@ -490,10 +494,13 @@ $this->checkreserve();
             //     dd($cur_map);
               if ($minutes>20){
                   // dd($cur_maps);
-                $cur_map->delete();
-                  $pack= Package_user::all()->where('id_user','LIKE',$cur_map->id_user)->first();
-                  $pack->numbers=$pack->numbers-1;
-                  $pack->save();
+                  if($cur_map->status=='empty'){
+                    $cur_map->delete();
+                    $pack= Package_user::all()->where('id_user','LIKE',$cur_map->id_user)->first();
+                    $pack->numbers=$pack->numbers-1;
+                    $pack->save();
+                  }
+
               }
 
 

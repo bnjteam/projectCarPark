@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->filter= ['location'=>'Location','address'=>'Address'];
+        $this->filter= ['location'=>'Name','address'=>'Address'];
     }
     /**
      * Show the application dashboard.
