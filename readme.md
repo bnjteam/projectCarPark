@@ -22,9 +22,10 @@
  2. login
  3. จะมีเมนู create praking  กับ package to reserve กดเข้าไปซื้อ package ตามที่ต้องการใช้งาน
  
- **สำหรับ parking owner package
- 
+ **สำหรับ package parking owner
  4. กดเมนู create praking เพื่อสร้างที่จอดรถ
  5. ไปที่เมนู praking manager กดไปที่ edit เพื่อเพิ่มชั้นจอดรถ จากนั้นใส่รูปแล้วกำหนดช่องจอดให้เรียบร้อย
  6. เราสามารถตรวจดูที่จอดรถได้ที่หน้าแรกแล้วกดปุ่ม serach หาที่จอดรถที่เราสร้าง
-    สำหรับ reserve
+ 7.จำนวนในการสร้างที่จอดรถจะขึ้นอยู่กับ package ที่ซื้อ
+    
+ **สำหรับ package to reserve
