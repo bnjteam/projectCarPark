@@ -7,10 +7,6 @@
 | กนกพล โทนะบุตร| 5810450172 |
 | พิชญกุล เจนภูมิใจ | 5810450903 |
 
-## How to use
-....
-
-
 ## Installation
  1. Upload or clone ไฟล์ทั้งหมดมาไว้บน Server
  2. ติดตั้ง composer  composer install --no-dev –optimize-autoloader
@@ -20,3 +16,6 @@
  6. รันคำสั่ง php artisan route:cache
            php artisan storage:link
  7. พร้อมใช้งาน
+
+## How to use
+....
